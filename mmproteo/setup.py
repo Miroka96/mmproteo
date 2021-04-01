@@ -2,7 +2,7 @@ import os
 from setuptools import setup, find_packages
 import versioneer
 
-with open(os.path.join('..', 'README.md'), "r") as file:
+with open('README.md', "r") as file:
     read_me = file.read()
 
 setup(
@@ -15,7 +15,7 @@ setup(
     author='Mirko Krause',
     author_email='krause@codebase.one',
     license='GPLv3+',
-    packages=find_packages(),
+    packages=find_packages(where='src'),
     entry_points={
         "console_scripts": ['mmproteo = mmproteo.mmproteo:main']
     },
