@@ -11,11 +11,12 @@ setup(
     description='Mirko meets Proteomics: A PRIDE Archive downloader for deep learning-based DeNovo Sequencing',
     long_description=read_me,
     long_description_content_type="text/markdown",
-    url='https://gitlab.com/dacs-hpi/pride-downloader',
+    url='https://github.com/Miroka96/mmproteo',
     author='Mirko Krause',
     author_email='krause@codebase.one',
     license='GPLv3+',
     packages=find_packages(where='src'),
+    package_dir={'': 'src'},
     entry_points={
         "console_scripts": ['mmproteo = mmproteo.mmproteo:main']
     },

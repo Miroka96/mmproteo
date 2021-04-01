@@ -1,2 +1,2 @@
 include versioneer.py
-include mmproteo/_version.py
+include src/mmproteo/_version.py
