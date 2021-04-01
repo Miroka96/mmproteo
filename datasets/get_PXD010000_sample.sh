@@ -5,4 +5,4 @@ wget ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity
 # convert RAW files to MGF files
 echo ThermoRawFileParser --input_directory=. --format=0 | make -f ../Makefile thermorawfileparser-noninteractive
 
-rm *.raw
+rm ./*.raw

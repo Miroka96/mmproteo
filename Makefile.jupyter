@@ -1,0 +1,44 @@
+IMAGE = tensorflow/tensorflow:latest-gpu-jupyter
+LOCAL_PORT = 8888
+PORT_PUBLISHING = -p $(LOCAL_PORT):8888
+VOLUME_MOUNTING = -v ${PWD}:/tf/workspace
+CONTAINER_NAME = gpu_jupyter
+GPU = --runtime=nvidia
+PARAMETERS = $(GPU) $(VOLUME_MOUNTING) -u $(shell id -u):$(shell id -g) $(PORT_PUBLISHING) $(IMAGE)
+
+.PHONY: monitor-gpu pull test deploy-only token deploy-prepare deploy stop rm undeploy redeploy
+
+monitor-gpu:
+	watch -n 1 nvidia-smi
+
+pull:
+	docker pull $(IMAGE)
+
+test: pull
+	docker run -it --rm $(PARAMETERS)
+
+deploy-only: pull
+	docker run --restart always --detach --name=$(CONTAINER_NAME) $(PARAMETERS)
+	sleep 2
+
+deploy-prepare:
+	docker exec $(CONTAINER_NAME) pip install --upgrade pip
+	docker exec $(CONTAINER_NAME) pip install --upgrade -r /tf/workspace/requirements.txt
+
+token:
+	-docker logs $(CONTAINER_NAME) 2>&1 | grep \?token\= | tail -n 1 | grep -o 'http.*$$'
+
+deploy: | deploy-only token deploy-prepare
+
+stop:
+	-docker stop $(CONTAINER_NAME)
+
+rm:
+	-docker rm $(CONTAINER_NAME)
+
+undeploy: | stop rm
+
+redeploy: | undeploy deploy
+
+enter:
+	docker exec -it $(CONTAINER_NAME) /bin/bash

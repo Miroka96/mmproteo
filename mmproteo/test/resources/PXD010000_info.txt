@@ -1,0 +1,389 @@
+{
+    "accession": "PXD010000",
+    "title": "DeNovo Peptide Identification Deep Learning Training Set",
+    "additionalAttributes": [
+        {
+            "@type": "CvParam",
+            "cvLabel": "PRIDE",
+            "accession": "PRIDE:0000411",
+            "name": "Dataset FTP location",
+            "value": "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000"
+        }
+    ],
+    "projectDescription": "A benchmark set of bottom-up proteomics data for training deep learning networks. It has data from 51 organisms and includes nearly 1 million peptides.",
+    "sampleProcessingProtocol": "Samples were digested with trypsin then analyzed by LC-MS/MS",
+    "dataProcessingProtocol": "Data was searched with MSGF+ using PNNL's DMS Processing pipeline",
+    "projectTags": [],
+    "keywords": [
+        "Bacterial diversity",
+        "Machine learning",
+        "Deep learning"
+    ],
+    "doi": "10.6019/PXD010000",
+    "submissionType": "COMPLETE",
+    "submissionDate": "2018-06-12",
+    "publicationDate": "2018-06-13",
+    "submitters": [
+        {
+            "title": "Dr",
+            "affiliation": "Pacific Northwest National Laboratory",
+            "email": "matthew.monroe@pnnl.gov",
+            "country": "United States",
+            "orcid": "0000-0002-1210-7169",
+            "name": "Matthew Monroe",
+            "id": "730116"
+        }
+    ],
+    "labPIs": [
+        {
+            "title": "Dr",
+            "affiliation": "Pacific Northwest National Laboratory",
+            "email": "samuel.payne@pnnl.gov",
+            "country": "",
+            "orcid": "",
+            "name": "Samuel Payne",
+            "id": "107090100"
+        }
+    ],
+    "affiliations": [
+        "Pacific Northwest National Laboratory"
+    ],
+    "instruments": [
+        {
+            "@type": "CvParam",
+            "cvLabel": "MS",
+            "accession": "MS:1001911",
+            "name": "Q Exactive"
+        }
+    ],
+    "softwares": [],
+    "quantificationMethods": [],
+    "countries": [
+        "United States"
+    ],
+    "sampleAttributes": [],
+    "organisms": [
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "1772",
+            "name": "Mycobacterium smegmatis"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "102235",
+            "name": "Cyanobacterium stanieri"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "1311",
+            "name": "Streptococcus agalactiae"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "1198133",
+            "name": "Myxococcus xanthus dz2"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "253",
+            "name": "Chryseobacterium indologenes"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "391904",
+            "name": "Bifidobacterium longum subsp. infantis (strain atcc 15697 / dsm 20088 / jcm 1222 / nctc 11817 / s12)"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "66897",
+            "name": "Streptomyces griseorubens"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "1270",
+            "name": "Micrococcus luteus (micrococcus lysodeikticus)"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "593907",
+            "name": "Cellvibrio gilvus (strain atcc 13127 / nrrl b-14078)"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "224308",
+            "name": "Bacillus subtilis subsp. subtilis str. 168"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "264731",
+            "name": "Prevotella ruminicola (strain atcc 19189 / jcm 8958 / 23)"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "101510",
+            "name": "Rhodococcus sp. (strain rha1)"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "446",
+            "name": "Legionella pneumophila"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "226186",
+            "name": "Bacteroides thetaiotaomicron (strain atcc 29148 / dsm 2079 / nctc 10582 / e50 / vpi-5482)"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "511",
+            "name": "Alcaligenes faecalis"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "1042878",
+            "name": "Cupriavidus necator (strain atcc 43291 / dsm 13513 / n-1) (ralstonia eutropha)"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "561177",
+            "name": "Anaerococcus hydrogenalis dsm 7454"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "401614",
+            "name": "Francisella tularensis subsp. novicida (strain u112)"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "657322",
+            "name": "Faecalibacterium prausnitzii sl3/3"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "1076",
+            "name": "Rhodopseudomonas palustris"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "411470",
+            "name": "Ruminococcus gnavus atcc 29149"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "197",
+            "name": "Campylobacter jejuni"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "226900",
+            "name": "Bacillus cereus (strain atcc 14579 / dsm 31)"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "535026",
+            "name": "Bacillus subtilis subsp. subtilis str. ncib 3610"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "393133",
+            "name": "Listeria monocytogenes serotype 1/2a (strain 10403s)"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "500634",
+            "name": "Bifidobacterium bifidum dsm 20456 = jcm 1255"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "211586",
+            "name": "Shewanella oneidensis (strain mr-1)"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "358",
+            "name": "Rhizobium radiobacter (agrobacterium tumefaciens) (agrobacterium radiobacter)"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "160488",
+            "name": "Pseudomonas putida kt2440"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "219334",
+            "name": "Lactobacillus casei subsp. casei atcc 393"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "1348584",
+            "name": "Cellulophaga baltica 18"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "862962",
+            "name": "Bacteroides fragilis (strain 638r)"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "1305737",
+            "name": "Algoriphagus marincola hl-49"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "39486",
+            "name": "Dorea formicigenerans"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "28034",
+            "name": "Sulfobacillus thermosulfidooxidans"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "398578",
+            "name": "Delftia acidovorans (strain dsm 14801 / sph-1)"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "470146",
+            "name": "Coprococcus comes atcc 27758"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "1486246",
+            "name": "Bacteria"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "266",
+            "name": "Paracoccus denitrificans"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "1931",
+            "name": "Streptomyces sp."
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "546",
+            "name": "Citrobacter freundii"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "748727",
+            "name": "Clostridium ljungdahlii (strain atcc 55383 / dsm 13528 / petc)"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "1798193",
+            "name": "Bacteria"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "1666912",
+            "name": "Bacteria"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "59374",
+            "name": "Fibrobacter succinogenes subsp. succinogenes s85"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "378806",
+            "name": "Stigmatella aurantiaca (strain dw4/3-1)"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "349163",
+            "name": "Acidiphilium cryptum (strain jf-5)"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "1036171",
+            "name": "Paenibacillus polymyxa atcc 842"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "1091494",
+            "name": "Methylomicrobium alcaliphilum (strain dsm 19304 / ncimb 14124 / vkm b-2133 / 20z)"
+        },
+        {
+            "@type": "CvParam",
+            "cvLabel": "NEWT",
+            "accession": "1140",
+            "name": "Synechococcus elongatus (strain pcc 7942) (anacystis nidulans r2)"
+        }
+    ],
+    "organismParts": [],
+    "diseases": [],
+    "references": [],
+    "identifiedPTMStrings": [
+        {
+            "@type": "CvParam",
+            "cvLabel": "UNIMOD",
+            "accession": "UNIMOD:35",
+            "name": "Oxidation"
+        }
+    ],
+    "_links": {
+        "self": {
+            "href": "https://www.ebi.ac.uk/pride/ws/archive/v2/projects/PXD010000"
+        },
+        "files": {
+            "href": "https://www.ebi.ac.uk/pride/ws/archive/v2/projects/PXD010000/files"
+        },
+        "datasetFtpUrl": {
+            "href": "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000"
+        }
+    }
+}
