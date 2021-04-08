@@ -233,10 +233,16 @@ def read_mzml(filename: str, logger: log.Logger = log.DEFAULT_LOGGER) -> pd.Data
 class FilteringProcessor:
     default_is_decoy_column_name = 'SpectrumIdentificationItem__1__PeptideEvidenceRef__isDecoy'
     default_fdr_column_name = 'SpectrumIdentificationItem__1__MSGFQValue'
-    default_output_columns = [
-            default_is_decoy_column_name,
-            'mz_array',
-            'intensity_array',
+    default_peptide_sequence_column_name = 'SpectrumIdentificationItem__1__PeptideEvidenceRef__PeptideSequence'
+    default_mz_array_column_name = 'mz_array'
+    default_intensity_array_column_name = 'intensity_array'
+
+    @staticmethod
+    def get_default_output_columns() -> List[str]:
+        return [
+            FilteringProcessor.default_peptide_sequence_column_name,
+            FilteringProcessor.default_mz_array_column_name,
+            FilteringProcessor.default_intensity_array_column_name,
         ]
 
     def __init__(self,
@@ -251,7 +257,7 @@ class FilteringProcessor:
         self.fdr_column_name = fdr_column_name
         self.fdr = fdr
         if output_columns is None:
-            self.output_columns = self.default_output_columns
+            self.output_columns = self.get_default_output_columns()
         else:
             self.output_columns = output_columns
         self.dump_path = dump_path.rstrip(os.path.sep)
