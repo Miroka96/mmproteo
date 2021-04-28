@@ -1,14 +1,13 @@
 import os
-from typing import List, Optional, Tuple, Dict, Any, Union
+from typing import List, Optional, Tuple, Dict, Any, Union, Callable
 
 import pandas as pd
-from pyteomics import mzid, mzml
-
-from mmproteo.utils import log, utils, visualization
+from mmproteo.utils import log, utils
 from mmproteo.utils.config import Config
 from mmproteo.utils.filters import AbstractFilterConditionNode, filter_files_list
 from mmproteo.utils.formats import read
 from mmproteo.utils.processing import ItemProcessor
+from pyteomics import mzid, mzml
 
 
 def merge_mzml_and_mzid_dfs(mzml_df: pd.DataFrame,
@@ -252,6 +251,7 @@ class FilteringProcessor:
                  is_decoy_column_name: str = default_is_decoy_column_name,
                  fdr_column_name: str = default_fdr_column_name,
                  output_columns: Optional[List[str]] = None,
+                 post_processor: Callable[[pd.DataFrame], pd.DataFrame] = lambda x: x,
                  logger: log.Logger = log.DEFAULT_LOGGER):
         self.is_decoy_column_name = is_decoy_column_name
         self.fdr_column_name = fdr_column_name
@@ -262,6 +262,7 @@ class FilteringProcessor:
             self.output_columns = output_columns
         self.dump_path = dump_path.rstrip(os.path.sep)
         self.skip_existing = skip_existing
+        self.post_processor = post_processor
         self.logger = logger
 
     def __call__(self, input_file_path: str) -> Optional[Dict[str, str]]:
@@ -287,6 +288,7 @@ class FilteringProcessor:
         df = df[df[self.fdr_column_name] <= self.fdr]
         new_length = len(df)
         res['above_fdr_count'] = length - new_length
+        length = new_length
 
         decoy_counts = df[self.is_decoy_column_name].value_counts()
         res['left_decoys'] = decoy_counts.get(True, 0)
@@ -294,8 +296,18 @@ class FilteringProcessor:
         res['fdr'] = res['left_decoys'] / res['left_targets']
 
         # filter out Decoys
+
         df = df[~df[self.is_decoy_column_name].astype(bool)]
-        res['final_sequence_count'] = len(df)
+        new_length = len(df)
+        res['removed_decoys'] = length - new_length
+        length = new_length
+
+        df = self.post_processor(df)
+        new_length = len(df)
+        res['removed_by_post_processor'] = length - new_length
+        length = new_length
+
+        res['final_sequence_count'] = length
 
         df = df[self.output_columns]
         df.to_parquet(output_file_path)
@@ -312,6 +324,7 @@ def filter_files(input_file_paths: List[str],
                  is_decoy_column_name: str = FilteringProcessor.default_is_decoy_column_name,
                  fdr_column_name: str = FilteringProcessor.default_fdr_column_name,
                  output_columns: Optional[List[str]] = None,
+                 post_processor: Callable[[pd.DataFrame], pd.DataFrame] = lambda x: x,
                  thread_count: int = Config.default_thread_count,
                  logger: log.Logger = log.DEFAULT_LOGGER) -> List[Dict[str, Union[str, int]]]:
     filter_processor = FilteringProcessor(dump_path=output_path,
@@ -320,6 +333,7 @@ def filter_files(input_file_paths: List[str],
                                           is_decoy_column_name=is_decoy_column_name,
                                           fdr_column_name=fdr_column_name,
                                           output_columns=output_columns,
+                                          post_processor=post_processor,
                                           logger=logger)
     output_files = list(ItemProcessor(
         items=input_file_paths,

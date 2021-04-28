@@ -129,7 +129,7 @@ def flatten_dict(input_dict: dict,
 
 
 def get_plural_s(count: int) -> str:
-    if count > 1:
+    if count != 1:
         return "s"
     else:
         return ""

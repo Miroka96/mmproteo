@@ -126,6 +126,10 @@ class ItemProcessor:
             items = [item for item in items if not isinstance(item, Exception)]
         return items
 
+    def get_exceptions(self) -> List[Exception]:
+        exceptions = [item for item in self.processing_results if isinstance(item, Exception)]
+        return exceptions
+
     def count_successfully_processed_items(self) -> int:
         return len(self.__get_processing_results(keep_null_items=self.count_null_results,
                                                  keep_exceptions_as_nulls=self.count_failed_items))
@@ -155,6 +159,11 @@ class ItemProcessor:
                 f"{utils.get_plural_s(successfully_processed_items_count)}")
         else:
             self.logger.info(f"No {self.subject_name}s were {self.action_name_past_form}")
+        exceptions = self.get_exceptions()
+        self.logger.info(f"Encountered {len(exceptions)} exception{utils.get_plural_s(len(exceptions))} during processing")
+        for exception in exceptions:
+            self.logger.debug(exception)
+
 
     def process(self) -> Iterable[Optional[Any]]:
         self.__drop_null_items()
