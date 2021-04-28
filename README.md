@@ -243,8 +243,9 @@ Still, to run the tests you will need mmproteo installed, preferably as edible d
 (`pip install -e mmproteo`). Furthermore, pytest is required. To directly install all packages required for development 
 and extended usage of this project, run `pip install -r requirements.txt` in the root of this project.
 
-Finally, to run the tests `cd` into the test directory (`mmproteo/test`) and run there `pytest`. Unfortunately, 
+Finally, to run the tests `cd` into the test directory (`tests`) and run `pytest` there. Unfortunately, 
 depending on your Internet connection and CPU speed, some tests might take several minutes, because I don't know of a 
-really nice way of testing a downloader/converter without downloading/converting stuff.
+really nice way of testing a downloader/converter without downloading/converting stuff. Furthermore, some tests 
+currently require `docker` being available and usable to run raw-file conversions.
 
 Good Luck!

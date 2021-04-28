@@ -6,7 +6,7 @@ import time
 
 DEFAULT_PROJECT = "PXD010000"
 FAIR_USE_DELAY_SECONDS = 0.5
-RESOURCE_DIR = os.path.sep.join(["tests", "resources", ""])
+RESOURCE_DIR = os.path.sep.join(["resources", ""])
 
 
 def _store_command_output(command: str, filename: str, include_stderr: bool = True) -> None:
