@@ -2,9 +2,8 @@ import argparse
 from operator import attrgetter
 from typing import Any, List, Optional, Set, Tuple, Union
 
-import pandas as pd
-
 import mmproteo.utils.filters
+import pandas as pd
 from mmproteo._version import get_versions
 from mmproteo.utils import log, utils
 

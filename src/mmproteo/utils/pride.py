@@ -1,10 +1,8 @@
-import json
 import os
 from typing import Dict, Iterable, List, Optional, Union, NoReturn
 
-import pandas as pd
-
 import mmproteo.utils.filters
+import pandas as pd
 from mmproteo.utils import download as dl, log, utils
 from mmproteo.utils.config import Config
 from mmproteo.utils.download import AbstractDownloader

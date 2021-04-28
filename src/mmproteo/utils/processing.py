@@ -160,10 +160,10 @@ class ItemProcessor:
         else:
             self.logger.info(f"No {self.subject_name}s were {self.action_name_past_form}")
         exceptions = self.get_exceptions()
-        self.logger.info(f"Encountered {len(exceptions)} exception{utils.get_plural_s(len(exceptions))} during processing")
+        self.logger.info(
+            f"Encountered {len(exceptions)} exception{utils.get_plural_s(len(exceptions))} during processing")
         for exception in exceptions:
-            self.logger.debug(exception)
-
+            self.logger.debug(str(exception))
 
     def process(self) -> Iterable[Optional[Any]]:
         self.__drop_null_items()

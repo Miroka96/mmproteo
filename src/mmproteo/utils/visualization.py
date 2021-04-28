@@ -3,7 +3,6 @@ from typing import List, Optional
 from urllib.parse import quote
 
 import pandas as pd
-
 from mmproteo.utils import log, utils
 
 pd.set_option('display.max_columns', None)

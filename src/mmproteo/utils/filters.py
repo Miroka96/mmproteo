@@ -3,7 +3,6 @@ import re
 from typing import Callable, Iterable, List, NoReturn, Optional, Set, Union
 
 import pandas as pd
-
 from mmproteo.utils import log
 from mmproteo.utils.config import Config
 

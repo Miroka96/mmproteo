@@ -2,13 +2,12 @@ import os
 from typing import Optional, List
 
 import pandas as pd
-from pyteomics import mgf
-
 from mmproteo.utils import log, utils
 from mmproteo.utils.config import Config
 from mmproteo.utils.filters import AbstractFilterConditionNode, filter_files_list
 from mmproteo.utils.formats import read
 from mmproteo.utils.processing import ItemProcessor
+from pyteomics import mgf
 
 
 def read_mgf(filename: str, logger: log.Logger = log.DEFAULT_LOGGER) -> pd.DataFrame:

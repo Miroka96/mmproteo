@@ -4,13 +4,12 @@ from typing import List, NoReturn, Optional, Union, Tuple
 
 import requests
 import wget
-from requests import Response
-
 from mmproteo.utils import log, utils
 from mmproteo.utils.config import Config
 from mmproteo.utils.formats import archives, read
 from mmproteo.utils.processing import ItemProcessor
 from mmproteo.utils.visualization import pretty_print_json
+from requests import Response
 
 
 def download_file(download_url: str, skip_existing: bool = Config.default_skip_existing) -> (str, Optional[str]):

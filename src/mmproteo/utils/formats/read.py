@@ -2,13 +2,12 @@ import os
 from typing import Any, Callable, Dict, List, Optional, Set, Union
 
 import pandas as pd
-from pyteomics.mgf import MGFBase
-from pyteomics.mzid import MzIdentML
-from pyteomics.mzml import MzML
-
 from mmproteo.utils import log, visualization
 from mmproteo.utils.formats.mgf import read_mgf
 from mmproteo.utils.formats.mz import read_mzid, read_mzml
+from pyteomics.mgf import MGFBase
+from pyteomics.mzid import MzIdentML
+from pyteomics.mzml import MzML
 
 
 def iter_entries(iterator: Union[MGFBase, MzIdentML, MzML], logger: log.Logger = log.DEFAULT_LOGGER) \
@@ -71,5 +70,3 @@ def separate_extension(filename: str, extensions: Set[str]) -> (str, str):
         return base_filename, longest_extension
     else:
         return filename, ""
-
-
