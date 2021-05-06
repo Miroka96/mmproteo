@@ -17,7 +17,6 @@ def test_merge_mzml_mzid_to_parquet(run_with_datasets):
                                                                        defaults.MZID_FILE_PATH])
     assert os.path.isfile(defaults.MZMLID_FILE_PATH)
     assert parquet_files == [defaults.MZMLID_FILE_PATH]
-    os.remove(defaults.MZMLID_FILE_PATH)
 
 
 def test_filter_files_list():
