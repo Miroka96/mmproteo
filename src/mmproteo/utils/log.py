@@ -115,18 +115,21 @@ def create_logger(name: str,
                   log_to_std: Optional[TextIO] = sys.stderr,
                   fail_early: bool = False) -> Logger:
     """
+    Create a new logger instance.
 
-    :param name:
-    :param level:
-    :param verbose:
-    :param filename:    the name of the file in the :param:log_dir to which the log is written.
-                        If it is None, the log filename is constructed as ':param:`name`.log'.
+    :param name:        the name of the new logger
+    :param level:       the log level as defined in :mod:`logging`.
+                        Cannot be used together with :paramref:`create_logger.verbose`
+    :param verbose:     whether to log debug messages. Cannot be used together with :paramref:`create_logger.level`
+    :param filename:    the name of the file in the :paramref:`create_logger.log_dir` to which the log is written.
+                        If it is None, the log filename is constructed as ':paramref:`create_logger.name`.log'.
     :param log_dir:     the path of the directory in which the log file is created.
                         If it is None, file logging is disabled.
     :param log_to_std:  an IO handler (e.g. :attr:`sys.stderr` or :attr:`sys.stdout`), usually used for command line
                         log output. If it is None, command line logging is disabled.
-    :param fail_early:
-    :return:
+    :param fail_early:  whether to fail already on logged warnings.
+    :return:            a fully configured Logger instance. In case of occurred errors, the logger will be a
+                        :class:`DummyLogger`.
     """
     if verbose is not None:
         assert level is None, "level and verbose are exclusive parameters"

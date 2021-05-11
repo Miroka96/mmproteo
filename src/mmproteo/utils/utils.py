@@ -87,8 +87,10 @@ def flatten_dict(input_dict: dict,
                  clean_keys: bool = True,
                  space_filler: str = "_",
                  concat_keys: bool = True,
-                 concatenator: str = "__") -> dict:
+                 concatenator: str = "__") -> Dict[Union[str, Any], Any]:
     """
+    Transforms a hierarchical dictionary structure into a flat dictionary by recursively applying
+    :func:`flatten_single_element_containers` on dictionary values until there are no more child dictionaries.
 
     :param input_dict:   the python dictionary that should be flattened
     :param result_dict:  the output dictionary to which the flattened keys will be added
@@ -144,7 +146,17 @@ def get_plural_s(count: int) -> str:
         return ""
 
 
-def list_of_dicts_to_dict(items: List[Dict], dict_key: str) -> Union[Optional[Dict], NoReturn]:
+def list_of_dicts_to_dict(items: List[Dict], dict_key: str) -> Optional[Dict]:
+    """
+    Transform :paramref:`items` into one common dictionary by using the common key :paramref:`dict_key` as identifier.
+
+    :param items:    a list of dictionaries
+    :param dict_key: a key that is present in all :paramref:`items`
+
+    :return:         a dictionary that contains all occurring values of :paramref:`dict_key` as keys and the originating
+                     dictionaries as values. If :paramref:`dict_key` does not occur in all given :paramref:`items` this
+                     method returns None
+    """
     all_have_key = True
 
     for item in items:
