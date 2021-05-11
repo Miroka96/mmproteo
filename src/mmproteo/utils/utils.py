@@ -85,15 +85,23 @@ def flatten_dict(input_dict: dict,
                  result_dict: dict = None,
                  overwrite: bool = False,
                  clean_keys: bool = True,
-                 concat_keys: bool = True) -> dict:
+                 space_filler: str = "_",
+                 concat_keys: bool = True,
+                 concatenator: str = "__") -> dict:
     """
 
-    :param input_dict:
-    :param result_dict:
-    :param overwrite:
-    :param clean_keys:
-    :param concat_keys:  Side effect is that all keys become strings.
-    :return:
+    :param input_dict:   the python dictionary that should be flattened
+    :param result_dict:  the output dictionary to which the flattened keys will be added
+    :param overwrite:    whether keys from inner dictionaries overwrite keys from outer dictionaries
+    :param clean_keys:   If true, all dictionary keys will be converted to strings. Spaces in keys will be replaced by
+                         the :paramref:`space_filler`. All non-alphanumeric characters that are not part of the
+                         :paramref:`space_filler` or :paramref:`concatenator` will be removed.
+    :param space_filler: a string that will be used to replace spaces in keys
+    :param concat_keys:  Keys of dictionaries in dictionaries will be concatenated with their parent keys using the
+                         :paramref:`concatenator` as separator. Side effect is that all keys become strings.
+    :param concatenator: a string that will be used to separate concatenated keys
+    :return:             a dictionary without dictionaries as values. It contains the flattened keys and their values.
+                         If :paramref:`result_dict` was given, the result object is the given dictionary.
     """
     if result_dict is None:
         result_dict = dict()
@@ -107,22 +115,23 @@ def flatten_dict(input_dict: dict,
         for key, value in item.items():
             if clean_keys:
                 key = str(key)
-                key = key.replace(" ", "_")
-                key = "".join([c for c in key if c.isalnum() or c == "_"])
+                key = key.replace(" ", space_filler)
+                key = "".join([c for c in key if c.isalnum() or c in space_filler or c in concatenator])
             value = flatten_single_element_containers(value)
 
             if type(value) == dict:
-                new_prefix = str(key) + "__"
+                new_prefix = str(key) + concatenator
                 if concat_keys:
                     new_prefix = key_prefix + new_prefix
                 dict_queue.append((new_prefix, value))
                 continue
 
-            if not overwrite and key not in result_dict:
-                if concat_keys:
-                    new_key = key_prefix + str(key)
-                else:
-                    new_key = key
+            if concat_keys:
+                new_key = key_prefix + str(key)
+            else:
+                new_key = key
+
+            if not overwrite and new_key not in result_dict:
                 result_dict[new_key] = value
 
     return result_dict
