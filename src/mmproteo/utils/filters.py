@@ -3,7 +3,7 @@ import re
 from typing import Callable, Iterable, List, NoReturn, Optional, Set, Union
 
 import pandas as pd
-from mmproteo.utils import log
+from mmproteo.utils import log, utils
 from mmproteo.utils.config import Config
 
 
@@ -160,11 +160,21 @@ def filter_files_df(files_df: Optional[pd.DataFrame],
         file_extension_filter = create_file_extension_filter(required_file_extensions, optional_file_extensions)
         files_df = files_df[files_df[file_name_column].apply(file_extension_filter)]
 
-        logger.debug("File extension filtering resulted in %d valid file names" % len(files_df))
+        logger.debug(f"File extension filtering resulted in {len(files_df)} valid file "
+                     f"name{utils.get_plural_s(len(files_df))}")
+
+        if len(files_df) == 0:
+            return files_df
 
     if column_filter is not None:
         column_filter = NoneFilterConditionNode(condition=column_filter, none_value=True)
         files_df = files_df[files_df.apply(func=column_filter, axis=1)]
+
+        logger.debug(f"File attribute filtering resulted in {len(files_df)} valid file "
+                     f"name{utils.get_plural_s(len(files_df))}")
+
+        if len(files_df) == 0:
+            return files_df
 
     if sort:
         # sort, such that files with same prefixes but different extensions come in pairs
