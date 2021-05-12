@@ -1,5 +1,5 @@
 import os
-from typing import List, Optional, Tuple, Dict, Any, Union, Callable
+from typing import List, Optional, Tuple, Dict, Any, Union, Callable, Sequence
 
 import pandas as pd
 from mmproteo.utils import log, utils
@@ -152,7 +152,7 @@ def _create_merge_jobs(filenames_and_extensions: List[Tuple[str, Tuple[str, str]
     return merge_jobs
 
 
-def merge_mzml_and_mzid_files_to_parquet(filenames: List[Optional[str]],
+def merge_mzml_and_mzid_files_to_parquet(filenames: Sequence[Optional[str]],
                                          skip_existing: bool = Config.default_skip_existing,
                                          max_num_files: Optional[int] = None,
                                          count_failed_files: bool = Config.default_count_failed_files,

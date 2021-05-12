@@ -1,7 +1,7 @@
 import os
 import subprocess
 import time
-from typing import List, Optional, NoReturn
+from typing import List, Optional, NoReturn, Sequence
 
 from mmproteo.utils import log, utils
 from mmproteo.utils.config import Config
@@ -146,7 +146,7 @@ class _RawFileProcessor:
                                 logger=self.logger)
 
 
-def convert_raw_files(filenames: List[Optional[str]],
+def convert_raw_files(filenames: Sequence[Optional[str]],
                       output_format: str = Config.default_thermo_output_format,
                       skip_existing: bool = Config.default_skip_existing,
                       column_filter: Optional[AbstractFilterConditionNode] = None,

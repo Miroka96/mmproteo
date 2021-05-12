@@ -36,7 +36,7 @@ def create_logger(config: Config) -> log.Logger:
     return logger
 
 
-def main(config: Config = None, logger: log.Logger = None) \
+def main(config: Config = None, logger: Optional[log.Logger] = None) \
         -> Optional[NoReturn]:
     if config is None:
         config = Config()
@@ -62,10 +62,14 @@ def main(config: Config = None, logger: log.Logger = None) \
 
         commands.DISPATCHER.dispatch_commands(config=config, logger=logger)
     except log.LoggedErrorException:
-        return
+        pass
     except KeyboardInterrupt:
-        logger.info("Received KeyboardInterrupt - Shutting down")
-        return
+        msg = "Received KeyboardInterrupt - Shutting down"
+        if logger is not None:
+            logger.info(msg)
+        else:
+            print(msg)
+    return None
 
 
 if __name__ == '__main__':

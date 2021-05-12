@@ -1,5 +1,5 @@
 import os
-from typing import Dict, Set, Optional, List
+from typing import Dict, Set, Optional, List, Sequence
 
 from mmproteo.utils import utils, log
 from mmproteo.utils.config import Config
@@ -66,7 +66,7 @@ class _ArchiveFileProcessor:
         return extract_file_if_possible(filename=filename, skip_existing=self.skip_existing, logger=self.logger)
 
 
-def extract_files(filenames: List[Optional[str]],
+def extract_files(filenames: Sequence[Optional[str]],
                   skip_existing: bool = Config.default_skip_existing,
                   max_num_files: Optional[int] = None,
                   count_failed_files: bool = Config.default_count_failed_files,

@@ -1,4 +1,4 @@
-from typing import Dict, List
+from typing import Dict, List, Optional, Sequence
 
 from mmproteo.utils import filters, log, pride, utils, visualization
 from mmproteo.utils.config import Config
@@ -71,7 +71,11 @@ class InfoCommand(AbstractCommand):
     def get_description(self) -> str:
         return "request project information for a given project."
 
-    def run(self, config: Config, logger: log.Logger = log.DEFAULT_LOGGER) -> None:
+    def run(self, config: Config, logger: log.Logger = log.DEFAULT_LOGGER) \
+            -> None:
+        assert config.pride_project is not None, \
+            "pride project existence should have been checked using the " \
+            "validate function"
         project_info = pride.get_project_info(project_name=config.pride_project,
                                               api_versions=config.pride_versions,
                                               logger=logger)
@@ -79,7 +83,8 @@ class InfoCommand(AbstractCommand):
             return
         print(project_info)
 
-    def validate(self, config: Config, logger: log.Logger = log.DEFAULT_LOGGER) -> None:
+    def validate(self, config: Config, logger: log.Logger = log.DEFAULT_LOGGER) \
+            -> None:
         config.require_pride_project(logger=logger)
 
 
@@ -244,11 +249,13 @@ class Mz2ParquetCommand(AbstractCommand):
                " or, if no files were previously processed, merge and convert the files in the data directory."
 
     def run(self, config: Config, logger: log.Logger = log.DEFAULT_LOGGER) -> None:
-        files = config.get_processed_files(config.default_downloaded_files_column,
+        files = config.get_processed_files(
+            config.default_downloaded_files_column,
                                            config.default_extracted_files_column)
 
         if len(files) == 0:
-            files = utils.list_files_in_directory(config.storage_dir)
+            files = utils.list_files_in_directory(
+                config.storage_dir)
 
         from mmproteo.utils.formats import mz
         mzmlid_parquet_files = mz.merge_mzml_and_mzid_files_to_parquet(filenames=files,
@@ -308,6 +315,7 @@ class CommandDispatcher:
                           catch_validation_warnings: bool = True,
                           catch_run_warnings: bool = True,
                           logger: log.Logger = log.DEFAULT_LOGGER) -> None:
+        assert config.commands is not None, "commands are missing"
         commands = [self.get_command(command_name) for command_name in config.commands]
 
         for command in commands:

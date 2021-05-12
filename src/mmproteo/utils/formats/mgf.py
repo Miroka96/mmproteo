@@ -1,5 +1,5 @@
 import os
-from typing import Optional, List
+from typing import Optional, List, Sequence
 
 import pandas as pd
 from mmproteo.utils import log, utils
@@ -57,7 +57,7 @@ class _Mgf2ParquetFileProcessor:
                                            logger=self.logger)
 
 
-def convert_mgf_files_to_parquet(filenames: List[Optional[str]],
+def convert_mgf_files_to_parquet(filenames: Sequence[Optional[str]],
                                  skip_existing: bool = Config.default_skip_existing,
                                  max_num_files: Optional[int] = None,
                                  count_failed_files: bool = Config.default_count_failed_files,

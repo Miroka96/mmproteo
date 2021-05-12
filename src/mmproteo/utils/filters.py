@@ -1,6 +1,8 @@
 import argparse
 import re
-from typing import Callable, Iterable, List, NoReturn, Optional, Set, Union
+from builtins import function
+from typing import Callable, Iterable, List, NoReturn, Optional, Set, Union, \
+    Sequence
 
 import pandas as pd
 from mmproteo.utils import log, utils
@@ -167,7 +169,8 @@ def filter_files_df(files_df: Optional[pd.DataFrame],
             return files_df
 
     if column_filter is not None:
-        column_filter = NoneFilterConditionNode(condition=column_filter, none_value=True)
+        column_filter: function = NoneFilterConditionNode(
+            condition=column_filter, none_value=True)
         files_df = files_df[files_df.apply(func=column_filter, axis=1)]
 
         logger.debug(f"File attribute filtering resulted in {len(files_df)} valid file "
@@ -186,7 +189,7 @@ def filter_files_df(files_df: Optional[pd.DataFrame],
     return files_df
 
 
-def filter_files_list(filenames: List[Optional[str]],
+def filter_files_list(filenames: Sequence[Optional[str]],
                       file_extensions: Optional[Iterable[str]] = None,
                       column_filter: Optional[AbstractFilterConditionNode] = None,
                       max_num_files: Optional[int] = None,

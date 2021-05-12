@@ -1,6 +1,6 @@
 import json
 import os
-from typing import List, NoReturn, Optional, Union, Tuple
+from typing import List, NoReturn, Optional, Union, Tuple, Any, Dict
 
 import requests
 import wget
@@ -149,14 +149,16 @@ class AbstractDownloader:
             return self._handle_401_response(response_dict, logger)
         return self._handle_unknown_response(response.status_code, response_dict, logger)
 
-    def request_json(self, url: str, subject_name: str, logger: log.Logger = log.DEFAULT_LOGGER) -> Union[
-        Optional[dict],
-        Optional[NoReturn],
-    ]:
-        logger.info("Requesting %s from %s" % (subject_name, url))
+    def request_json(self,
+                     url: str,
+                     subject_name: str,
+                     logger: log.Logger = log.DEFAULT_LOGGER) \
+            -> Union[Dict[str, Any], List[Any], NoReturn, None]:
+        logger.info(f"Requesting {subject_name} from {url}")
         response = requests.get(url)
-        logger.debug("Received response from %s with length of %d bytes and status code %d" %
-                     (url, len(response.text), response.status_code))
+        logger.debug(f"Received response from {url} with length of "
+                     f"{len(response.text)} bytes and "
+                     f"status code {response.status_code}")
 
         if response.status_code == 200:
             response_dict = json.loads(response.text)

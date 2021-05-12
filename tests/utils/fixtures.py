@@ -1,6 +1,7 @@
 import tempfile
 import shutil
 import os
+from typing import Generator
 
 import pytest
 
@@ -9,7 +10,7 @@ from .defaults import DEFAULT_PROJECT_DATASET_PATH, MZML_FILE_PATH, MZID_FILE_PA
 
 
 @pytest.fixture(scope="function")
-def run_in_temp_directory():
+def run_in_temp_directory() -> Generator[None, None, None]:
     # before the test
     current_working_dir = os.getcwd()
     temporary_working_dir = tempfile.mkdtemp()
@@ -25,7 +26,7 @@ def run_in_temp_directory():
 
 
 @pytest.fixture(scope="session")
-def run_with_datasets():
+def run_with_datasets() -> None:
     if os.path.isfile(MZML_FILE_PATH) and os.path.isfile(MZID_FILE_PATH):
         return
 
