@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import os
 import sys
+from typing import Optional, NoReturn
 
 from mmproteo.utils import commands, log
 from mmproteo.utils.config import Config
@@ -35,7 +36,8 @@ def create_logger(config: Config) -> log.Logger:
     return logger
 
 
-def main(config: Config = None, logger: log.Logger = None):
+def main(config: Config = None, logger: log.Logger = None) \
+        -> Optional[NoReturn]:
     if config is None:
         config = Config()
         if logger is not None:

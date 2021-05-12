@@ -8,7 +8,8 @@ with open('README.md', "r") as file:
 setup(
     name='mmproteo',
     version=versioneer.get_version(),
-    description='Mirko meets Proteomics: A PRIDE Archive downloader for deep learning-based DeNovo Sequencing',
+    description='Mirko meets Proteomics: A PRIDE Archive downloader for deep '
+                'learning-based DeNovo Sequencing',
     long_description=read_me,
     long_description_content_type="text/markdown",
     url='https://github.com/Miroka96/mmproteo',
@@ -23,7 +24,8 @@ setup(
     classifiers=[
         "Programming Language :: Python :: 3",
         "Environment :: Console",
-        "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+        "License :: OSI Approved :: "
+        "GNU General Public License v3 or later (GPLv3+)",
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.6',

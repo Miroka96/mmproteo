@@ -1,8 +1,12 @@
-from typing import Set
+import os
+
+from typing import Set, Optional, NoReturn
+
+import pytest
 
 from mmproteo.utils import utils, commands, config, log
-from .utils.defaults import *
-from .utils.fixtures import *
+from .utils.defaults import MZML_FILE, MZID_FILE, MZMLID_FILE, DEFAULT_PROJECT_FILE_COUNT, DEFAULT_PROJECT, MZID_GZ_FILE, MZML_GZ_FILE, RAW_FILE, MGF_FILE, MGF_PARQUET_FILE
+from .utils.fixtures import run_in_temp_directory
 
 
 def get_files_in_directory(directory_name: str) -> Set[str]:
@@ -10,7 +14,8 @@ def get_files_in_directory(directory_name: str) -> Set[str]:
     return set(files)
 
 
-def _run_mz_pipeline_combined(conf: config.Config, logger: log.Logger):
+def _run_mz_pipeline_combined(conf: config.Config, logger: log.Logger) \
+        -> Optional[NoReturn]:
     logger.fail_early = True
     conf.commands = ["list", "download", "extract", "mz2parquet"]
     commands.DISPATCHER.dispatch_commands(config=conf,
@@ -50,8 +55,12 @@ def _run_mz_pipeline_combined(conf: config.Config, logger: log.Logger):
 
     conf.clear_cache()
 
+    return None
 
-def _run_mz_pipeline_in_single_steps_with_full_cache(conf: config.Config, logger: log.Logger):
+
+def _run_mz_pipeline_in_single_steps_with_full_cache(conf: config.Config,
+                                                     logger: log.Logger) \
+        -> Optional[NoReturn]:
     logger.fail_early = False
     conf.commands = ["download"]
     commands.DISPATCHER.dispatch_commands(config=conf,
@@ -87,8 +96,11 @@ def _run_mz_pipeline_in_single_steps_with_full_cache(conf: config.Config, logger
     assert get_files_in_directory(".") == {MZML_FILE, MZID_FILE, MZMLID_FILE}, \
         "there should only be the mzML, mzid, and parquet file"
 
+    return None
 
-def test_mz_pipeline_single_threaded(run_in_temp_directory):
+
+def test_mz_pipeline_single_threaded(run_in_temp_directory) \
+        -> Optional[NoReturn]:
     conf = config.Config()
     conf.pride_project = DEFAULT_PROJECT
     conf.valid_file_extensions = ["mzid", "mzml"]
@@ -103,8 +115,11 @@ def test_mz_pipeline_single_threaded(run_in_temp_directory):
     _run_mz_pipeline_combined(conf=conf, logger=logger)
     _run_mz_pipeline_in_single_steps_with_full_cache(conf=conf, logger=logger)
 
+    return None
 
-def test_mz_pipeline_in_parallel(run_in_temp_directory):
+
+def test_mz_pipeline_in_parallel(run_in_temp_directory: pytest.Function) \
+        -> Optional[NoReturn]:
     conf = config.Config()
     conf.pride_project = DEFAULT_PROJECT
     conf.valid_file_extensions = ["mzid", "mzml"]
@@ -119,8 +134,11 @@ def test_mz_pipeline_in_parallel(run_in_temp_directory):
     _run_mz_pipeline_combined(conf=conf, logger=logger)
     _run_mz_pipeline_in_single_steps_with_full_cache(conf=conf, logger=logger)
 
+    return None
 
-def test_mz_pipeline_in_single_steps(run_in_temp_directory):
+
+def test_mz_pipeline_in_single_steps(run_in_temp_directory: pytest.Function) \
+        -> Optional[NoReturn]:
     conf = config.Config()
     conf.pride_project = DEFAULT_PROJECT
     conf.max_num_files = 1
@@ -194,8 +212,11 @@ def test_mz_pipeline_in_single_steps(run_in_temp_directory):
     assert get_files_in_directory(".") == {MZML_FILE, MZID_FILE, MZMLID_FILE}, \
         "there should only be the mzML, mzid, and parquet file"
 
+    return None
 
-def _run_raw_mgf_pipeline_combined(conf: Config, logger: log.Logger):
+
+def _run_raw_mgf_pipeline_combined(conf: config.Config, logger: log.Logger) \
+        -> Optional[NoReturn]:
     logger.fail_early = True
     conf.commands = ["download", "convertraw", "mgf2parquet"]
     commands.DISPATCHER.dispatch_commands(config=conf,
@@ -229,8 +250,11 @@ def _run_raw_mgf_pipeline_combined(conf: Config, logger: log.Logger):
         assert get_files_in_directory(".") == {RAW_FILE, MGF_FILE, MGF_PARQUET_FILE}, \
             "there should only be the mzML, mzid, and parquet file"
 
+    return None
 
-def test_raw_mgf_pipeline_single_threaded(run_in_temp_directory):
+
+def test_raw_mgf_pipeline_single_threaded(
+        run_in_temp_directory: pytest.Function) -> Optional[NoReturn]:
     conf = config.Config()
     conf.pride_project = DEFAULT_PROJECT
     conf.valid_file_extensions = ["raw"]
@@ -241,10 +265,11 @@ def test_raw_mgf_pipeline_single_threaded(run_in_temp_directory):
                             verbose=True)
     conf.check(logger)
 
-    _run_raw_mgf_pipeline_combined(conf=conf, logger=logger)
+    return _run_raw_mgf_pipeline_combined(conf=conf, logger=logger)
 
 
-def test_raw_mgf_pipeline_parallelized(run_in_temp_directory):
+def test_raw_mgf_pipeline_parallelized(
+        run_in_temp_directory: pytest.Function) -> Optional[NoReturn]:
     conf = config.Config()
     conf.pride_project = DEFAULT_PROJECT
     conf.valid_file_extensions = ["raw"]
@@ -255,4 +280,4 @@ def test_raw_mgf_pipeline_parallelized(run_in_temp_directory):
                             verbose=True)
     conf.check(logger)
 
-    _run_raw_mgf_pipeline_combined(conf=conf, logger=logger)
+    return _run_raw_mgf_pipeline_combined(conf=conf, logger=logger)

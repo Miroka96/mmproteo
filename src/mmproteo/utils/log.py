@@ -1,7 +1,7 @@
 import logging
 import os
 import sys
-from typing import List, NoReturn, Optional, TextIO
+from typing import List, NoReturn, Optional, TextIO, Callable
 
 LOG_FORMAT: str = '%(asctime)s - %(name)s: %(message)s'
 DEFAULT_LOG_SUFFIX: str = '.log'
@@ -32,7 +32,7 @@ class Logger:
         self.terminate_process = terminate_process
         self._verbose = verbose
 
-    def __print(self, msg: str):
+    def __print(self, msg: str) -> None:
         print(msg)
 
     def info(self, msg: str = "") -> None:
@@ -66,16 +66,20 @@ class Logger:
                 self.info("Shutting down because of fail-early configuration")
                 sys.exit(1)
             raise LoggedWarningException(msg)
+        return None
 
-    def assert_true(self, condition: bool, error_msg: str) -> Optional[NoReturn]:
+    def assert_true(self, condition: bool, error_msg: str) \
+            -> Optional[NoReturn]:
         if not condition:
             self.error(error_msg)
+        return None
 
     def is_verbose(self) -> bool:
         if self.logger is not None:
             return self.logger.getEffectiveLevel() == logging.DEBUG
-        else:
+        elif self._verbose is not None:
             return self._verbose
+        assert False, "either a logger or the verbose flag must be set"
 
 
 class DummyLogger(Logger):
@@ -103,7 +107,7 @@ class TestLogger(Logger):
                          verbose=verbose)
         self.msg_buffer: List[str] = []
 
-    def __print(self, msg: str):
+    def __print(self, msg: str) -> None:
         self.msg_buffer.append(msg)
 
 
@@ -149,7 +153,7 @@ def create_logger(name: str,
             filename = name + DEFAULT_LOG_SUFFIX
         if log_dir is not None:
             filename = os.path.join(log_dir, filename)
-        logger = logging.getLogger(name)
+        logger: logging.Logger = logging.getLogger(name)
         logger.setLevel(level)
 
         formatter = logging.Formatter(LOG_FORMAT)
@@ -160,7 +164,8 @@ def create_logger(name: str,
             # log to file
             dir_name = os.path.dirname(filename)
 
-            from mmproteo.utils.utils import ensure_dir_exists  # prevent circular import
+            from mmproteo.utils.utils import \
+                ensure_dir_exists  # prevent circular import
             ensure_dir_exists(dir_name)
             file_logging_handler = logging.FileHandler(filename)
             file_logging_handler.setFormatter(formatter)
@@ -171,23 +176,25 @@ def create_logger(name: str,
 
         if log_to_std is not None:
             std_logging_handler = logging.StreamHandler(log_to_std)
-            std_logging_handler.flush = sys.stdout.flush
+            std_logging_handler.flush = sys.stdout.flush  # type: ignore
             std_logging_handler.setFormatter(formatter)
             std_logging_handler.setLevel(level)
             logger.addHandler(std_logging_handler)
 
             target_names.append(log_to_std.name)
 
-        logger.info("Logging to " + " and to ".join([target for target in target_names]))
+        logger.info("Logging to " + " and to ".join(
+            [target for target in target_names]))
 
         return Logger(logger, fail_early=fail_early)
     except Exception as e:
-        logger = DummyLogger(send_welcome=True, fail_early=fail_early)
-        logger.debug(str(e))
-        logger.warning("Failed to create logger " + str(name))
-        logger.info("Returned print-only dummy logger")
+        dummy_logger: Logger = DummyLogger(send_welcome=True,
+                                           fail_early=fail_early)
+        dummy_logger.debug(str(e))
+        dummy_logger.warning("Failed to create logger " + str(name))
+        dummy_logger.info("Returned print-only dummy logger")
 
-        return logger
+        return dummy_logger
 
 
 DEFAULT_LOGGER: Logger = DummyLogger(send_welcome=False)

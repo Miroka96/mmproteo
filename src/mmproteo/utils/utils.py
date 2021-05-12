@@ -5,22 +5,27 @@ import time
 try:
     from subprocess import DEVNULL  # Python 3.
 except ImportError:
-    DEVNULL = open(os.devnull, 'wb')
-from typing import Any, Hashable, Iterable, List, Optional, Union, Dict, NoReturn, Callable
+    DEVNULL = open(os.devnull, 'wb')  # type: ignore
+from typing import Any, Hashable, Iterable, List, Optional, Union, Dict, \
+    Callable, TypeVar
 
 import numpy as np
 import pandas as pd
 
 from mmproteo.utils import log
 
+T = TypeVar('T', bound=Hashable)
 
-def concat_set_of_options(options: Iterable[str], option_quote: str = '"', separator: str = ", ") -> str:
+
+def concat_set_of_options(options: Iterable[str], option_quote: str = '"',
+                          separator: str = ", ") -> str:
     if type(options) != list:
         options = sorted(options)
-    return separator.join([option_quote + option + option_quote for option in options])
+    return separator.join(
+        [option_quote + option + option_quote for option in options])
 
 
-def deduplicate_list(lst: List[Hashable]) -> List[Hashable]:
+def deduplicate_list(lst: List[T]) -> List[T]:
     already_inserted = set()
     deduplicated_list = []
     for e in lst:
@@ -46,37 +51,41 @@ def _denumpyfy(element: Any) -> Any:
     raise NotImplementedError(type(element))
 
 
-def denumpyfy(element: Union[np.int64, np.float64, int, str, float, dict, list, set]) \
+def denumpyfy(
+        element: Union[np.int64, np.float64, int, str, float, dict, list, set]) \
         -> Union[int, str, float, dict, list, set]:
     return _denumpyfy(element)
 
 
-def ensure_dir_exists(directory: str, logger: log.Logger = log.DEFAULT_LOGGER) -> None:
-    """Ensure the existence of a given directory (path) by creating it/them if they do not exist yet."""
+def ensure_dir_exists(directory: str, logger: log.Logger = log.DEFAULT_LOGGER) \
+        -> None:
+    """
+    Ensure the existence of a given directory (path) by creating it/them if
+    they do not exist yet.
+
+    :param directory:
+    :param logger:
+    :return:
+    """
     if len(directory) == 0:
         return
     try:
         os.makedirs(directory, exist_ok=True)
     except FileExistsError:
-        logger.warning("'%s' already exists and is not a directory")
+        logger.warning(f"'{directory}' already exists and is not a directory")
 
 
-def flatten_single_element_containers(elem: Union[Iterable, Any]) -> Union[Iterable, Any]:
+def flatten_element_containers(elem: Union[Iterable, Any]) \
+        -> Union[Dict, Any]:
     try:
-        # skip one-element lists or sets,...
-        while type(elem) == list or type(elem) == set or type(elem) == tuple:
-            if len(elem) == 1:
-                elem = next(iter(elem))
-                continue
+        if type(elem) == list or type(elem) == set or type(elem) == tuple:
             non_null_elements = [e for e in elem if e is not None]
             if len(non_null_elements) == 0:
-                elem = None
-                break
-            if len(non_null_elements) == 1:
-                elem = non_null_elements[0]
-                continue
-            break
-    except Exception:
+                return dict()
+            elem = list_to_dict_by_index(elem,
+                                         children_processor=
+                                         flatten_element_containers)
+    except TypeError:
         pass
     return elem
 
@@ -118,8 +127,9 @@ def flatten_dict(input_dict: dict,
             if clean_keys:
                 key = str(key)
                 key = key.replace(" ", space_filler)
-                key = "".join([c for c in key if c.isalnum() or c in space_filler or c in concatenator])
-            value = flatten_single_element_containers(value)
+                key = "".join([c for c in key if
+                               c.isalnum() or c in space_filler or c in concatenator])
+            value = flatten_element_containers(value)
 
             if type(value) == dict:
                 new_prefix = str(key) + concatenator
@@ -146,7 +156,8 @@ def get_plural_s(count: int) -> str:
         return ""
 
 
-def list_of_dicts_to_dict(items: List[Dict], dict_key: str) -> Optional[Dict]:
+def list_of_dicts_to_dict_by_key(items: List[Dict], dict_key: str) -> Optional[
+    Dict]:
     """
     Transform :paramref:`items` into one common dictionary by using the common key :paramref:`dict_key` as identifier.
 
@@ -160,6 +171,8 @@ def list_of_dicts_to_dict(items: List[Dict], dict_key: str) -> Optional[Dict]:
     all_have_key = True
 
     for item in items:
+        assert isinstance(item,
+                          dict), "Items in list must be dictionary instances"
         if dict_key not in item.keys():
             all_have_key = False
             break
@@ -174,7 +187,18 @@ def list_of_dicts_to_dict(items: List[Dict], dict_key: str) -> Optional[Dict]:
     return None
 
 
-def format_command_template(command_template: str, formatter: Callable[[str], str]) -> List[str]:
+def identity(elem: T) -> T:
+    return T
+
+
+def list_to_dict_by_index(items: List[T],
+                          children_processor: Callable[[T], T] = identity) \
+        -> Dict[int, T]:
+    return {idx: item for idx, item in enumerate(items)}
+
+
+def format_command_template(command_template: str,
+                            formatter: Callable[[str], str]) -> List[str]:
     parts = command_template.split(" ")
     parts = [formatter(part) for part in parts]
     return parts
@@ -183,8 +207,9 @@ def format_command_template(command_template: str, formatter: Callable[[str], st
 def stop_docker_container(container_name: str,
                           docker_stop_container_command_template: str = "docker stop {container_name}",
                           logger: log.Logger = log.DEFAULT_LOGGER) -> str:
-    stop_command = format_command_template(docker_stop_container_command_template,
-                                           lambda s: s.format(container_name=container_name))
+    stop_command = format_command_template(
+        docker_stop_container_command_template,
+        lambda s: s.format(container_name=container_name))
     subprocess.run(stop_command)
     stop_command_str = " ".join(stop_command)
 
@@ -192,27 +217,33 @@ def stop_docker_container(container_name: str,
         status = get_docker_container_status(container_name=container_name)
         if status is None:
             break
-        logger.info(f"Waiting for container '{container_name}' to leave status '{status}'.")
+        logger.info(
+            f"Waiting for container '{container_name}' to leave status '{status}'.")
         time.sleep(1)
     return stop_command_str
 
 
 def get_docker_container_status(container_name: str,
                                 docker_inspect_container_command_template: str =
-                                "docker container inspect -f {{{{.State.Status}}}} {container_name}") -> Optional[str]:
-    check_command = format_command_template(docker_inspect_container_command_template,
-                                            lambda s: s.format(container_name=container_name))
-    process_result = subprocess.run(check_command, stdout=subprocess.PIPE, stderr=DEVNULL)
+                                "docker container inspect -f {{{{.State.Status}}}} {container_name}") -> \
+Optional[str]:
+    check_command = format_command_template(
+        docker_inspect_container_command_template,
+        lambda s: s.format(container_name=container_name))
+    process_result = subprocess.run(check_command, stdout=subprocess.PIPE,
+                                    stderr=DEVNULL)
     if process_result.returncode != 0:
         return None
     return process_result.stdout.decode("utf-8")[:-1]
 
 
 def is_docker_container_running(container_name: str) -> bool:
-    return get_docker_container_status(container_name=container_name) == "running"
+    return get_docker_container_status(
+        container_name=container_name) == "running"
 
 
-def merge_column_values(df: Optional[pd.DataFrame], columns: Iterable[str]) -> List[str]:
+def merge_column_values(df: Optional[pd.DataFrame], columns: Iterable[str]) -> \
+List[str]:
     if df is None:
         return list()
 
@@ -229,6 +260,7 @@ def merge_column_values(df: Optional[pd.DataFrame], columns: Iterable[str]) -> L
 
 
 def list_files_in_directory(directory_path: str) -> List[str]:
-    paths_in_dir = [os.path.join(directory_path, element) for element in os.listdir(directory_path)]
+    paths_in_dir = [os.path.join(directory_path, element) for element in
+                    os.listdir(directory_path)]
     file_paths = [path for path in paths_in_dir if os.path.isfile(path)]
     return file_paths

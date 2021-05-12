@@ -43,6 +43,8 @@ class DownloadCommand(AbstractCommand):
                                           api_versions=config.pride_versions,
                                           thread_count=config.thread_count,
                                           logger=logger)
+        if downloaded_files is None:
+            return
 
         downloaded_files = downloaded_files.dropna(subset=[config.default_downloaded_files_column])
 

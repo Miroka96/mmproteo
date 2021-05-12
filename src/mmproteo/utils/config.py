@@ -1,6 +1,6 @@
 import argparse
 from operator import attrgetter
-from typing import Any, List, Optional, Set, Tuple, Union
+from typing import Any, List, Optional, Set, Tuple, Union, Iterable
 
 import mmproteo.utils.filters
 import pandas as pd
@@ -12,18 +12,26 @@ __version__ = get_versions()['version']
 del get_versions
 
 
-class _MultiLineArgumentDefaultsHelpFormatter(argparse.ArgumentDefaultsHelpFormatter):
+class _MultiLineArgumentDefaultsHelpFormatter(argparse
+                                              .ArgumentDefaultsHelpFormatter):
 
-    def add_arguments(self, actions):
+    def add_arguments(self, actions: Iterable[argparse.Action]) -> None:
         actions = sorted(actions, key=attrgetter('option_strings'))
-        super(_MultiLineArgumentDefaultsHelpFormatter, self).add_arguments(actions)
+        super(_MultiLineArgumentDefaultsHelpFormatter, self).add_arguments(
+            actions)
 
-    def _format_usage(self, usage, actions, groups, prefix):
+    def _format_usage(self,
+                      usage: str,
+                      actions: Iterable[argparse.Action],
+                      groups,  # type: ignore
+                      prefix: Optional[str]) \
+            -> str:  # type: ignore
         actions = sorted(actions, key=attrgetter('option_strings'))
-        return super(_MultiLineArgumentDefaultsHelpFormatter, self)._format_usage(usage=usage,
-                                                                                  actions=actions,
-                                                                                  groups=groups,
-                                                                                  prefix=prefix)
+        return super(_MultiLineArgumentDefaultsHelpFormatter, self) \
+            ._format_usage(usage=usage,
+                           actions=actions,
+                           groups=groups,
+                           prefix=prefix)
 
     def _split_lines(self, text: str, width: int) -> List[str]:
         lines = text.splitlines()
@@ -31,12 +39,18 @@ class _MultiLineArgumentDefaultsHelpFormatter(argparse.ArgumentDefaultsHelpForma
         import textwrap
         for line in lines:
             command_description_parts = line.split(" : ")
-            if len(command_description_parts) == 2 and command_description_parts[0].rstrip(" ").isalnum():
-                description_width = width - len(command_description_parts[0]) - len(" : ")
-                wrapped_description = textwrap.wrap(command_description_parts[1], description_width)
-                wrapped_lines.append(command_description_parts[0] + " : " + wrapped_description[0])
-                wrapped_lines += [" " * (width - description_width) + description_line
-                                  for description_line in wrapped_description[1:]]
+            if len(command_description_parts) == 2 and \
+                    command_description_parts[0].rstrip(" ").isalnum():
+                description_width = width - len(
+                    command_description_parts[0]) - len(" : ")
+                wrapped_description = textwrap.wrap(
+                    command_description_parts[1], description_width)
+                wrapped_lines.append(
+                    command_description_parts[0] + " : " + wrapped_description[
+                        0])
+                wrapped_lines += [
+                    " " * (width - description_width) + description_line
+                    for description_line in wrapped_description[1:]]
             else:
                 wrapped_lines += textwrap.wrap(line, width)
         return wrapped_lines
@@ -112,7 +126,8 @@ class Config:
         self.shown_columns: List[str] = []
         self.commands: Optional[List[str]] = None
         self.pride_versions: List[str] = []
-        self.column_filter: Optional[mmproteo.utils.filters.AbstractFilterConditionNode] = None
+        self.column_filter: Optional[
+            mmproteo.utils.filters.AbstractFilterConditionNode] = None
         self.fail_early: bool = True
         self.terminate_process: bool = False
         self.thermo_output_format: str = self.default_thermo_output_format
@@ -127,60 +142,76 @@ class Config:
         self._logger = logger
 
     def get_processed_files(self, *columns: str) -> List[str]:
-        return utils.merge_column_values(df=self._processed_files, columns=columns)
+        return utils.merge_column_values(df=self._processed_files,
+                                         columns=columns)
 
     def get_project_files(self) -> Optional[pd.DataFrame]:
         if self._project_files is None:
             from mmproteo.utils import pride
-            self._project_files = pride.get_project_files(project_name=self.pride_project,
-                                                          api_versions=self.pride_versions,
-                                                          logger=self._logger)
+            assert self.pride_project is not None, "pride_project must be set"
+            self._project_files = pride.get_project_files(
+                project_name=self.pride_project,
+                api_versions=self.pride_versions,
+                logger=self._logger)
         return self._project_files
 
     @staticmethod
-    def get_string_of_special_column_names(extension_quote: str = default_option_quote,
-                                           separator: str = default_option_separator) -> str:
+    def get_string_of_special_column_names(
+            extension_quote: str = default_option_quote,
+            separator: str = default_option_separator) -> str:
         return utils.concat_set_of_options(options=Config.special_column_names,
                                            option_quote=extension_quote,
                                            separator=separator)
 
-    def clear_cache(self):
+    def clear_cache(self) -> None:
         self._processed_files = None
         self._project_files = None
 
     @staticmethod
-    def _get_negation_argument_prefix(condition: bool, negation_str: str = 'no-') -> str:
+    def _get_negation_argument_prefix(condition: bool,
+                                      negation_str: str = 'no-') -> str:
         if condition:
             return ""
         return negation_str
 
     def cache_processed_files(self,
                               data_list: Optional[List[Any]] = None,
-                              column_names: Optional[Union[str, List[str]]] = None,
-                              data_df: pd.DataFrame = None) -> Optional[pd.DataFrame]:
-        assert (data_list is not None and column_names is not None and data_df is None) \
-               or (data_list is None and column_names is None), "data_list and column_names must always be given " \
-                                                                "together, but never at the same time as data_df"
-
+                              column_names: Optional[
+                                  Union[str, List[str]]] = None,
+                              data_df: pd.DataFrame = None) \
+            -> Optional[pd.DataFrame]:
         if data_df is None:
+            assert data_list is not None, "data_list must be given " \
+                                          "if data_df is missing"
+            assert column_names is not None, "column_names must be given " \
+                                             "if data_df is missing"
             if len(data_list) == 0:
                 return None
 
             if type(column_names) == str:
-                column_names = [column_names]
+                column_names = [column_names]  # type: ignore
 
             data_df = pd.DataFrame(data=data_list, columns=column_names)
+        else:
+            assert data_list is None, "data_list must not be given " \
+                                      "if data_df is given"
+            assert column_names is None, "column_names must not be given " \
+                                         "if data_df is given"
 
         if self._processed_files is None:
             self._processed_files = data_df
         else:
-            self._processed_files = self._processed_files.append(data_df, ignore_index=True)
+            self._processed_files = self._processed_files.append(data_df,
+                                                                 ignore_index=True)
         return data_df
 
     def parse_arguments(self) -> None:
         from mmproteo.utils import commands, pride, utils
-        from mmproteo.utils.formats.raw import get_thermo_raw_file_parser_output_formats
-        parser = argparse.ArgumentParser(formatter_class=_MultiLineArgumentDefaultsHelpFormatter, add_help=False)
+        from mmproteo.utils.formats.raw import \
+            get_thermo_raw_file_parser_output_formats
+        parser = argparse.ArgumentParser(
+            formatter_class=_MultiLineArgumentDefaultsHelpFormatter,
+            add_help=False)
 
         parser.add_argument("command",
                             nargs='+',
@@ -200,20 +231,24 @@ class Config:
                             default=self.max_num_files,
                             type=int,
                             help="the maximum number of files to be downloaded. Set it to '0' to download all files.")
-        parser.add_argument(f"--{self._get_negation_argument_prefix(not self.count_failed_files)}count-failed-files",
-                            action="store_" + str(self.count_failed_files).lower(),
-                            dest='count_failed_files',
-                            default=self.count_failed_files,
-                            help=("Count failed files and do not just ignore them. " if not self.count_failed_files else
-                                  "Do not count failed files and just ignore them. ") +
-                                 "This is relevant for the max-num-files parameter.")
-        parser.add_argument(f"--{self._get_negation_argument_prefix(not self.count_skipped_files)}count-skipped-files",
-                            action="store_" + str(self.count_skipped_files).lower(),
-                            dest='count_skipped_files',
-                            default=self.count_skipped_files,
-                            help=("Count skipped files and do not just ignore them. " if not self.count_skipped_files
-                                  else "Do not count skipped files and just ignore them. ") +
-                                 "This is relevant for the max-num-files parameter.")
+        parser.add_argument(
+            f"--{self._get_negation_argument_prefix(not self.count_failed_files)}count-failed-files",
+            action="store_" + str(self.count_failed_files).lower(),
+            dest='count_failed_files',
+            default=self.count_failed_files,
+            help=(
+                     "Count failed files and do not just ignore them. " if not self.count_failed_files else
+                     "Do not count failed files and just ignore them. ") +
+                 "This is relevant for the max-num-files parameter.")
+        parser.add_argument(
+            f"--{self._get_negation_argument_prefix(not self.count_skipped_files)}count-skipped-files",
+            action="store_" + str(self.count_skipped_files).lower(),
+            dest='count_skipped_files',
+            default=self.count_skipped_files,
+            help=(
+                     "Count skipped files and do not just ignore them. " if not self.count_skipped_files
+                     else "Do not count skipped files and just ignore them. ") +
+                 "This is relevant for the max-num-files parameter.")
         parser.add_argument("--storage-dir", "-d",
                             metavar="DIR",
                             default=self.storage_dir,
@@ -225,19 +260,22 @@ class Config:
                             help="the name of the log file, relative to the download directory. "
                                  "Set it to an empty string (\"\") to disable file logging.")
         parser.add_argument("--log-to-stdout",
-                            action="store_" + str(not self.log_to_stdout).lower(),
+                            action="store_" + str(
+                                not self.log_to_stdout).lower(),
                             help="Log to stdout instead of stderr.")
         parser.add_argument("--shown-columns", "-c",
                             metavar="COLUMNS",
                             default="",
-                            type=lambda s: [col for col in s.split(",") if len(col) > 0],
+                            type=lambda s: [col for col in s.split(",") if
+                                            len(col) > 0],
                             help="a list of comma-separated column names. Some commands show their results as tables, "
                                  "so their output columns will be limited to those in this list. An empty list "
                                  "deactivates filtering. Capitalization matters.")
         parser.add_argument("--file-extensions", "-e",
                             metavar="EXT",
                             default="",
-                            type=lambda s: {ext.lower() for ext in s.split(',') if len(ext) > 0},
+                            type=lambda s: {ext.lower() for ext in s.split(',')
+                                            if len(ext) > 0},
                             help="a list of comma-separated allowed file extensions to filter files for. "
                                  "Archive extensions will be automatically appended. " +
                                  "An empty list deactivates filtering. "
@@ -275,7 +313,8 @@ class Config:
                                  "An empty list (default) uses all api versions in the following order: [%s]" %
                                  pride.get_string_of_pride_api_versions())
         parser.add_argument("--dummy-logger",
-                            action="store_" + str(not self.dummy_logger).lower(),
+                            action="store_" + str(
+                                not self.dummy_logger).lower(),
                             help="Use a simpler log format and log to stdout.")
         parser.add_argument("--thermo-output-format",
                             default=self.thermo_output_format,
@@ -283,7 +322,8 @@ class Config:
                             help="the output format into which the raw file will be converted. This parameter only "
                                  f"applies to the {commands.ConvertRawCommand().get_command()} command.")
         parser.add_argument("--thermo-keep-running",
-                            action="store_" + str(not self.thermo_keep_container_running).lower(),
+                            action="store_" + str(
+                                not self.thermo_keep_container_running).lower(),
                             help="Keep the ThermoRawFileParser Docker container running after conversion. This can "
                                  "speed up batch processing and ease debugging.")
         parser.add_argument('--filter', '-f',
@@ -334,7 +374,8 @@ class Config:
         self.shown_columns = args.shown_columns
         self.pride_versions = utils.deduplicate_list(args.pride_version)
         self.column_filter = mmproteo.utils.filters.NoneFilterConditionNode(
-            condition=mmproteo.utils.filters.AndFilterConditionNode(conditions=args.filter),
+            condition=mmproteo.utils.filters.AndFilterConditionNode(
+                conditions=args.filter),
             none_value=True,
         )
         self.thermo_output_format = args.thermo_output_format
@@ -343,23 +384,29 @@ class Config:
 
         self.commands = utils.deduplicate_list(args.command)
 
-    def require_pride_project(self, logger: Optional[log.Logger] = None) -> None:
+    def require_pride_project(self,
+                              logger: Optional[log.Logger] = None) -> None:
         if logger is None:
             logger = self._logger
-        logger.assert_true(self.pride_project is not None, Config._pride_project_parameter_str + " is missing")
+        logger.assert_true(self.pride_project is not None,
+                           Config._pride_project_parameter_str + " is missing")
         logger.assert_true(len(self.pride_project) > 0,
                            Config._pride_project_parameter_str + " must not be empty")
 
     def validate_arguments(self, logger: Optional[log.Logger] = None) -> None:
         if logger is None:
             logger = self._logger
-        logger.assert_true(self.storage_dir is None or len(self.storage_dir) > 0, "storage-dir must not be empty")
-        logger.assert_true(self.max_num_files >= 0, "max-num-files must be >= 0; use 0 to process all files")
+        logger.assert_true(
+            self.storage_dir is None or len(self.storage_dir) > 0,
+            "storage-dir must not be empty")
+        logger.assert_true(self.max_num_files >= 0,
+                           "max-num-files must be >= 0; use 0 to process all files")
         logger.assert_true(self.thread_count >= 0,
                            "thread-count must be >= 0; use 0 to automatically set the number "
                            "of threads")
         if not self.skip_existing and self.count_skipped_files:
-            logger.warning("skip-existing is not set although count-skipped-files is set")
+            logger.warning(
+                "skip-existing is not set although count-skipped-files is set")
 
     def check(self, logger: Optional[log.Logger] = None) -> None:
         if logger is None:
@@ -368,27 +415,35 @@ class Config:
         utils.ensure_dir_exists(self.storage_dir, logger=logger)
 
     @staticmethod
-    def __sort_if_set(obj: Optional[Union[Set, Any]]) -> Optional[Union[List, Any]]:
+    def __sort_if_set(obj: Optional[Union[Set, Any]]) -> Optional[
+        Union[List, Any]]:
         if type(obj) == set:
             return sorted(obj)
         return obj
 
     @staticmethod
-    def __filter_vars(variables: List[Tuple[str, Any]]) -> List[Tuple[str, Any]]:
+    def __filter_vars(variables: List[Tuple[str, Any]]) -> List[
+        Tuple[str, Any]]:
         return [(key, Config.__sort_if_set(value)) for key, value in variables
                 if not key.startswith('_')
                 and not callable(value)
                 and not type(value) == staticmethod]
 
     def __str__(self) -> str:
-        instance_variables: List[Tuple[str, Any]] = sorted([(key, value) for key, value in vars(self).items()])
+        instance_variables: List[Tuple[str, Any]] = sorted(
+            [(key, value) for key, value in vars(self).items()])
         instance_variables = self.__filter_vars(instance_variables)
-        class_variables: List[Tuple[str, Any]] = sorted([(key, value) for key, value in vars(type(self)).items()])
+        class_variables: List[Tuple[str, Any]] = sorted(
+            [(key, value) for key, value in vars(type(self)).items()])
         class_variables = self.__filter_vars(class_variables)
         lines = [
-            pd.DataFrame(data=class_variables, columns=['STATIC VARIABLES', 'VALUES']).to_string(index=False),
+            pd.DataFrame(data=class_variables,
+                         columns=['STATIC VARIABLES', 'VALUES']).to_string(
+                index=False),
             "",
-            pd.DataFrame(data=instance_variables, columns=['DYNAMIC VARIABLES', 'VALUES']).to_string(index=False, )
+            pd.DataFrame(data=instance_variables,
+                         columns=['DYNAMIC VARIABLES', 'VALUES']).to_string(
+                index=False, )
         ]
 
         return '\n'.join(lines)
