@@ -390,6 +390,7 @@ class Config:
             logger = self._logger
         logger.assert_true(self.pride_project is not None,
                            Config._pride_project_parameter_str + " is missing")
+        assert self.pride_project is not None, Config._pride_project_parameter_str + " is missing"
         logger.assert_true(len(self.pride_project) > 0,
                            Config._pride_project_parameter_str + " must not be empty")
 
@@ -415,10 +416,11 @@ class Config:
         utils.ensure_dir_exists(self.storage_dir, logger=logger)
 
     @staticmethod
-    def __sort_if_set(obj: Optional[Union[Set, Any]]) -> Optional[
-        Union[List, Any]]:
+    def __sort_if_set(obj: Optional[Union[Set, Any]]) \
+            -> Optional[Union[List, Any]]:
         if type(obj) == set:
-            return sorted(obj)
+            a_set: Set[Any] = obj  # type: ignore
+            return sorted(a_set)
         return obj
 
     @staticmethod

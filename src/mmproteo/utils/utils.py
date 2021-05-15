@@ -188,10 +188,10 @@ def list_of_dicts_to_dict_by_key(items: List[Dict], dict_key: str) -> Optional[
 
 
 def identity(elem: T) -> T:
-    return T
+    return elem
 
 
-def list_to_dict_by_index(items: List[T],
+def list_to_dict_by_index(items: Iterable[T],
                           children_processor: Callable[[T], T] = identity) \
         -> Dict[int, T]:
     return {idx: item for idx, item in enumerate(items)}

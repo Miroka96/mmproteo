@@ -1,7 +1,6 @@
 import argparse
 import re
-from builtins import function
-from typing import Callable, Iterable, List, NoReturn, Optional, Set, Union, \
+from typing import Callable, Collection, Iterable, List, NoReturn, Optional, Set, Union, \
     Sequence
 
 import pandas as pd
@@ -86,7 +85,7 @@ class NoneFilterConditionNode(AbstractFilterConditionNode):
 
 
 def create_or_filter_from_str(or_filter_str: str) -> Union[OrFilterConditionNode, NoReturn]:
-    conditions = []
+    conditions: List[AbstractFilterConditionNode] = []
 
     column_condition_strings = or_filter_str.split(Config.default_filter_or_separator)
     for column_condition_string in column_condition_strings:
@@ -100,7 +99,9 @@ def create_or_filter_from_str(or_filter_str: str) -> Union[OrFilterConditionNode
         value_regex = parts[1]
         negation = column_condition_string[len(parts[0])] == "!"
 
-        column_condition = ColumnRegexFilterConditionNode(column_name=column_name, value_regex=value_regex)
+        column_condition: AbstractFilterConditionNode \
+            = ColumnRegexFilterConditionNode(column_name=column_name,
+                                             value_regex=value_regex)
 
         if negation:
             column_condition = NotFilterConditionNode(condition=column_condition)
@@ -132,7 +133,7 @@ def create_file_extension_filter(required_file_extensions: Iterable[str],
 
 def filter_files_df(files_df: Optional[pd.DataFrame],
                     file_name_column: str = Config.default_file_name_column,
-                    file_extensions: Optional[Union[List[str], Set[str]]] = None,
+                    file_extensions: Optional[Collection[str]] = None,
                     column_filter: Optional[AbstractFilterConditionNode] = None,
                     max_num_files: Optional[int] = None,
                     sort: bool = Config.default_filter_sort,
@@ -169,9 +170,9 @@ def filter_files_df(files_df: Optional[pd.DataFrame],
             return files_df
 
     if column_filter is not None:
-        column_filter: function = NoneFilterConditionNode(
+        column_filter = NoneFilterConditionNode(
             condition=column_filter, none_value=True)
-        files_df = files_df[files_df.apply(func=column_filter, axis=1)]
+        files_df = files_df[files_df.apply(func=column_filter.__call__, axis=1)]  # type: ignore
 
         logger.debug(f"File attribute filtering resulted in {len(files_df)} valid file "
                      f"name{utils.get_plural_s(len(files_df))}")
@@ -190,7 +191,7 @@ def filter_files_df(files_df: Optional[pd.DataFrame],
 
 
 def filter_files_list(filenames: Sequence[Optional[str]],
-                      file_extensions: Optional[Iterable[str]] = None,
+                      file_extensions: Optional[Collection[str]] = None,
                       column_filter: Optional[AbstractFilterConditionNode] = None,
                       max_num_files: Optional[int] = None,
                       keep_null_values: bool = Config.default_keep_null_values,
@@ -234,4 +235,7 @@ def filter_files_list(filenames: Sequence[Optional[str]],
                                   max_num_files=max_num_files,
                                   sort=sort,
                                   logger=logger)
+    if filtered_df is None:
+        return list()
+
     return filtered_df[Config.default_file_name_column].to_list()

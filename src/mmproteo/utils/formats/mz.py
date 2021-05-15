@@ -1,5 +1,5 @@
 import os
-from typing import List, Optional, Tuple, Dict, Any, Union, Callable, Sequence
+from typing import Iterable, List, Optional, Tuple, Dict, Any, Union, Callable, Sequence
 
 import pandas as pd
 from mmproteo.utils import log, utils
@@ -119,11 +119,17 @@ def _create_merge_jobs(filenames_and_extensions: List[Tuple[str, Tuple[str, str]
                        target_filename_postfix: str,
                        skip_existing: bool = Config.default_skip_existing,
                        logger: log.Logger = log.DEFAULT_LOGGER) -> List[Tuple[str, str, str]]:
+    if len(filenames_and_extensions) < 2:
+        return list()
+
     filenames_and_extensions = sorted(filenames_and_extensions)
     merge_jobs = []
 
-    last_filename, (last_filename_prefix, last_extension) = filenames_and_extensions[0]
+    first_filename_and_extension: Tuple[Optional[str], Tuple[str, str]] = filenames_and_extensions[0]
+    last_filename, (last_filename_prefix, last_extension) = first_filename_and_extension
     for filename, (filename_prefix, extension) in filenames_and_extensions[1:]:
+        next_last_filename: Optional[str] = filename
+
         if last_filename is not None and extension != last_extension:
             common_filename_prefix_length = len(os.path.commonprefix([filename_prefix, last_filename_prefix]))
             required_filename_prefix_length = min(len(filename_prefix),
@@ -144,8 +150,8 @@ def _create_merge_jobs(filenames_and_extensions: List[Tuple[str, Tuple[str, str]
                 else:
                     merge_jobs.append((mzml_filename, mzid_filename, target_filename))
 
-                filename = None  # skip next iteration to prevent merging the same file with multiple others
-        last_filename = filename
+                next_last_filename = None  # skip next iteration to prevent merging the same file with multiple others
+        last_filename = next_last_filename
         last_filename_prefix = filename_prefix
         last_extension = extension
 
@@ -190,16 +196,17 @@ def merge_mzml_and_mzid_files_to_parquet(filenames: Sequence[Optional[str]],
                                                  mzid_key_columns=mzid_key_columns,
                                                  logger=logger)
 
-    parquet_files = list(ItemProcessor(items=enumerate(merge_jobs),
-                                       item_processor=item_processor,
-                                       action_name="mzmlid-merge",
-                                       subject_name="file pair",
-                                       max_num_items=max_num_files,
-                                       count_failed_items=count_failed_files,
-                                       count_null_results=count_skipped_files,
-                                       keep_null_values=False,
-                                       thread_count=thread_count,
-                                       logger=logger).process())
+    processing_results: Iterable[Optional[Any]] = ItemProcessor(items=enumerate(merge_jobs),
+                                                                item_processor=item_processor.__call__,
+                                                                action_name="mzmlid-merge",
+                                                                subject_name="file pair",
+                                                                max_num_items=max_num_files,
+                                                                count_failed_items=count_failed_files,
+                                                                count_null_results=count_skipped_files,
+                                                                keep_null_values=False,
+                                                                thread_count=thread_count,
+                                                                logger=logger).process()
+    parquet_files: List[str] = list(processing_results)
     return parquet_files
 
 

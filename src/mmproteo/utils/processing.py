@@ -1,17 +1,18 @@
 import gc
 import multiprocessing
 import signal
-from typing import Callable, Any, Optional, Tuple, Iterable, List, NoReturn, Union
+from typing import Callable, Any, Collection, Generic, Optional, Sequence, Tuple, Iterable, List, NoReturn, TypeVar, \
+    Union
 
 from mmproteo.utils import log, utils
 from mmproteo.utils.config import Config
 
 
 class _IndexedItemProcessor:
-    def __init__(self, item_processor: Callable[[Any], Union[Optional[str], NoReturn]]):
+    def __init__(self, item_processor: Callable[[Any], Union[Optional[Any], NoReturn]]):
         self.item_processor = item_processor
 
-    def __call__(self, indexed_item: Tuple[int, Optional[Any]]) -> Optional[Any]:
+    def __call__(self, indexed_item: Tuple[int, Optional[Any]]) -> Tuple[int, Optional[Any]]:
         index, item = indexed_item
         if item is None:
             response = None
@@ -29,7 +30,7 @@ class _IndexedItemProcessor:
 class ItemProcessor:
     def __init__(self,
                  items: Iterable[Optional[Any]],
-                 item_processor: Callable[[Any], Union[Optional[str], NoReturn]],
+                 item_processor: Callable[[Any], Union[Optional[Any], NoReturn]],
                  action_name: str,
                  action_name_past_form: Optional[str] = None,
                  subject_name: str = "file",
@@ -43,7 +44,7 @@ class ItemProcessor:
         if max_num_items == 0:
             max_num_items = None
 
-        self.items = list(items)
+        self.items: Sequence[Any] = list(items)
         del items
         self.indexed_item_processor = _IndexedItemProcessor(item_processor)
         self.action_name = action_name
@@ -63,7 +64,7 @@ class ItemProcessor:
         if thread_count > 1:
             logger.debug(f"Processing items with {thread_count} subprocesses")
             original_sigint_handler = signal.signal(signal.SIGINT, signal.SIG_IGN)
-            self.process_pool = multiprocessing.Pool(processes=thread_count)
+            self.process_pool: Optional[multiprocessing.pool.Pool] = multiprocessing.Pool(processes=thread_count)
             signal.signal(signal.SIGINT, original_sigint_handler)
         else:
             self.process_pool = None
@@ -76,14 +77,14 @@ class ItemProcessor:
         self.action_name_past_form = action_name_past_form
         self.processing_results: List[Optional[Any]] = list()
 
-    def __drop_null_items(self):
-        non_null_items = [item for item in self.items if item is not None]
+    def __drop_null_items(self) -> None:
+        non_null_items: Sequence[Any] = [item for item in self.items if item is not None]
         self.items_to_process_count = len(non_null_items)
 
         if not self.keep_null_values:
             self.items = non_null_items
 
-    def __limit_number_of_items_to_process(self):
+    def __limit_number_of_items_to_process(self) -> None:
         if self.max_num_items is not None:
             self.items_to_process_count = min(self.items_to_process_count, self.max_num_items)
             if self.items_to_process_count < self.max_num_items:
@@ -92,6 +93,8 @@ class ItemProcessor:
 
     def __process_indexed_item_batch_in_parallel(self, indexed_item_batch: Iterable[Tuple[int, Optional[Any]]]) \
             -> Iterable[Tuple[int, Optional[Any]]]:
+        assert self.process_pool is not None, \
+            "specify a thread count to create a process pool to use this function"
         try:
             indexed_results: Iterable[Tuple[int, Optional[Any]]] = self.process_pool.imap_unordered(
                 self.indexed_item_processor,
@@ -106,9 +109,10 @@ class ItemProcessor:
             self.process_pool.join()
             return indexed_results
 
-    def __process_indexed_item_batch(self, indexed_item_batch: Iterable[Tuple[int, Optional[Any]]]):
+    def __process_indexed_item_batch(self, indexed_item_batch: Iterable[Tuple[int, Optional[Any]]]) -> None:
         if self.process_pool is None:
-            indexed_results = [self.indexed_item_processor(indexed_item) for indexed_item in indexed_item_batch]
+            indexed_results: Iterable[Tuple[int, Optional[Any]]] \
+                = [self.indexed_item_processor(indexed_item) for indexed_item in indexed_item_batch]
         else:
             indexed_results = self.__process_indexed_item_batch_in_parallel(indexed_item_batch)
         results: List[Optional[Any]] = [indexed_item[1] for indexed_item in sorted(indexed_results)]
@@ -169,7 +173,7 @@ class ItemProcessor:
         self.__drop_null_items()
         if self.items_to_process_count == 0:
             self.logger.warning(f"No {self.subject_name}s available to {self.action_name}")
-            return self.items
+            return [None for _ in self.items]  # type: ignore
 
         self.__limit_number_of_items_to_process()
         self.logger.debug(f"Trying to {self.action_name} {self.items_to_process_count} {self.subject_name}"
