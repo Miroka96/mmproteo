@@ -28,8 +28,9 @@ class DownloadCommand(AbstractCommand):
         return "download files from a given project."
 
     def run(self, config: Config, logger: log.Logger = log.DEFAULT_LOGGER) -> None:
-        downloaded_files = pride.download(project_name=config.pride_project,
-                                          project_files=config.get_project_files(),
+        project_files = config.get_project_files()
+        downloaded_files = pride.download(project_name=config.pride_project if project_files is None else None,
+                                          project_files=project_files,
                                           valid_file_extensions=config.valid_file_extensions,
                                           max_num_files=config.max_num_files,
                                           column_filter=config.column_filter,

@@ -206,7 +206,7 @@ def merge_mzml_and_mzid_files_to_parquet(filenames: Sequence[Optional[str]],
                                                                 keep_null_values=False,
                                                                 thread_count=thread_count,
                                                                 logger=logger).process()
-    parquet_files: List[str] = list(processing_results)
+    parquet_files: List[str] = list(processing_results)  # type: ignore
     return parquet_files
 
 
@@ -272,13 +272,13 @@ class FilteringProcessor:
         self.post_processor = post_processor
         self.logger = logger
 
-    def __call__(self, input_file_path: str) -> Optional[Dict[str, str]]:
+    def __call__(self, input_file_path: str) -> Optional[Dict[str, Union[str, int, float]]]:
         output_file_path = self.dump_path + os.path.sep + input_file_path.split(os.path.sep)[-1]
         if self.skip_existing and os.path.exists(output_file_path):
             self.logger.debug(f"Skipping filtering '{input_file_path}' -> '{output_file_path}' already exists")
             return None
 
-        res = {
+        res: Dict[str, Union[str, int, float]] = {
             'input_file_path': input_file_path,
             'output_file_path': output_file_path,
         }
@@ -298,9 +298,11 @@ class FilteringProcessor:
         length = new_length
 
         decoy_counts = df[self.is_decoy_column_name].value_counts()
-        res['left_decoys'] = decoy_counts.get(True, 0)
-        res['left_targets'] = decoy_counts.get(False, 0)
-        res['fdr'] = res['left_decoys'] / res['left_targets']
+        left_decoys: int = decoy_counts.get(True, 0)
+        left_targets: int = decoy_counts.get(False, 0)
+        res['left_decoys'] = left_decoys
+        res['left_targets'] = left_targets
+        res['fdr'] = left_decoys / left_targets
 
         # filter out Decoys
 
@@ -333,7 +335,7 @@ def filter_files(input_file_paths: List[str],
                  output_columns: Optional[List[str]] = None,
                  post_processor: Callable[[pd.DataFrame], pd.DataFrame] = lambda x: x,
                  thread_count: int = Config.default_thread_count,
-                 logger: log.Logger = log.DEFAULT_LOGGER) -> List[Dict[str, Union[str, int]]]:
+                 logger: log.Logger = log.DEFAULT_LOGGER) -> List[Dict[str, Union[str, int, float]]]:
     filter_processor = FilteringProcessor(dump_path=output_path,
                                           fdr=fdr,
                                           skip_existing=skip_existing,
@@ -344,10 +346,10 @@ def filter_files(input_file_paths: List[str],
                                           logger=logger)
     output_files = list(ItemProcessor(
         items=input_file_paths,
-        item_processor=filter_processor,
+        item_processor=filter_processor.__call__,
         action_name="fdr-filter",
         subject_name="mzmlid file",
         thread_count=thread_count,
         logger=logger
     ).process())
-    return output_files
+    return output_files  # type: ignore

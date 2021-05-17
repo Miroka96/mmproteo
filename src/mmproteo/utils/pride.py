@@ -10,8 +10,8 @@ from mmproteo.utils.visualization import pretty_print_json
 
 
 class AbstractPrideApi(AbstractDownloader):
-    LIST_PROJECT_FILES_URL: Optional[str] = None
-    GET_PROJECT_SUMMARY_URL: Optional[str] = None
+    LIST_PROJECT_FILES_URL: str = ""
+    GET_PROJECT_SUMMARY_URL: str = ""
 
     def __init__(self, version: str, logger: log.Logger = log.DEFAULT_LOGGER):
         super().__init__(logger)
@@ -19,11 +19,17 @@ class AbstractPrideApi(AbstractDownloader):
 
     def get_project_summary(self, project_name: str) -> Optional[dict]:
         project_summary_link = self.GET_PROJECT_SUMMARY_URL % project_name
-        return self.request_json(project_summary_link,
-                                 "project summary using API version " + self.version,
-                                 self.logger)
+        json_response = self.request_json_object(project_summary_link,
+                                                 "project summary using API version " + self.version,
+                                                 self.logger)
+        if json_response is None:
+            return None
+        self.logger.assert_true(type(json_response) == dict,
+                                f"expected dictionary as JSON response, got '{type(json_response)}'",
+                                as_warning=True)
+        return json_response  # type: ignore
 
-    def get_project_files(self, project_name: str):
+    def get_project_files(self, project_name: str) -> Optional[pd.DataFrame]:
         raise NotImplementedError
 
 
@@ -33,9 +39,9 @@ class PrideApiV1(AbstractPrideApi):
 
     def get_project_files(self, project_name: str) -> Optional[pd.DataFrame]:
         project_files_link = self.LIST_PROJECT_FILES_URL % project_name
-        json_response = self.request_json(url=project_files_link,
-                                          subject_name="list of project files using API version " + self.version,
-                                          logger=self.logger)
+        json_response = self.request_json_object(url=project_files_link,
+                                                 subject_name="list of project files using API version " + self.version,
+                                                 logger=self.logger)
         if json_response is None:
             return None
 
@@ -96,10 +102,10 @@ class PrideApiV2(AbstractPrideApi):
             -> Optional[pd.DataFrame]:
         project_files_link = self.LIST_PROJECT_FILES_URL % project_name
         json_response = \
-            self.request_json(url=project_files_link,
-                              subject_name="list of project files using API "
-                                           "version " + self.version,
-                              logger=self.logger)
+            self.request_json_object(url=project_files_link,
+                                     subject_name="list of project files using API "
+                                                  "version " + self.version,
+                                     logger=self.logger)
         if json_response is None:
             return None
         json_dictionaries: List[Dict[str, Any]] = \

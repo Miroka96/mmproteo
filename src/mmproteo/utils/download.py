@@ -12,14 +12,15 @@ from mmproteo.utils.visualization import pretty_print_json
 from requests import Response
 
 
-def download_file(download_url: str, skip_existing: bool = Config.default_skip_existing) -> (str, Optional[str]):
+def download_file(download_url: str, skip_existing: bool = Config.default_skip_existing) \
+        -> Tuple[Optional[str], Optional[str]]:
     filename = download_url.split("/")[-1]
-    downloaded_file_name = None
+    downloaded_file_name: Optional[str] = None
 
-    found_downloaded_file = False
-    found_extracted_file = False
+    found_downloaded_file: bool = False
+    found_extracted_file: bool = False
 
-    skip_reason = None
+    skip_reason: Optional[str] = None
 
     if len(filename) > 0 and skip_existing:
         if os.path.isfile(filename):
@@ -116,8 +117,9 @@ class AbstractDownloader:
 
     @staticmethod
     # HTTP 204 - No Content
-    def _handle_204_response(response_dict: dict, logger: log.Logger = log.DEFAULT_LOGGER) -> Optional[NoReturn]:
+    def _handle_204_response(logger: log.Logger = log.DEFAULT_LOGGER) -> Optional[NoReturn]:
         logger.warning("Repository does not exist")
+        return None
 
     @staticmethod
     # HTTP 401 - Unauthorized
@@ -126,33 +128,38 @@ class AbstractDownloader:
         developer_message = response_dict.get('developerMessage', "?")
         more_info_url = response_dict.get('moreInfoUrl', "?")
         logger.warning("%s (%s) -> %s" % (message, developer_message, more_info_url))
+        return None
 
     @staticmethod
     def _handle_unknown_response(status_code: int, response_dict: dict,
                                  logger: log.Logger = log.DEFAULT_LOGGER) -> Optional[NoReturn]:
-        logger.warning("Received unknown response code %d or content" % status_code)
         logger.debug(pretty_print_json(response_dict))
+        logger.warning("Received unknown response code %d or content" % status_code)
+        return None
 
     def _handle_non_200_response_codes(self, response: Optional[Response],
                                        logger: log.Logger = log.DEFAULT_LOGGER) -> Optional[NoReturn]:
         if response is None:
             return None
         if response.status_code == 204:
-            return self._handle_204_response(logger=logger)
+            self._handle_204_response(logger=logger)
+            return None
         try:
             response_dict = json.loads(response.text)
         except json.JSONDecodeError:
             logger.warning("Received unknown non-JSON response with response code %d" % response.status_code)
             logger.debug("Response text: '%s'" % response.text)
-            return
+            return None
         if response.status_code == 401:
-            return self._handle_401_response(response_dict, logger)
-        return self._handle_unknown_response(response.status_code, response_dict, logger)
+            self._handle_401_response(response_dict, logger)
+            return None
+        self._handle_unknown_response(response.status_code, response_dict, logger)
+        return None
 
-    def request_json(self,
-                     url: str,
-                     subject_name: str,
-                     logger: log.Logger = log.DEFAULT_LOGGER) \
+    def request_json_object(self,
+                            url: str,
+                            subject_name: str,
+                            logger: log.Logger = log.DEFAULT_LOGGER) \
             -> Union[Dict[str, Any], List[Any], NoReturn, None]:
         logger.info(f"Requesting {subject_name} from {url}")
         response = requests.get(url)
@@ -161,8 +168,8 @@ class AbstractDownloader:
                      f"status code {response.status_code}")
 
         if response.status_code == 200:
-            response_dict = json.loads(response.text)
-            return response_dict
+            response_object: Union[Dict[str, Any], List[Any]] = json.loads(response.text)
+            return response_object
         else:
             self._handle_non_200_response_codes(response, logger)
             return None

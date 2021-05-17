@@ -68,10 +68,13 @@ class Logger:
             raise LoggedWarningException(msg)
         return None
 
-    def assert_true(self, condition: bool, error_msg: str) \
+    def assert_true(self, condition: bool, error_msg: str, as_warning: bool = False) \
             -> Optional[NoReturn]:
         if not condition:
-            self.error(error_msg)
+            if as_warning:
+                self.warning(error_msg)
+            else:
+                self.error(error_msg)
         return None
 
     def is_verbose(self) -> bool:

@@ -23,7 +23,7 @@ class _MultiLineArgumentDefaultsHelpFormatter(argparse
     def _format_usage(self,
                       usage: str,
                       actions: Iterable[argparse.Action],
-                      groups,  # type: ignore
+                      groups: Iterable[argparse._ArgumentGroup],
                       prefix: Optional[str]) \
             -> str:  # type: ignore
         actions = sorted(actions, key=attrgetter('option_strings'))

@@ -79,6 +79,7 @@ def assert_valid_thermo_output_format(output_format: str, logger: log.Logger = l
     logger.assert_true(output_format in get_thermo_raw_file_parser_output_formats(),
                        "Invalid output format '%s'. Currently allowed formats are: [%s]"
                        % (output_format, get_string_of_thermo_raw_file_parser_output_formats()))
+    return None
 
 
 def convert_raw_file(filename: Optional[str],

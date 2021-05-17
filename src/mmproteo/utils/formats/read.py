@@ -1,5 +1,5 @@
 import os
-from typing import Any, Callable, Dict, List, Optional, Set, Union
+from typing import Any, Callable, Dict, List, Optional, Set, Union, Tuple
 
 import pandas as pd
 from mmproteo.utils import log, visualization
@@ -58,7 +58,7 @@ def read(filename: str, filename_col: Optional[str] = "%s_filename", logger: log
     return df
 
 
-def separate_extension(filename: str, extensions: Set[str]) -> (str, str):
+def separate_extension(filename: str, extensions: Set[str]) -> Tuple[str, str]:
     lower_filename = filename.lower()
     longest_extension = ""
     for ext in extensions:
