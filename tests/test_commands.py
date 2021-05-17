@@ -8,7 +8,6 @@ from mmproteo.utils import utils, commands, config, log
 from .utils.defaults import MZML_FILE, MZID_FILE, MZMLID_FILE, \
     DEFAULT_PROJECT_FILE_COUNT, DEFAULT_PROJECT, MZID_GZ_FILE, MZML_GZ_FILE, \
     RAW_FILE, MGF_FILE, MGF_PARQUET_FILE
-from .utils.fixtures import run_in_temp_directory
 
 
 def get_files_in_directory(directory_name: str) -> Set[str]:

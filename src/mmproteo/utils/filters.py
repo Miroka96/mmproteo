@@ -1,9 +1,9 @@
 import argparse
 import re
-from typing import Callable, Collection, Iterable, List, NoReturn, Optional, Set, Union, \
-    Sequence
+from typing import Callable, Collection, Iterable, List, NoReturn, Optional, Union, Sequence
 
 import pandas as pd
+
 from mmproteo.utils import log, utils
 from mmproteo.utils.config import Config
 

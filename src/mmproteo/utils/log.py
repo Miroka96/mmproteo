@@ -1,7 +1,7 @@
 import logging
 import os
 import sys
-from typing import List, NoReturn, Optional, TextIO, Callable
+from typing import List, NoReturn, Optional, TextIO
 
 LOG_FORMAT: str = '%(asctime)s - %(name)s: %(message)s'
 DEFAULT_LOG_SUFFIX: str = '.log'

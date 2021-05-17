@@ -1,4 +1,4 @@
-from typing import Dict, List, Optional, Sequence
+from typing import Dict, List
 
 from mmproteo.utils import filters, log, pride, utils, visualization
 from mmproteo.utils.config import Config
@@ -251,8 +251,7 @@ class Mz2ParquetCommand(AbstractCommand):
 
     def run(self, config: Config, logger: log.Logger = log.DEFAULT_LOGGER) -> None:
         files = config.get_processed_files(
-            config.default_downloaded_files_column,
-                                           config.default_extracted_files_column)
+            config.default_downloaded_files_column, config.default_extracted_files_column)
 
         if len(files) == 0:
             files = utils.list_files_in_directory(

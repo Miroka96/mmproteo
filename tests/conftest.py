@@ -1,12 +1,12 @@
-import tempfile
-import shutil
 import os
+import shutil
+import tempfile
 from typing import Generator
 
 import pytest
 
 from mmproteo.utils.config import Config
-from .defaults import DEFAULT_PROJECT_DATASET_PATH, MZML_FILE_PATH, MZID_FILE_PATH
+from utils.defaults import MZML_FILE_PATH, MZID_FILE_PATH, DEFAULT_PROJECT_DATASET_PATH
 
 
 @pytest.fixture(scope="function")

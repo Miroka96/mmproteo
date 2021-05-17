@@ -62,15 +62,11 @@ class PrideApiV2(AbstractPrideApi):
     GET_PROJECT_SUMMARY_URL = "https://www.ebi.ac.uk/pride/ws/archive/v2/projects/%s"
 
     @staticmethod
-    def _get_ftp_or_http_file_location(
-            file_location_entries: List[Dict[str, str]]) -> Optional[
-        Dict[str, str]]:
-        compatible_file_location_entries = [entry for entry in
-                                            file_location_entries
-                                            if 'value' in entry
-                                            and entry[
-                                                'value'].lower().startswith(
-                ('ftp://', 'http://', 'https://'))]
+    def _get_ftp_or_http_file_location(file_location_entries: List[Dict[str, str]]) -> Optional[Dict[str, str]]:
+        compatible_file_location_entries = [
+            entry for entry in file_location_entries
+            if 'value' in entry and entry['value'].lower().startswith(('ftp://', 'http://', 'https://'))
+        ]
         if len(compatible_file_location_entries) > 0:
             return compatible_file_location_entries[0]
         return None
@@ -142,8 +138,7 @@ def get_string_of_pride_api_versions(extension_quote: str = '"',
 
 def _query_project_summary(project_name: str,
                            api_versions: List[str] = None,
-                           logger: log.Logger = log.DEFAULT_LOGGER) -> Optional[
-    dict]:
+                           logger: log.Logger = log.DEFAULT_LOGGER) -> Optional[dict]:
     """Get the project as a json and return it as a dataframe"""
     if api_versions is None or len(api_versions) == 0:
         api_versions = DEFAULT_PRIDE_API_VERSIONS
@@ -174,8 +169,7 @@ def get_project_info(project_name: str,
 
 def get_project_files(project_name: str,
                       api_versions: List[str] = None,
-                      logger: log.Logger = log.DEFAULT_LOGGER) -> Optional[
-    pd.DataFrame]:
+                      logger: log.Logger = log.DEFAULT_LOGGER) -> Optional[pd.DataFrame]:
     """Get the project as a json and return it as a dataframe"""
     if api_versions is None or len(api_versions) == 0:
         api_versions = DEFAULT_PRIDE_API_VERSIONS

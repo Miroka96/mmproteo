@@ -6,7 +6,6 @@ import pytest
 from mmproteo.utils import filters
 from mmproteo.utils.formats import mz, read
 from .utils import defaults
-from .utils.fixtures import run_with_datasets
 
 
 def test_read_mzid(run_with_datasets: pytest.Function) -> Optional[NoReturn]:

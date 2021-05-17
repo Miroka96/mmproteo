@@ -82,9 +82,7 @@ def flatten_element_containers(elem: Union[Iterable, Any]) \
             non_null_elements = [e for e in elem if e is not None]
             if len(non_null_elements) == 0:
                 return dict()
-            elem = list_to_dict_by_index(elem,
-                                         children_processor=
-                                         flatten_element_containers)
+            elem = list_to_dict_by_index(elem, children_processor=flatten_element_containers)
     except TypeError:
         pass
     return elem
@@ -156,8 +154,11 @@ def get_plural_s(count: int) -> str:
         return ""
 
 
-def list_of_dicts_to_dict_by_key(items: List[Dict], dict_key: str) -> Optional[
-    Dict]:
+K = TypeVar('K')
+V = TypeVar('V')
+
+
+def list_of_dicts_to_dict_by_key(items: List[Dict[K, V]], dict_key: K) -> Optional[Dict[V, Dict[K, V]]]:
     """
     Transform :paramref:`items` into one common dictionary by using the common key :paramref:`dict_key` as identifier.
 
@@ -168,23 +169,16 @@ def list_of_dicts_to_dict_by_key(items: List[Dict], dict_key: str) -> Optional[
                      dictionaries as values. If :paramref:`dict_key` does not occur in all given :paramref:`items` this
                      method returns None
     """
-    all_have_key = True
-
     for item in items:
-        assert isinstance(item,
-                          dict), "Items in list must be dictionary instances"
+        assert isinstance(item, dict), "Items in list must be dictionary instances"
         if dict_key not in item.keys():
-            all_have_key = False
-            break
+            return None
 
-    if all_have_key:
-        items_dict = dict()
-        for item in items:
-            key = item[dict_key]
-            items_dict[key] = item
-        return items_dict
-
-    return None
+    items_dict: Dict[V, Dict[K, V]] = dict()
+    for item in items:
+        key: V = item[dict_key]
+        items_dict[key] = item
+    return items_dict
 
 
 def identity(elem: T) -> T:
@@ -225,8 +219,8 @@ def stop_docker_container(container_name: str,
 
 def get_docker_container_status(container_name: str,
                                 docker_inspect_container_command_template: str =
-                                "docker container inspect -f {{{{.State.Status}}}} {container_name}") -> \
-Optional[str]:
+                                "docker container inspect -f {{{{.State.Status}}}} {container_name}") \
+        -> Optional[str]:
     check_command = format_command_template(
         docker_inspect_container_command_template,
         lambda s: s.format(container_name=container_name))
@@ -242,8 +236,7 @@ def is_docker_container_running(container_name: str) -> bool:
         container_name=container_name) == "running"
 
 
-def merge_column_values(df: Optional[pd.DataFrame], columns: Iterable[str]) -> \
-List[str]:
+def merge_column_values(df: Optional[pd.DataFrame], columns: Iterable[str]) -> List[str]:
     if df is None:
         return list()
 

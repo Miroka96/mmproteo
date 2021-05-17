@@ -24,11 +24,13 @@ def start_thermo_docker_container(storage_dir: str = Config.default_storage_dir,
 
     storage_dir = os.path.abspath(storage_dir)
 
-    start_command = utils.format_command_template(command_template=thermo_start_container_command_template,
-                                                  formatter=lambda s: s.format(abs_storage_dir=storage_dir,
-                                                                               container_name=
-                                                                               thermo_docker_container_name,
-                                                                               image_name=thermo_docker_image))
+    start_command = utils.format_command_template(
+        command_template=thermo_start_container_command_template,
+        formatter=lambda s: s.format(
+            abs_storage_dir=storage_dir,
+            container_name=thermo_docker_container_name,
+            image_name=thermo_docker_image))
+
     start_command_str = " ".join(start_command)
     logger.debug(f"Starting {subject} using '{start_command_str}'")
     process_result = subprocess.run(start_command)

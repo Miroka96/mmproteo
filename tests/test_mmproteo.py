@@ -50,8 +50,7 @@ def store_mmproteo_output() -> None:
 
 def test_mmproteo_output() -> Optional[NoReturn]:
     return _compare_stdout_with_file(command="mmproteo",
-                                     filename=RESOURCE_DIR +
-                                              "mmproteo_output.txt")
+                                     filename=RESOURCE_DIR + "mmproteo_output.txt")
 
 
 def store_mmproteo_h_output() -> None:
@@ -201,15 +200,13 @@ def test_mmproteo_p_n_e_c_list_output() -> Optional[NoReturn]:
 
 def store_mmproteo_showconfig_output() -> None:
     _store_command_output(command="mmproteo showconfig",
-                          filename=RESOURCE_DIR +
-                                   "mmproteo_showconfig_output.txt",
+                          filename=RESOURCE_DIR + "mmproteo_showconfig_output.txt",
                           include_stderr=False)
 
 
 def test_mmproteo_showconfig_output() -> Optional[NoReturn]:
     return _compare_stdout_with_file(command="mmproteo showconfig",
-                                     filename=RESOURCE_DIR +
-                                              "mmproteo_showconfig_output.txt",
+                                     filename=RESOURCE_DIR + "mmproteo_showconfig_output.txt",
                                      include_stderr=False)
 
 

@@ -217,7 +217,7 @@ def _prepare_mzid_entry(entry: Dict[str, Any]) -> Dict[str, Any]:
         items = utils.list_of_dicts_to_dict_by_key(entry["SpectrumIdentificationItem"], "rank")
         if items is not None:
             entry["SpectrumIdentificationItem"] = items
-    except:
+    except Exception:
         pass
 
     entry = utils.flatten_dict(entry)

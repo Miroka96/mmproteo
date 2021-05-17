@@ -110,8 +110,6 @@ class Config:
     def __init__(self, logger: log.Logger = log.DEFAULT_LOGGER):
         self._logger = logger
 
-        from mmproteo.utils import formats
-
         self.pride_project: Optional[str] = None
         self.max_num_files: int = 0
         self.count_failed_files: bool = self.default_count_failed_files
@@ -424,12 +422,13 @@ class Config:
         return obj
 
     @staticmethod
-    def __filter_vars(variables: List[Tuple[str, Any]]) -> List[
-        Tuple[str, Any]]:
-        return [(key, Config.__sort_if_set(value)) for key, value in variables
-                if not key.startswith('_')
-                and not callable(value)
-                and not type(value) == staticmethod]
+    def __filter_vars(variables: List[Tuple[str, Any]]) -> List[Tuple[str, Any]]:
+        return [
+            (key, Config.__sort_if_set(value)) for key, value in variables
+            if not key.startswith('_')
+            and not callable(value)
+            and not type(value) == staticmethod
+        ]
 
     def __str__(self) -> str:
         instance_variables: List[Tuple[str, Any]] = sorted(

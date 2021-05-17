@@ -1,8 +1,7 @@
 import gc
 import multiprocessing
 import signal
-from typing import Callable, Any, Collection, Generic, Optional, Sequence, Tuple, Iterable, List, NoReturn, TypeVar, \
-    Union
+from typing import Callable, Any, Optional, Sequence, Tuple, Iterable, List, NoReturn, Union
 
 from mmproteo.utils import log, utils
 from mmproteo.utils.config import Config

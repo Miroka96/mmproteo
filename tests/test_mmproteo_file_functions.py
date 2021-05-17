@@ -3,7 +3,6 @@ from typing import NoReturn, Optional
 
 import pytest
 
-from .utils.fixtures import run_in_temp_directory
 from .utils.defaults import DEFAULT_PROJECT
 
 MZ_PIPELINE_COMMAND = f"mmproteo -p {DEFAULT_PROJECT} -e mzid,mzml -n 2 -c fileName,fileSizeBytes " \
