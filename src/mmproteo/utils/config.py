@@ -439,12 +439,10 @@ class Config:
         class_variables = self.__filter_vars(class_variables)
         lines = [
             pd.DataFrame(data=class_variables,
-                         columns=['STATIC VARIABLES', 'VALUES']).to_string(
-                index=False),
+                         columns=['STATIC VARIABLES', 'VALUES']).to_string(index=False),
             "",
             pd.DataFrame(data=instance_variables,
-                         columns=['DYNAMIC VARIABLES', 'VALUES']).to_string(
-                index=False, )
+                         columns=['DYNAMIC VARIABLES', 'VALUES']).to_string(index=False)
         ]
 
         return '\n'.join(lines)

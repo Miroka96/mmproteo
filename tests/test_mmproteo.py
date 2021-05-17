@@ -1,13 +1,15 @@
 #!/usr/bin/python3
-
 import os
 import subprocess
 import time
 from typing import Optional, NoReturn
 
+import pytest
+
+from utils.defaults import RESOURCES_PATH
+
 DEFAULT_PROJECT = "PXD010000"
 FAIR_USE_DELAY_SECONDS = 0.5
-RESOURCE_DIR = os.path.sep.join(["resources", ""])
 
 
 def _store_command_output(command: str,
@@ -45,34 +47,34 @@ def _compare_stdout_with_file(command: str,
 
 def store_mmproteo_output() -> None:
     _store_command_output(command="mmproteo",
-                          filename=RESOURCE_DIR + "mmproteo_output.txt")
+                          filename=os.path.join(RESOURCES_PATH, "mmproteo_output.txt"))
 
 
-def test_mmproteo_output() -> Optional[NoReturn]:
+def test_mmproteo_output(run_in_resources_directory: pytest.Function) -> Optional[NoReturn]:
     return _compare_stdout_with_file(command="mmproteo",
-                                     filename=RESOURCE_DIR + "mmproteo_output.txt")
+                                     filename="mmproteo_output.txt")
 
 
 def store_mmproteo_h_output() -> None:
     _store_command_output(command="mmproteo -h",
-                          filename=RESOURCE_DIR + "mmproteo_h_output.txt")
+                          filename=os.path.join(RESOURCES_PATH, "mmproteo_h_output.txt"))
 
 
-def test_mmproteo_h_output() -> Optional[NoReturn]:
+def test_mmproteo_h_output(run_in_resources_directory: pytest.Function) -> Optional[NoReturn]:
     return _compare_stdout_with_file(command="mmproteo -h",
-                                     filename=RESOURCE_DIR + "mmproteo_h_output.txt")
+                                     filename="mmproteo_h_output.txt")
 
 
 def store_mmproteo_p_info_output() -> None:
     _store_command_output(command=f"mmproteo -p {DEFAULT_PROJECT} info",
-                          filename=RESOURCE_DIR + "mmproteo_p_info_output.txt",
+                          filename=os.path.join(RESOURCES_PATH, "mmproteo_p_info_output.txt"),
                           include_stderr=False)
     time.sleep(FAIR_USE_DELAY_SECONDS)
 
 
-def test_mmproteo_p_info_output() -> Optional[NoReturn]:
+def test_mmproteo_p_info_output(run_in_resources_directory: pytest.Function) -> Optional[NoReturn]:
     _compare_stdout_with_file(command=f"mmproteo -p {DEFAULT_PROJECT} info",
-                              filename=RESOURCE_DIR + "mmproteo_p_info_output.txt",
+                              filename="mmproteo_p_info_output.txt",
                               include_stderr=False)
     time.sleep(FAIR_USE_DELAY_SECONDS)
     return None
@@ -80,14 +82,14 @@ def test_mmproteo_p_info_output() -> Optional[NoReturn]:
 
 def store_mmproteo_p_list_output() -> None:
     _store_command_output(command=f"mmproteo -p {DEFAULT_PROJECT} list",
-                          filename=RESOURCE_DIR + "mmproteo_p_list_output.txt",
+                          filename=os.path.join(RESOURCES_PATH, "mmproteo_p_list_output.txt"),
                           include_stderr=False)
     time.sleep(FAIR_USE_DELAY_SECONDS)
 
 
-def test_mmproteo_p_list_output() -> Optional[NoReturn]:
+def test_mmproteo_p_list_output(run_in_resources_directory: pytest.Function) -> Optional[NoReturn]:
     _compare_stdout_with_file(command=f"mmproteo -p {DEFAULT_PROJECT} list",
-                              filename=RESOURCE_DIR + "mmproteo_p_list_output.txt",
+                              filename="mmproteo_p_list_output.txt",
                               include_stderr=False)
     time.sleep(FAIR_USE_DELAY_SECONDS)
     return None
@@ -95,15 +97,15 @@ def test_mmproteo_p_list_output() -> Optional[NoReturn]:
 
 def store_mmproteo_p_n_list_output() -> None:
     _store_command_output(command=f"mmproteo -p {DEFAULT_PROJECT} -n 10 list",
-                          filename=RESOURCE_DIR + "mmproteo_p_n_list_output.txt",
+                          filename=os.path.join(RESOURCES_PATH, "mmproteo_p_n_list_output.txt"),
                           include_stderr=False)
     time.sleep(FAIR_USE_DELAY_SECONDS)
 
 
-def test_mmproteo_p_n_list_output() -> Optional[NoReturn]:
+def test_mmproteo_p_n_list_output(run_in_resources_directory: pytest.Function) -> Optional[NoReturn]:
     _compare_stdout_with_file(
         command=f"mmproteo -p {DEFAULT_PROJECT} -n 10 list",
-        filename=RESOURCE_DIR + "mmproteo_p_n_list_output.txt",
+        filename="mmproteo_p_n_list_output.txt",
         include_stderr=False)
     time.sleep(FAIR_USE_DELAY_SECONDS)
     return None
@@ -111,15 +113,15 @@ def test_mmproteo_p_n_list_output() -> Optional[NoReturn]:
 
 def store_mmproteo_p_e_mzid_list_output() -> None:
     _store_command_output(command=f"mmproteo -p {DEFAULT_PROJECT} -e mzid list",
-                          filename=RESOURCE_DIR + "mmproteo_p_e_mzid_list_output.txt",
+                          filename=os.path.join(RESOURCES_PATH, "mmproteo_p_e_mzid_list_output.txt"),
                           include_stderr=False)
     time.sleep(FAIR_USE_DELAY_SECONDS)
 
 
-def test_mmproteo_p_e_mzid_list_output() -> Optional[NoReturn]:
+def test_mmproteo_p_e_mzid_list_output(run_in_resources_directory: pytest.Function) -> Optional[NoReturn]:
     _compare_stdout_with_file(
         command=f"mmproteo -p {DEFAULT_PROJECT} -e mzid list",
-        filename=RESOURCE_DIR + "mmproteo_p_e_mzid_list_output.txt",
+        filename="mmproteo_p_e_mzid_list_output.txt",
         include_stderr=False)
     time.sleep(FAIR_USE_DELAY_SECONDS)
     return None
@@ -127,15 +129,15 @@ def test_mmproteo_p_e_mzid_list_output() -> Optional[NoReturn]:
 
 def store_mmproteo_p_e_gz_list_output() -> None:
     _store_command_output(command=f"mmproteo -p {DEFAULT_PROJECT} -e gz list",
-                          filename=RESOURCE_DIR + "mmproteo_p_e_gz_list_output.txt",
+                          filename=os.path.join(RESOURCES_PATH, "mmproteo_p_e_gz_list_output.txt"),
                           include_stderr=False)
     time.sleep(FAIR_USE_DELAY_SECONDS)
 
 
-def test_mmproteo_p_e_gz_list_output() -> Optional[NoReturn]:
+def test_mmproteo_p_e_gz_list_output(run_in_resources_directory: pytest.Function) -> Optional[NoReturn]:
     _compare_stdout_with_file(
         command=f"mmproteo -p {DEFAULT_PROJECT} -e gz list",
-        filename=RESOURCE_DIR + "mmproteo_p_e_gz_list_output.txt",
+        filename="mmproteo_p_e_gz_list_output.txt",
         include_stderr=False)
     time.sleep(FAIR_USE_DELAY_SECONDS)
     return None
@@ -144,15 +146,15 @@ def test_mmproteo_p_e_gz_list_output() -> Optional[NoReturn]:
 def store_mmproteo_p_e_gz_mzid_list_output() -> None:
     _store_command_output(
         command=f"mmproteo -p {DEFAULT_PROJECT} -e gz,mzid list",
-        filename=RESOURCE_DIR + "mmproteo_p_e_gz_mzid_list_output.txt",
+        filename=os.path.join(RESOURCES_PATH, "mmproteo_p_e_gz_mzid_list_output.txt"),
         include_stderr=False)
     time.sleep(FAIR_USE_DELAY_SECONDS)
 
 
-def test_mmproteo_p_e_gz_mzid_list_output() -> Optional[NoReturn]:
+def test_mmproteo_p_e_gz_mzid_list_output(run_in_resources_directory: pytest.Function) -> Optional[NoReturn]:
     _compare_stdout_with_file(
         command=f"mmproteo -p {DEFAULT_PROJECT} -e gz,mzid list",
-        filename=RESOURCE_DIR + "mmproteo_p_e_gz_mzid_list_output.txt",
+        filename="mmproteo_p_e_gz_mzid_list_output.txt",
         include_stderr=False)
     time.sleep(FAIR_USE_DELAY_SECONDS)
     return None
@@ -161,15 +163,15 @@ def test_mmproteo_p_e_gz_mzid_list_output() -> Optional[NoReturn]:
 def store_mmproteo_p_c_list_output() -> None:
     _store_command_output(
         command=f"mmproteo -p {DEFAULT_PROJECT} -c fileName,downloadLink list",
-        filename=RESOURCE_DIR + "mmproteo_p_c_list_output.txt",
+        filename=os.path.join(RESOURCES_PATH, "mmproteo_p_c_list_output.txt"),
         include_stderr=False)
     time.sleep(FAIR_USE_DELAY_SECONDS)
 
 
-def test_mmproteo_p_c_list_output() -> Optional[NoReturn]:
+def test_mmproteo_p_c_list_output(run_in_resources_directory: pytest.Function) -> Optional[NoReturn]:
     _compare_stdout_with_file(
         command=f"mmproteo -p {DEFAULT_PROJECT} -c fileName,downloadLink list",
-        filename=RESOURCE_DIR + "mmproteo_p_c_list_output.txt",
+        filename="mmproteo_p_c_list_output.txt",
         include_stderr=False)
     time.sleep(FAIR_USE_DELAY_SECONDS)
     return None
@@ -183,16 +185,16 @@ def store_mmproteo_p_n_e_c_list_output() -> None:
                 f"-e raw,mzml,gz "
                 f"-c fileName,downloadLink "
                 f"list",
-        filename=RESOURCE_DIR + "mmproteo_p_n_e_c_list_output.txt",
+        filename=os.path.join(RESOURCES_PATH, "mmproteo_p_n_e_c_list_output.txt"),
         include_stderr=False)
     time.sleep(FAIR_USE_DELAY_SECONDS)
 
 
-def test_mmproteo_p_n_e_c_list_output() -> Optional[NoReturn]:
+def test_mmproteo_p_n_e_c_list_output(run_in_resources_directory: pytest.Function) -> Optional[NoReturn]:
     _compare_stdout_with_file(
         command=f"mmproteo -p {DEFAULT_PROJECT} -n 100 -e raw,mzml,gz "
                 f"-c fileName,downloadLink list",
-        filename=RESOURCE_DIR + "mmproteo_p_n_e_c_list_output.txt",
+        filename="mmproteo_p_n_e_c_list_output.txt",
         include_stderr=False)
     time.sleep(FAIR_USE_DELAY_SECONDS)
     return None
@@ -200,13 +202,13 @@ def test_mmproteo_p_n_e_c_list_output() -> Optional[NoReturn]:
 
 def store_mmproteo_showconfig_output() -> None:
     _store_command_output(command="mmproteo showconfig",
-                          filename=RESOURCE_DIR + "mmproteo_showconfig_output.txt",
+                          filename=os.path.join(RESOURCES_PATH, "mmproteo_showconfig_output.txt"),
                           include_stderr=False)
 
 
-def test_mmproteo_showconfig_output() -> Optional[NoReturn]:
+def test_mmproteo_showconfig_output(run_in_resources_directory: pytest.Function) -> Optional[NoReturn]:
     return _compare_stdout_with_file(command="mmproteo showconfig",
-                                     filename=RESOURCE_DIR + "mmproteo_showconfig_output.txt",
+                                     filename="mmproteo_showconfig_output.txt",
                                      include_stderr=False)
 
 

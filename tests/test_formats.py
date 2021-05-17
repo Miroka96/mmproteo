@@ -13,8 +13,7 @@ def test_read_mzid(run_with_datasets: pytest.Function) -> Optional[NoReturn]:
     return None
 
 
-def test_merge_mzml_mzid_to_parquet(run_with_datasets: pytest.Function) \
-        -> Optional[NoReturn]:
+def test_merge_mzml_mzid_to_parquet(run_with_datasets: pytest.Function) -> Optional[NoReturn]:
     if os.path.isfile(defaults.MZMLID_FILE_PATH):
         os.remove(defaults.MZMLID_FILE_PATH)
     parquet_files = mz.merge_mzml_and_mzid_files_to_parquet(filenames=[defaults.MZML_FILE_PATH,

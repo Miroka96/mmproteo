@@ -9,6 +9,8 @@ from .utils.defaults import MZML_FILE, MZID_FILE, MZMLID_FILE, \
     DEFAULT_PROJECT_FILE_COUNT, DEFAULT_PROJECT, MZID_GZ_FILE, MZML_GZ_FILE, \
     RAW_FILE, MGF_FILE, MGF_PARQUET_FILE
 
+pytest.skip("skipping long-running tests", allow_module_level=True)
+
 
 def get_files_in_directory(directory_name: str) -> Set[str]:
     directory, directories, files = next(os.walk(directory_name))

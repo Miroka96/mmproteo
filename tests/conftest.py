@@ -6,7 +6,7 @@ from typing import Generator
 import pytest
 
 from mmproteo.utils.config import Config
-from utils.defaults import MZML_FILE_PATH, MZID_FILE_PATH, DEFAULT_PROJECT_DATASET_PATH
+from utils.defaults import MZML_FILE_PATH, MZID_FILE_PATH, DEFAULT_PROJECT_DATASET_PATH, RESOURCES_PATH
 
 
 @pytest.fixture(scope="function")
@@ -23,6 +23,19 @@ def run_in_temp_directory() -> Generator[None, None, None]:
     os.chdir(current_working_dir)
     shutil.rmtree(temporary_working_dir)
     print("removed temporary working directory")
+
+
+@pytest.fixture(scope="function")
+def run_in_resources_directory() -> Generator[None, None, None]:
+    # before the test
+    current_working_dir = os.getcwd()
+    os.chdir(RESOURCES_PATH)
+    print(f"working in '{RESOURCES_PATH}'")
+
+    yield  # run the test
+
+    # after the test
+    os.chdir(current_working_dir)
 
 
 @pytest.fixture(scope="session")

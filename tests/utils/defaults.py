@@ -4,7 +4,10 @@ DEFAULT_PROJECT = "PXD010000"
 DEFAULT_PROJECT_FILE_COUNT = 1175
 DEFAULT_TEST_API = "2"
 
-DATASET_PATH = os.path.join("..", "..", "datasets")
+TESTS_PATH = os.path.join("tests")
+RESOURCES_PATH = os.path.join(TESTS_PATH, "resources")
+
+DATASET_PATH = os.path.join(TESTS_PATH, "..", "..", "datasets")
 DEFAULT_PROJECT_DATASET_PATH = os.path.join(DATASET_PATH, DEFAULT_PROJECT)
 os.makedirs(DEFAULT_PROJECT_DATASET_PATH, exist_ok=True)
 

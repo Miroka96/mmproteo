@@ -7,7 +7,7 @@ try:
 except ImportError:
     DEVNULL = open(os.devnull, 'wb')  # type: ignore
 from typing import Any, Hashable, Iterable, List, Optional, Union, Dict, \
-    Callable, TypeVar
+    Callable, TypeVar, Tuple
 
 import numpy as np
 import pandas as pd
@@ -75,8 +75,7 @@ def ensure_dir_exists(directory: str, logger: log.Logger = log.DEFAULT_LOGGER) \
         logger.warning(f"'{directory}' already exists and is not a directory")
 
 
-def flatten_element_containers(elem: Union[Iterable, Any]) \
-        -> Union[Dict, Any]:
+def flatten_element_containers(elem: Union[Iterable, Any]) -> Union[Dict, Any]:
     try:
         if type(elem) == list or type(elem) == set or type(elem) == tuple:
             non_null_elements = [e for e in elem if e is not None]
@@ -118,8 +117,9 @@ def flatten_dict(input_dict: dict,
     dict_queue = [("", input_dict)]
 
     while len(dict_queue) > 0:
-        key_prefix, item = dict_queue[0]
+        queue_head_item: Tuple[str, Dict] = dict_queue[0]
         dict_queue = dict_queue[1:]
+        key_prefix, item = queue_head_item
 
         for key, value in item.items():
             if clean_keys:
@@ -130,10 +130,12 @@ def flatten_dict(input_dict: dict,
             value = flatten_element_containers(value)
 
             if type(value) == dict:
-                new_prefix = str(key) + concatenator
                 if concat_keys:
+                    new_prefix = str(key) + concatenator
                     new_prefix = key_prefix + new_prefix
-                dict_queue.append((new_prefix, value))
+                    dict_queue.append((new_prefix, value))
+                else:
+                    dict_queue.append(("", value))
                 continue
 
             if concat_keys:
@@ -186,9 +188,8 @@ def identity(elem: T) -> T:
 
 
 def list_to_dict_by_index(items: Iterable[T],
-                          children_processor: Callable[[T], T] = identity) \
-        -> Dict[int, T]:
-    return {idx: item for idx, item in enumerate(items)}
+                          children_processor: Callable[[T], T] = identity) -> Dict[int, T]:
+    return {idx: children_processor(item) for idx, item in enumerate(items)}
 
 
 def format_command_template(command_template: str,
