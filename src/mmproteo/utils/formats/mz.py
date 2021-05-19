@@ -237,9 +237,9 @@ def read_mzml(filename: str, logger: log.Logger = log.DEFAULT_LOGGER) -> pd.Data
 
 
 class FilteringProcessor:
-    default_is_decoy_column_name = 'SpectrumIdentificationItem__1__PeptideEvidenceRef__isDecoy'
+    default_is_decoy_column_name = 'SpectrumIdentificationItem__1__PeptideEvidenceRef__0__isDecoy'
     default_fdr_column_name = 'SpectrumIdentificationItem__1__MSGFQValue'
-    default_peptide_sequence_column_name = 'SpectrumIdentificationItem__1__PeptideEvidenceRef__PeptideSequence'
+    default_peptide_sequence_column_name = 'SpectrumIdentificationItem__1__PeptideSequence'
     default_mz_array_column_name = 'mz_array'
     default_intensity_array_column_name = 'intensity_array'
 
