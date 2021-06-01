@@ -1,5 +1,5 @@
 import json
-from typing import List, Optional
+from typing import List, Optional, Union, Dict
 from urllib.parse import quote
 
 import pandas as pd
@@ -55,10 +55,10 @@ def print_df(df: Optional[pd.DataFrame],
         pass
 
 
-def pretty_print_json(dic: Optional[dict]) -> str:
-    if dic is None:
+def pretty_print_json(item: Optional[Union[Dict, List]]) -> str:
+    if item is None:
         return ""
     try:
-        return json.dumps(dic, indent=4)
+        return json.dumps(item, indent=4)
     except TypeError:
-        return str(dic)
+        return str(item)
