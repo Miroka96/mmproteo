@@ -2,7 +2,7 @@
 
 .PHONY: help test install-requirements dev install release docs clean
 
-help:                                 ## Show this help.
+help:                                 ## show this help
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 
 test:                                 ## run tests

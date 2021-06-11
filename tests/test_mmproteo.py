@@ -6,7 +6,7 @@ from typing import Optional, NoReturn
 
 import pytest
 
-from utils.defaults import RESOURCES_PATH
+from .utils.defaults import RESOURCES_PATH
 
 DEFAULT_PROJECT = "PXD010000"
 FAIR_USE_DELAY_SECONDS = 0.5

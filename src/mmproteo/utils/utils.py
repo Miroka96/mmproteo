@@ -1,3 +1,4 @@
+import json
 import os
 import subprocess
 import time
@@ -48,6 +49,8 @@ def _denumpyfy(element: Any) -> Any:
         return [_denumpyfy(v) for v in element]
     if type(element) == set:
         return {_denumpyfy(v) for v in element}
+    if callable(element):
+        return str(element)
     raise NotImplementedError(type(element))
 
 
@@ -149,11 +152,23 @@ def flatten_dict(input_dict: dict,
     return result_dict
 
 
+def flatten_single_list(lists: List[List[Any]]) -> List[Any]:
+    res = []
+    for item in lists:
+        res += item
+    return res
+
+
 def get_plural_s(count: int) -> str:
     if count != 1:
         return "s"
     else:
         return ""
+
+
+def load_json(file_path: str) -> Dict[str, Any]:
+    with open(file_path, 'r') as file:
+        return json.loads(file.read())
 
 
 K = TypeVar('K')

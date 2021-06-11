@@ -6,7 +6,7 @@ from typing import Generator
 import pytest
 
 from mmproteo.utils.config import Config
-from utils.defaults import MZML_FILE_PATH, MZID_FILE_PATH, DEFAULT_PROJECT_DATASET_PATH, RESOURCES_PATH
+from .utils.defaults import MZML_FILE_PATH, MZID_FILE_PATH, DEFAULT_PROJECT_DATASET_PATH, RESOURCES_PATH
 
 
 @pytest.fixture(scope="function")

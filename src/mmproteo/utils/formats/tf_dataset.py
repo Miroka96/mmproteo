@@ -36,7 +36,7 @@ class Parquet2DatasetFileProcessor:
             assert char_to_idx_mappers is not None, \
                 "either char_to_idx_mappers or char_to_idx_mapping_functions must be given"
             self.char_to_idx_mapping_functions = {
-                column: mapping.get for column, mapping in char_to_idx_mappers.items()
+                column: mapping.get for column, mapping in char_to_idx_mappers.items()  # type: ignore
             }
         self.item_count = item_count
         self.dataset_dump_path_prefix = dataset_dump_path_prefix
@@ -78,6 +78,8 @@ class Parquet2DatasetFileProcessor:
                         dtype=dtype)
 
     def sequence_column_to_indices(self, df: pd.DataFrame) -> pd.DataFrame:
+        assert self.char_to_idx_mapping_functions is not None, \
+            "the char_to_idx mapping functions should have been initialized"
         if len(self.char_to_idx_mapping_functions) == 0:
             return df
         df = df.copy()
@@ -129,7 +131,7 @@ class Parquet2DatasetFileProcessor:
 
     def convert_df_file_to_dataset_file(self,
                                         df_input_file_path: str,
-                                        tf_dataset_output_file_path: str):
+                                        tf_dataset_output_file_path: str) -> None:
         df = pd.read_parquet(df_input_file_path)
         df_splits = self.split_dataframe_by_column_values(df, tf_dataset_output_file_path)
         if len(df_splits) == 0:
@@ -143,6 +145,7 @@ class Parquet2DatasetFileProcessor:
             tf.data.experimental.save(dataset=tf_dataset,
                                       path=path,
                                       compression='GZIP')
+        assert tf_dataset is not None
 
         self.logger.debug(tf_dataset.element_spec)
 
@@ -166,14 +169,14 @@ class Parquet2DatasetFileProcessor:
 
         return tf_dataset_path
 
-    def process(self, parquet_file_paths: Iterable[str], **kwargs) -> List[str]:
+    def process(self, parquet_file_paths: Iterable[str], **kwargs: Dict[str, Any]) -> List[str]:
         item_processor = ItemProcessor(
             items=enumerate(parquet_file_paths),
             item_processor=self.__call__,
             action_name="parquet2tf_dataset-process",
             subject_name="mzmlid parquet file",
             logger=self.logger,
-            **kwargs
+            **kwargs  # type: ignore
         )
-        results = list(item_processor.process())
+        results: List[str] = list(item_processor.process())  # type: ignore
         return results

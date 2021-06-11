@@ -9,7 +9,8 @@ from .utils import defaults
 
 
 def test_read_mzid(run_with_datasets: pytest.Function) -> Optional[NoReturn]:
-    read.read(defaults.MZID_FILE_PATH)
+    df = read.read(defaults.MZID_FILE_PATH)
+    assert df is not None
     return None
 
 

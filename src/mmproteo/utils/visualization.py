@@ -1,5 +1,5 @@
 import json
-from typing import List, Optional, Union, Dict
+from typing import List, Optional, Union, Dict, Any, Callable
 from urllib.parse import quote
 
 import pandas as pd
@@ -60,5 +60,17 @@ def pretty_print_json(item: Optional[Union[Dict, List]]) -> str:
         return ""
     try:
         return json.dumps(item, indent=4)
-    except TypeError:
+    except TypeError as e:
+        print(e)
         return str(item)
+
+
+def print_list_length_in_dict(
+        dic: Dict[str, List[Any]],
+        print_func: Callable[[str], None] = print,
+        print_example: bool = True
+) -> None:
+    for key, list_value in dic.items():
+        print_func(f"#{key} = {len(list_value)}")
+        if print_example and len(list_value) > 0:
+            print_func(f"e.g.: {list_value[0]}")

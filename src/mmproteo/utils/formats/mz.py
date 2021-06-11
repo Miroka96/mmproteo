@@ -1,3 +1,4 @@
+import gc
 import os
 from typing import Iterable, List, Optional, Tuple, Dict, Any, Union, Callable, Sequence
 
@@ -353,3 +354,69 @@ def filter_files(input_file_paths: List[str],
         logger=logger
     ).process())
     return output_files  # type: ignore
+
+
+class MzmlidFileStatsCreator:
+    def __init__(
+            self,
+            mzmlid_file_paths: List[str],
+            statistics_file_path: str,
+            seq_col_name: str = FilteringProcessor.default_peptide_sequence_column_name,
+            int_col_name: str = FilteringProcessor.default_intensity_array_column_name,
+            logger: log.Logger = log.DEFAULT_LOGGER
+    ):
+        self.mzmlid_file_paths = mzmlid_file_paths
+        self.file_path_count = len(mzmlid_file_paths)
+        self.statistics_file_path = statistics_file_path
+        self.SEQ = seq_col_name
+        self.INT = int_col_name
+        self.logger = logger
+
+    def __call__(self, item: Tuple[int, str]) -> Dict[str, Any]:
+        idx, path = item
+        info_text = f"Processing item {idx + 1}/{self.file_path_count} '{path}'"
+        if idx % 10 == 0:
+            self.logger.info(info_text)
+        else:
+            self.logger.debug(info_text)
+        df = pd.read_parquet(path)
+        max_sequence_length = df[self.SEQ].str.len().max()
+        max_array_length = df[self.INT].str.len().max()
+        alphabet = set.union(*df[self.SEQ].apply(set))
+        item_count = len(df)
+        del df
+        gc.collect()
+
+        return {
+            "file_path": path,
+            "max_sequence_length": max_sequence_length,
+            "max_array_length": max_array_length,
+            "alphabet": alphabet,
+            "item_count": item_count
+        }
+
+    def process(self, **kwargs: Dict[str, Any]) -> pd.DataFrame:
+        if os.path.exists(self.statistics_file_path):
+            file_stats = pd.read_parquet(self.statistics_file_path)
+            file_stats.alphabet = file_stats.alphabet.apply(set)
+            self.logger.info(f"loaded previous statistics file '{self.statistics_file_path}'")
+            return file_stats
+        else:
+            file_stats = pd.DataFrame(
+                ItemProcessor(
+                    items=enumerate(self.mzmlid_file_paths),
+                    item_processor=self.__call__,
+                    action_name="analyse",
+                    subject_name="mzmlid file",
+                    logger=self.logger,
+                    **kwargs  # type: ignore
+                ).process()
+            )
+
+            file_stats_writable = file_stats.copy()
+            file_stats_writable.alphabet = file_stats_writable.alphabet.apply(list)  # cannot store sets
+            file_stats_writable.to_parquet(self.statistics_file_path)
+
+            self.logger.info(f"saved statistics to '{self.statistics_file_path}' file")
+
+            return file_stats
