@@ -186,8 +186,8 @@ class Config:
             if len(data_list) == 0:
                 return None
 
-            if type(column_names) == str:
-                column_names = [column_names]  # type: ignore
+            if isinstance(column_names, str):
+                column_names = [column_names]
 
             data_df = pd.DataFrame(data=data_list, columns=column_names)
         else:
@@ -416,8 +416,8 @@ class Config:
     @staticmethod
     def __sort_if_set(obj: Optional[Union[Set, Any]]) \
             -> Optional[Union[List, Any]]:
-        if type(obj) == set:
-            a_set: Set[Any] = obj  # type: ignore
+        if isinstance(obj, set):
+            a_set: Set[Any] = obj
             return sorted(a_set)
         return obj
 

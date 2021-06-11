@@ -1,6 +1,6 @@
 pytest~=6.2.2
 pytest-cov
-sphinx==4.0.1
+sphinx==4.0.2
 sphinx_autodoc_typehints==1.12.0
 sphinx-paramlinks==0.5.1
 sphinx_rtd_theme==0.5.2
@@ -9,10 +9,10 @@ pandas==1.2.4
 requests~=2.25.1
 pyteomics~=4.4.1
 wget~=3.2
-setuptools==56.2.0
+setuptools==57.0.0
 wheel~=0.36.2
 twine==3.4.1
-numpy==1.19.2
+numpy==1.19.5
 pytest-flake8
 pytest-pydocstyle
 pytest-mypy
