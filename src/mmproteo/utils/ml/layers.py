@@ -16,7 +16,7 @@ class InputLayerConfiguration:
 
 
 def create_masked_input_layers(input_layer_configurations: List[InputLayerConfiguration]) \
-        -> List[tf.keras.layers.Masking]:
+        -> Tuple[List[tf.keras.layers.Input], List[tf.keras.layers.Masking]]:
     named_input_layers = {
         config.name: tf.keras.layers.Input(
             shape=config.get_shape_tuple(),
@@ -30,5 +30,6 @@ def create_masked_input_layers(input_layer_configurations: List[InputLayerConfig
         )(named_input_layers[config.name])
         for config in input_layer_configurations
     }
+    named_input_layers_list = [named_input_layers[config.name] for config in input_layer_configurations]
     masked_input_layers_list = [masked_input_layers[config.name] for config in input_layer_configurations]
-    return masked_input_layers_list
+    return (named_input_layers_list, masked_input_layers_list)

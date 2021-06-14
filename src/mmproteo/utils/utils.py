@@ -273,3 +273,6 @@ def list_files_in_directory(directory_path: str) -> List[str]:
                     os.listdir(directory_path)]
     file_paths = [path for path in paths_in_dir if os.path.isfile(path)]
     return file_paths
+
+def unzip(tuple_list: Iterable[Tuple[Any, Any]]) -> Tuple[Iterable[Any], Iterable[Any]]:
+    return tuple(zip(*tuple_list))
