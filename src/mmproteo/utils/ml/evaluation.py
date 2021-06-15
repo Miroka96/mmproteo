@@ -26,7 +26,7 @@ class SequenceEvaluator:
         self.prediction_col_name = prediction_col_name
         self.true_value_col_name = true_value_col_name
 
-    def evaluate(
+    def evaluate_model(
             self,
             model: tf.keras.Model,
             steps: Optional[int] = 0,
@@ -35,29 +35,38 @@ class SequenceEvaluator:
             return model.evaluate(self.dataset)
 
         if steps == 0:
-            steps = 40000 / self.batch_size
+            steps = int(40000 / self.batch_size)
 
         return model.evaluate(self.dataset.repeat(), steps=steps)
 
-    def shorten_sequences_to_lengths_of_other_sequences_with_separator(
+    def __shorten_sequences_to_lengths_of_other_sequences_with_separator(
             self,
             sequences: pd.Series,
             other_sequences: pd.Series,
             length_offset: int = 0,
             split_by_separator: bool = True,
     ) -> pd.Series:
-        other_sequences = other_sequences.str.rstrip(self.padding_character)
 
         if split_by_separator:
-            other_sequences = other_sequences.str.rstrip(self.separator)
+            other_sequences = other_sequences.str.rstrip(
+                self.padding_character + self.separator
+            )
             other_sequences = other_sequences.str.split(self.separator)
 
-            def shorten_sequence(sequence, length):
+            def shorten_sequence(
+                    sequence: str,
+                    length: int
+            ) -> str:
                 return self.separator.join(
                     sequence.split(self.separator)[:length]
                 )
         else:
-            def shorten_sequence(sequence, length):
+            other_sequences = other_sequences.str.rstrip(self.padding_character)
+
+            def shorten_sequence(
+                    sequence: str,
+                    length: int
+            ) -> str:
                 return sequence[:length]
 
         lengths = other_sequences.str.len()
@@ -68,7 +77,7 @@ class SequenceEvaluator:
             func=shorten_sequence,
         )
 
-    def evaluate_visually(
+    def evaluate_model_visually(
             self,
             model: tf.keras.Model,
             sample_size: int = 20,
@@ -76,19 +85,21 @@ class SequenceEvaluator:
             split_by_separator: bool = True,
     ) -> Tuple[pd.DataFrame, Tuple[Iterable, Iterable, Any]]:
         eval_ds = self.dataset.unbatch().batch(1).take(sample_size)
-        x_eval, y_eval = unzip(eval_ds.as_numpy_iterator())
-        y_pred = model.predict(eval_ds)
+        x_eval: Tuple[np.ndarray]
+        y_eval: Tuple[np.ndarray]
+        x_eval, y_eval = unzip(eval_ds.as_numpy_iterator())  # type: ignore
+        y_pred: np.ndarray = model.predict(eval_ds)
 
         eval_df = pd.DataFrame(
             data=zip(
-                self.decode(y_pred, onehot=True),
-                self.decode(y_eval, onehot=False)
+                self.__decode_indices_to_str(y_pred, onehot=True),
+                self.__decode_indices_to_str(y_eval, onehot=False)
             ),
             columns=[self.prediction_col_name, self.true_value_col_name]
         )
 
         eval_df[self.prediction_col_name] = \
-            self.shorten_sequences_to_lengths_of_other_sequences_with_separator(
+            self.__shorten_sequences_to_lengths_of_other_sequences_with_separator(
                 sequences=eval_df[self.prediction_col_name],
                 other_sequences=eval_df[self.true_value_col_name],
                 length_offset=1,
@@ -103,26 +114,27 @@ class SequenceEvaluator:
                 self.padding_character + self.separator
             )
 
-        return (eval_df, (x_eval, y_eval, y_pred))
+        return eval_df, (x_eval, y_eval, y_pred)
 
     @staticmethod
-    def decode_onehot(array: np.ndarray) -> np.ndarray:
+    def __decode_onehot_to_index(array: np.ndarray) -> np.ndarray:
         return np.argmax(array, axis=-1)
 
-    def concat_letter_rows(self, array: np.ndarray) -> np.ndarray:
+    def __concat_letter_rows_with_separator(self, array: np.ndarray) \
+            -> np.ndarray:
         return np.apply_along_axis(lambda row: self.separator.join(row),
                                    axis=-1, arr=array)
 
-    def decode(
+    def __decode_indices_to_str(
             self,
-            array: np.ndarray,
+            array: Union[np.ndarray, Iterable[np.ndarray]],
             onehot: bool = True,
     ) -> np.ndarray:
         if onehot:
-            array = self.decode_onehot(array)
+            array = self.__decode_onehot_to_index(array)
         if self.decode_func is not None:
             array = self.decode_func(array)
-        array = self.concat_letter_rows(array)
+        array = self.__concat_letter_rows_with_separator(array)
         if not onehot:
             array = np.apply_along_axis(lambda row: row[0], axis=-1, arr=array)
         return array

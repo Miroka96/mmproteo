@@ -4,11 +4,12 @@ import shutil
 
 import tensorflow as tf
 
+
 def create_tensorboard_callback(
         tensorboard_log_dir: str = "logs",
         training_type: str = "fit",
         keep_logs: bool = True,
-):
+) -> tf.keras.callbacks.TensorBoard:
     if not keep_logs:
         try:
             shutil.rmtree(tensorboard_log_dir)
