@@ -4,6 +4,7 @@ import numpy as np
 import pandas as pd
 import tensorflow as tf
 
+from mmproteo.utils import utils
 from mmproteo.utils.utils import unzip
 
 
@@ -39,7 +40,7 @@ class SequenceEvaluator:
 
         return model.evaluate(self.dataset.repeat(), steps=steps)
 
-    def __shorten_sequences_to_lengths_of_other_sequences_with_separator(
+    def _shorten_sequences_to_lengths_of_other_sequences_with_separator(
             self,
             sequences: pd.Series,
             other_sequences: pd.Series,
@@ -92,14 +93,22 @@ class SequenceEvaluator:
 
         eval_df = pd.DataFrame(
             data=zip(
-                self.__decode_indices_to_str(y_pred, onehot=True),
-                self.__decode_indices_to_str(y_eval, onehot=False)
+                self._decode_indices_to_str(
+                    array=y_pred,
+                    onehot=True,
+                    flatten=True,
+                ),
+                self._decode_indices_to_str(
+                    array=y_eval,
+                    onehot=False,
+                    flatten=True,
+                )
             ),
             columns=[self.prediction_col_name, self.true_value_col_name]
         )
 
         eval_df[self.prediction_col_name] = \
-            self.__shorten_sequences_to_lengths_of_other_sequences_with_separator(
+            self._shorten_sequences_to_lengths_of_other_sequences_with_separator(
                 sequences=eval_df[self.prediction_col_name],
                 other_sequences=eval_df[self.true_value_col_name],
                 length_offset=1,
@@ -117,24 +126,29 @@ class SequenceEvaluator:
         return eval_df, (x_eval, y_eval, y_pred)
 
     @staticmethod
-    def __decode_onehot_to_index(array: np.ndarray) -> np.ndarray:
+    def _decode_onehot_to_index(array: np.ndarray) -> np.ndarray:
         return np.argmax(array, axis=-1)
 
-    def __concat_letter_rows_with_separator(self, array: np.ndarray) \
+    def _concat_letter_rows_with_separator(self, array: np.ndarray) \
             -> np.ndarray:
         return np.apply_along_axis(lambda row: self.separator.join(row),
                                    axis=-1, arr=array)
 
-    def __decode_indices_to_str(
+    def _decode_indices_to_str(
             self,
             array: Union[np.ndarray, Iterable[np.ndarray]],
             onehot: bool = True,
+            flatten: bool = True,
     ) -> np.ndarray:
         if onehot:
-            array = self.__decode_onehot_to_index(array)
+            array = self._decode_onehot_to_index(array)
+
         if self.decode_func is not None:
             array = self.decode_func(array)
-        array = self.__concat_letter_rows_with_separator(array)
-        if not onehot:
-            array = np.apply_along_axis(lambda row: row[0], axis=-1, arr=array)
+
+        array = self._concat_letter_rows_with_separator(array)
+
+        if flatten:
+            array = array.squeeze()
+
         return array

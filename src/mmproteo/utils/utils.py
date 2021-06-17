@@ -8,7 +8,7 @@ try:
 except ImportError:
     DEVNULL = open(os.devnull, 'wb')  # type: ignore
 from typing import Any, Hashable, Iterable, List, Optional, Union, Dict, \
-    Callable, TypeVar, Tuple
+    Callable, TypeVar, Tuple, Container
 
 import numpy as np
 import pandas as pd
@@ -157,6 +157,12 @@ def flatten_single_list(lists: List[List[Any]]) -> List[Any]:
     for item in lists:
         res += item
     return res
+
+
+def flatten_single_element_containers(item: Container[Any]) -> Container[Any]:
+    while len(item) == 1:
+        item = next(iter(item))
+    return item
 
 
 def get_plural_s(count: int) -> str:
