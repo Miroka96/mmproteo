@@ -1,3 +1,4 @@
+import datetime
 import json
 import os
 import subprocess
@@ -8,7 +9,7 @@ try:
 except ImportError:
     DEVNULL = open(os.devnull, 'wb')  # type: ignore
 from typing import Any, Hashable, Iterable, List, Optional, Union, Dict, \
-    Callable, TypeVar, Tuple, Container
+    Callable, TypeVar, Tuple, Collection
 
 import numpy as np
 import pandas as pd
@@ -159,10 +160,17 @@ def flatten_single_list(lists: List[List[Any]]) -> List[Any]:
     return res
 
 
-def flatten_single_element_containers(item: Container[Any]) -> Container[Any]:
+def flatten_single_element_containers(item: Collection[Any]) -> Collection[Any]:
     while len(item) == 1:
+        previous = item
         item = next(iter(item))
+        if item == previous:
+            break
     return item
+
+
+def get_current_time_str() -> str:
+    return datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 
 
 def get_plural_s(count: int) -> str:

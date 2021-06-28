@@ -4,7 +4,6 @@ import numpy as np
 import pandas as pd
 import tensorflow as tf
 
-from mmproteo.utils import utils
 from mmproteo.utils.utils import unzip
 
 
