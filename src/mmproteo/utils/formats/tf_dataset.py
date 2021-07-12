@@ -199,6 +199,7 @@ class DatasetLoader:
             thread_count: Optional[int] = os.cpu_count(),
             cache_path: Optional[str] = None,
             keep_cache: bool = True,
+            options: Optional[tf.data.Options] = None,
             logger: log.Logger = log.DEFAULT_LOGGER,
     ):
         self.element_spec = element_spec
@@ -214,7 +215,16 @@ class DatasetLoader:
         self.thread_count = thread_count
         self.cache_path = cache_path
         self.keep_cache = keep_cache
+        self.options = options
         self.logger = logger
+
+    def _apply_options(self, dataset: tf.data.Dataset, name: str = "unknown") -> tf.data.Dataset:
+        if self.options is None:
+            self.logger.debug(f"skipped applying options to dataset '{name}'")
+            return dataset
+        ds = dataset.with_options(options=self.options)
+        self.logger.debug(f"applied options to dataset '{name}'")
+        return ds
 
     def _load_dataset_from_file(self, path: str) -> tf.data.Dataset:
         return tf.data.experimental.load(
@@ -224,7 +234,9 @@ class DatasetLoader:
             )
 
     def _load_dataset_interleaved(self, paths: List[str], name: str = "unknown") -> tf.data.Dataset:
-        ds = tf.data.Dataset.from_tensor_slices(paths).interleave(
+        ds = tf.data.Dataset.from_tensor_slices(paths)
+        ds = self._apply_options(dataset=ds, name=name)
+        ds = ds.interleave(
             map_func=self._load_dataset_from_file,
             num_parallel_calls=self.thread_count,
             deterministic=self.deterministic,
