@@ -257,8 +257,8 @@ class DatasetLoader:
         return dataset.batch(
             batch_size=self.batch_size,
             drop_remainder=self.drop_batch_remainder,
-            deterministic=self.deterministic,
-            num_parallel_calls=self.thread_count,
+            # deterministic=self.deterministic,  # introduced in TF 2.5.0
+            # num_parallel_calls=self.thread_count,  # introduced in TF 2.5.0
         )
 
     def _prefetch_dataset(self, dataset: tf.data.Dataset) -> tf.data.Dataset:

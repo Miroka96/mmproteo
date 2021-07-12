@@ -32,4 +32,4 @@ def create_masked_input_layers(input_layer_configurations: List[InputLayerConfig
     }
     named_input_layers_list = [named_input_layers[config.name] for config in input_layer_configurations]
     masked_input_layers_list = [masked_input_layers[config.name] for config in input_layer_configurations]
-    return (named_input_layers_list, masked_input_layers_list)
+    return named_input_layers_list, masked_input_layers_list
