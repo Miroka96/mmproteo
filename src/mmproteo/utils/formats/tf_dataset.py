@@ -223,76 +223,88 @@ class DatasetLoader:
                 compression='GZIP'
             )
 
-    def _load_dataset_interleaved(self, paths: List[str]) -> tf.data.Dataset:
-        return tf.data.Dataset.from_tensor_slices(paths).interleave(
+    def _load_dataset_interleaved(self, paths: List[str], name: str = "unknown") -> tf.data.Dataset:
+        ds = tf.data.Dataset.from_tensor_slices(paths).interleave(
             map_func=self._load_dataset_from_file,
             num_parallel_calls=self.thread_count,
             deterministic=self.deterministic,
         )
+        self.logger.debug(f"loaded dataset '{name}' interleaved")
+        return ds
 
-    def _cache_dataset(self, dataset: tf.data.Dataset, name: str) -> tf.data.Dataset:
-        if self.cache_path is None:
-            return dataset
-
-        try:
-            if not self.keep_cache:
-                shutil.rmtree(self.cache_path)
-        except FileNotFoundError:
-            pass
-
-        utils.ensure_dir_exists(self.cache_path)
-        return dataset.cache(os.path.join(self.cache_path, name))
-
-    def _shuffle_dataset(self, dataset: tf.data.Dataset) -> tf.data.Dataset:
+    def _shuffle_dataset(self, dataset: tf.data.Dataset, name: str = "unknown") -> tf.data.Dataset:
         if self.shuffle_buffer_size is None:
+            self.logger.debug(f"skipped shuffling dataset '{name}'")
             return dataset
-        return dataset.shuffle(
+        ds = dataset.shuffle(
             buffer_size=self.shuffle_buffer_size,
             reshuffle_each_iteration=self.reshuffle_each_iteration
         )
+        self.logger.debug(f"shuffled dataset '{name}'")
+        return ds
 
-    def _batch_dataset(self, dataset: tf.data.Dataset) -> tf.data.Dataset:
+    def _batch_dataset(self, dataset: tf.data.Dataset, name: str = 'unknown') -> tf.data.Dataset:
         if self.batch_size is None:
+            self.logger.debug(f"skipped batching dataset '{name}'")
             return dataset
-        return dataset.batch(
+        ds = dataset.batch(
             batch_size=self.batch_size,
             drop_remainder=self.drop_batch_remainder,
             # deterministic=self.deterministic,  # introduced in TF 2.5.0
             # num_parallel_calls=self.thread_count,  # introduced in TF 2.5.0
         )
+        self.logger.debug(f"batched dataset '{name}'")
+        return ds
 
-    def _prefetch_dataset(self, dataset: tf.data.Dataset) -> tf.data.Dataset:
-        if self.prefetch_mode is None:
+    def _cache_dataset(self, dataset: tf.data.Dataset, name: str = "unknown") -> tf.data.Dataset:
+        if self.cache_path is None:
+            self.logger.debug(f"skipped caching dataset '{name}'")
             return dataset
-        return dataset.prefetch(
+
+        try:
+            if not self.keep_cache:
+                shutil.rmtree(self.cache_path)
+                self.logger.debug(f"removed previous cache at '{self.cache_path}'")
+        except FileNotFoundError:
+            pass
+
+        utils.ensure_dir_exists(self.cache_path)
+        ds = dataset.cache(os.path.join(self.cache_path, name))
+        self.logger.debug(f"cached dataset '{name}'")
+        return ds
+
+    def _prefetch_dataset(self, dataset: tf.data.Dataset, name: str = 'unknown') -> tf.data.Dataset:
+        if self.prefetch_mode is None:
+            self.logger.debug(f"skipped configuring prefetching for dataset '{name}'")
+            return dataset
+        ds = dataset.prefetch(
             buffer_size=self.prefetch_mode
         )
+        self.logger.debug(f"configured prefetching for dataset '{name}'")
+        return ds
 
-    def _run_benchmark(self, dataset: tf.data.Dataset, name: str) -> None:
+    def _run_benchmark(self, dataset: tf.data.Dataset, name: str = 'unknown') -> None:
         if self.run_benchmarks:
             self.logger.info(f"running benchmark for '{name}' dataset")
             tfds.benchmark(dataset)
             gc.collect()
             self.logger.info(f"ran benchmark for '{name}' dataset - waiting 5 seconds")
             time.sleep(5)
+        else:
+            self.logger.debug(f"skipped benchmarking dataset '{name}'")
 
     def prepare_dataset(self, paths: Union[str, List[str]], name: str = 'my_dataset') -> tf.data.Dataset:
-        self.logger.debug(f"preparing dataset '{name}'")
+        self.logger.debug(f"preparing dataset '{name}' with {len(paths)} paths")
         if isinstance(paths, str):
             path_list: List[str] = [paths]
         else:
             path_list = paths
-        dataset = self._load_dataset_interleaved(path_list)
-        self.logger.debug(f"loaded dataset '{name}' interleaved")
-        dataset = self._shuffle_dataset(dataset)
-        self.logger.debug(f"shuffled dataset '{name}'")
-        dataset = self._batch_dataset(dataset)
-        self.logger.debug(f"batched dataset '{name}'")
-        dataset = self._cache_dataset(dataset, name)
-        self.logger.debug(f"cached dataset '{name}'")
-        self._run_benchmark(dataset, name)
-        self.logger.debug(f"benchmarked dataset '{name}'")
-
+        dataset = self._load_dataset_interleaved(paths=path_list, name=name)
+        dataset = self._shuffle_dataset(dataset, name=name)
+        dataset = self._batch_dataset(dataset, name=name)
+        dataset = self._cache_dataset(dataset, name=name)
+        dataset = self._prefetch_dataset(dataset, name=name)
+        self._run_benchmark(dataset, name=name)
         self.logger.info(f"prepared dataset '{name}'")
         return dataset
 
