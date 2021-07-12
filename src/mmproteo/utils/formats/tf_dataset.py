@@ -258,6 +258,7 @@ class DatasetLoader:
             batch_size=self.batch_size,
             drop_remainder=self.drop_batch_remainder,
             deterministic=self.deterministic,
+            num_parallel_calls=self.thread_count,
         )
 
     def _prefetch_dataset(self, dataset: tf.data.Dataset) -> tf.data.Dataset:
@@ -276,16 +277,23 @@ class DatasetLoader:
             time.sleep(5)
 
     def prepare_dataset(self, paths: Union[str, List[str]], name: str = 'my_dataset') -> tf.data.Dataset:
+        self.logger.debug(f"preparing dataset '{name}'")
         if isinstance(paths, str):
             path_list: List[str] = [paths]
         else:
             path_list = paths
         dataset = self._load_dataset_interleaved(path_list)
+        self.logger.debug(f"loaded dataset '{name}' interleaved")
         dataset = self._shuffle_dataset(dataset)
+        self.logger.debug(f"shuffled dataset '{name}'")
         dataset = self._batch_dataset(dataset)
+        self.logger.debug(f"batched dataset '{name}'")
         dataset = self._cache_dataset(dataset, name)
+        self.logger.debug(f"cached dataset '{name}'")
         self._run_benchmark(dataset, name)
+        self.logger.debug(f"benchmarked dataset '{name}'")
 
+        self.logger.info(f"prepared dataset '{name}'")
         return dataset
 
     def load_datasets_by_type(self, dataset_file_paths: Dict[str, List[str]]) -> Dict[str, tf.data.Dataset]:
