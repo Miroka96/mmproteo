@@ -14,8 +14,8 @@ def iter_entries(iterator: Union[MGFBase, MzIdentML, MzML], logger: log.Logger =
         -> List[Dict[str, Any]]:
     logger.debug("Iterator type = " + str(type(iterator)))
     entries = list(iterator)
-    logger.debug("Length: %d" % len(entries))
-    if len(entries) > 0:
+    if len(entries) > 0 and logger.is_verbose():
+        logger.debug("Length: %d" % len(entries))
         logger.debug("Example:\n" + visualization.pretty_print_json(entries[0]))
     return entries
 
