@@ -226,13 +226,15 @@ def _prepare_mzid_entry(entry: Dict[str, Any]) -> Dict[str, Any]:
 
 
 def read_mzid(filename: str, logger: log.Logger = log.DEFAULT_LOGGER) -> pd.DataFrame:
-    entries = read.iter_entries(mzid.read(filename), logger=logger)
+    with mzid.read(filename) as reader:
+        entries = read.iter_entries(reader, logger=logger)
     extracted_entries = [_prepare_mzid_entry(entry) for entry in entries]
     return pd.DataFrame(data=extracted_entries)
 
 
 def read_mzml(filename: str, logger: log.Logger = log.DEFAULT_LOGGER) -> pd.DataFrame:
-    entries = read.iter_entries(mzml.read(filename), logger=logger)
+    with mzml.read(filename) as reader:
+        entries = read.iter_entries(reader, logger=logger)
     extracted_entries = [utils.flatten_dict(entry) for entry in entries]
     return pd.DataFrame(data=extracted_entries)
 
@@ -395,7 +397,7 @@ class MzmlidFileStatsCreator:
             "item_count": item_count
         }
 
-    def process(self, **kwargs: Dict[str, Any]) -> pd.DataFrame:
+    def process(self, **kwargs: Any) -> pd.DataFrame:
         if os.path.exists(self.statistics_file_path):
             file_stats = pd.read_parquet(self.statistics_file_path)
             file_stats.alphabet = file_stats.alphabet.apply(set)
@@ -409,7 +411,7 @@ class MzmlidFileStatsCreator:
                     action_name="analyse",
                     subject_name="mzmlid file",
                     logger=self.logger,
-                    **kwargs  # type: ignore
+                    **kwargs
                 ).process()
             )
 

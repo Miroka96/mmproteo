@@ -106,6 +106,7 @@ class Config:
     default_mzid_key_columns: List[str] = ['name', 'spectrumID']
     default_mzmlid_parquet_file_postfix: str = "_mzmlid.parquet"
     default_thread_count: int = 1
+    default_read_ions: bool = False
 
     def __init__(self, logger: log.Logger = log.DEFAULT_LOGGER):
         self._logger = logger
@@ -131,6 +132,7 @@ class Config:
         self.thermo_output_format: str = self.default_thermo_output_format
         self.thermo_keep_container_running: bool = self.default_thermo_keep_container_running
         self.thread_count = self.default_thread_count
+        self.read_ions = self.default_read_ions
 
         # cache
         self._processed_files: Optional[pd.DataFrame] = None
@@ -257,10 +259,11 @@ class Config:
                             default=self.log_file,
                             help="the name of the log file, relative to the download directory. "
                                  "Set it to an empty string (\"\") to disable file logging.")
-        parser.add_argument("--log-to-stdout",
-                            action="store_" + str(
-                                not self.log_to_stdout).lower(),
-                            help="Log to stdout instead of stderr.")
+        parser.add_argument(f"--{self._get_negation_argument_prefix(not self.log_to_stdout)}log-to-stdout",
+                            action="store_" + str(not self.log_to_stdout).lower(),
+                            dest='log_to_stdout',
+                            help=("Log to stdout instead of stderr." if not self.log_to_stdout
+                                  else "Log to stderr instead of stdout."))
         parser.add_argument("--shown-columns", "-c",
                             metavar="COLUMNS",
                             default="",
@@ -278,18 +281,24 @@ class Config:
                                  "Archive extensions will be automatically appended. " +
                                  "An empty list deactivates filtering. "
                                  "Capitalization does not matter.")
-        parser.add_argument("--no-skip-existing",
-                            action="store_" + str(self.skip_existing).lower(),
-                            help="Do not skip existing files.")
+        parser.add_argument(f"--{self._get_negation_argument_prefix(not self.skip_existing)}skip-existing",
+                            action="store_" + str(not self.skip_existing).lower(),
+                            dest='skip_existing',
+                            help=("Do not skip existing files." if self.skip_existing
+                                  else "Skip existing files."))
         # store_true turns "verbose" into a flag:
         # The existence of "verbose" equals True, the lack of existence equals False
-        parser.add_argument("--verbose", "-v",
+        parser.add_argument(f"--{self._get_negation_argument_prefix(not self.verbose)}verbose", "-v",
                             action="store_" + str(not self.verbose).lower(),
-                            help="Increase output verbosity to debug level.")
-        parser.add_argument("--no-fail-early",
-                            action="store_" + str(self.fail_early).lower(),
-                            help="Do not fail commands already on failed assertions. The code will run until "
-                                 "a real exception is encountered or it even succeeds.")
+                            dest='verbose',
+                            help=("Increase output verbosity to debug level." if not self.verbose
+                                  else "Do not log debug level output."))
+        parser.add_argument(f"--{self._get_negation_argument_prefix(not self.fail_early)}fail-early",
+                            action="store_" + str(not self.fail_early).lower(),
+                            dest='fail_early',
+                            help=("Do not fail commands already on failed assertions. The code will run until "
+                                  "a real exception is encountered or it even succeeds." if self.fail_early
+                                  else "Fail commands already on the first failed assertion."))
         parser.add_argument('--help', "-h",
                             action='help',
                             default=argparse.SUPPRESS,
@@ -310,20 +319,25 @@ class Config:
                                  "Duplicates are dropped after the first occurrence. "
                                  "An empty list (default) uses all api versions in the following order: [%s]" %
                                  pride.get_string_of_pride_api_versions())
-        parser.add_argument("--dummy-logger",
-                            action="store_" + str(
-                                not self.dummy_logger).lower(),
-                            help="Use a simpler log format and log to stdout.")
+        parser.add_argument(f"--{self._get_negation_argument_prefix(not self.dummy_logger)}dummy-logger",
+                            action="store_" + str(not self.dummy_logger).lower(),
+                            dest="dummy_logger",
+                            help=("Use a simpler log format and log to stdout." if not self.dummy_logger
+                                  else "Use a more complex logging format and write it to a file."))
         parser.add_argument("--thermo-output-format",
                             default=self.thermo_output_format,
                             choices=get_thermo_raw_file_parser_output_formats(),
                             help="the output format into which the raw file will be converted. This parameter only "
                                  f"applies to the {commands.ConvertRawCommand().get_command()} command.")
-        parser.add_argument("--thermo-keep-running",
-                            action="store_" + str(
-                                not self.thermo_keep_container_running).lower(),
-                            help="Keep the ThermoRawFileParser Docker container running after conversion. This can "
-                                 "speed up batch processing and ease debugging.")
+        parser.add_argument(f"--{self._get_negation_argument_prefix(not self.thermo_keep_container_running)}"
+                            f"thermo-keep-running",
+                            action="store_" + str(not self.thermo_keep_container_running).lower(),
+                            dest="thermo_keep_running",
+                            help=("Keep the ThermoRawFileParser Docker container running after conversion. This can "
+                                  "speed up batch processing and ease debugging."
+                                  if not self.thermo_keep_container_running
+                                  else "Do not keep the ThermoRawFileParser Docker container running after conversion.")
+                            )
         parser.add_argument('--filter', '-f',
                             metavar=f"COLUMN{self.default_filter_separator_regex}REGEX",
                             action="append",
@@ -354,6 +368,11 @@ class Config:
                             help="the number of threads to use for parallel processing. Set it to '0' to use as many "
                                  "threads as there are CPU cores. Setting the number of threads to '1' disables "
                                  "parallel processing.")
+        parser.add_argument(f"--{self._get_negation_argument_prefix(not self.read_ions)}read-ions",
+                            action="store_" + str(not self.read_ions).lower(),
+                            dest="read_ions",
+                            help=("R" if not self.read_ions else "Do not try to r") +
+                                 "ead ion names when parsing spectra. This only applies to MGF file parsing.")
 
         args = parser.parse_args()
 
@@ -365,10 +384,10 @@ class Config:
         self.log_file = args.log_file
         self.log_to_stdout = args.log_to_stdout
         self.valid_file_extensions = args.file_extensions
-        self.skip_existing = (not args.no_skip_existing)
+        self.skip_existing = args.skip_existing
         self.verbose = args.verbose
         self.dummy_logger = args.dummy_logger
-        self.fail_early = (not args.no_fail_early)
+        self.fail_early = args.fail_early
         self.shown_columns = args.shown_columns
         self.pride_versions = utils.deduplicate_list(args.pride_version)
         self.column_filter = mmproteo.utils.filters.NoneFilterConditionNode(
@@ -379,6 +398,7 @@ class Config:
         self.thermo_output_format = args.thermo_output_format
         self.thermo_keep_container_running = args.thermo_keep_running
         self.thread_count = args.thread_count
+        self.read_ions = args.read_ions
 
         self.commands = utils.deduplicate_list(args.command)
 
@@ -425,9 +445,7 @@ class Config:
     def __filter_vars(variables: List[Tuple[str, Any]]) -> List[Tuple[str, Any]]:
         return [
             (key, Config.__sort_if_set(value)) for key, value in variables
-            if not key.startswith('_')
-            and not callable(value)
-            and not type(value) == staticmethod
+            if not key.startswith('_') and not callable(value) and not type(value) == staticmethod
         ]
 
     def __str__(self) -> str:

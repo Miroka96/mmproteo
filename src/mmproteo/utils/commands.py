@@ -235,6 +235,7 @@ class Mgf2ParquetCommand(AbstractCommand):
                                                              column_filter=config.column_filter,
                                                              keep_null_values=False,
                                                              pre_filter_files=True,
+                                                             read_ions=config.read_ions,
                                                              logger=logger)
 
         result_df = config.cache_processed_files(mgf_parquet_files, config.default_mgf_parquet_files_column)

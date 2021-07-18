@@ -24,7 +24,11 @@ def read_parquet(filename: str, logger: log.Logger = log.DEFAULT_LOGGER) -> pd.D
     return pd.read_parquet(filename)
 
 
-_FILE_READING_CONFIG: Dict[str, Callable[[str, log.Logger], pd.DataFrame]] = {
+_FILE_READING_CONFIG: Dict[
+    str,
+    Union[Callable[[str, log.Logger], pd.DataFrame],
+          Callable[[str, log.Logger, Any], pd.DataFrame]]
+] = {
     "mgf": read_mgf,
     "mzid": read_mzid,
     "mzml": read_mzml,
@@ -36,13 +40,17 @@ def get_readable_file_extensions() -> Set[str]:
     return set(_FILE_READING_CONFIG.keys())
 
 
-def read(filename: str, filename_col: Optional[str] = "%s_filename", logger: log.Logger = log.DEFAULT_LOGGER) \
-        -> pd.DataFrame:
+def read(
+        filename: str,
+        filename_col: Optional[str] = "%s_filename",
+        logger: log.Logger = log.DEFAULT_LOGGER,
+        **kwargs: Any,
+) -> pd.DataFrame:
     _, ext = separate_extension(filename=filename, extensions=get_readable_file_extensions())
 
     if len(ext) > 0:
         logger.debug("Started reading %s file '%s'" % (ext, filename))
-        df = _FILE_READING_CONFIG[ext](filename, logger)
+        df = _FILE_READING_CONFIG[ext](filename, logger, **kwargs)  # type: ignore
         logger.info("Finished reading %s file '%s'" % (ext, filename))
     else:
         raise NotImplementedError

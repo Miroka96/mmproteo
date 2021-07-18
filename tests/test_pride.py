@@ -11,7 +11,7 @@ import pandas as pd
 try:
     from utils.defaults import DEFAULT_TEST_API, DEFAULT_PROJECT, RESOURCES_PATH
 except ModuleNotFoundError:
-    from .utils.defaults import DEFAULT_TEST_API, DEFAULT_PROJECT
+    from .utils.defaults import DEFAULT_TEST_API, DEFAULT_PROJECT, RESOURCES_PATH
 
 
 def store_get_project_info() -> None:

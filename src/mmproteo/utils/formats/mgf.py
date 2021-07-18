@@ -10,14 +10,20 @@ from mmproteo.utils.processing import ItemProcessor
 from pyteomics import mgf
 
 
-def read_mgf(filename: str, logger: log.Logger = log.DEFAULT_LOGGER) -> pd.DataFrame:
-    entries = read.iter_entries(mgf.read(filename), logger=logger)
+def read_mgf(
+        filename: str,
+        logger: log.Logger = log.DEFAULT_LOGGER,
+        read_ions: bool = Config.default_read_ions,
+) -> pd.DataFrame:
+    with mgf.read(filename, read_ions=read_ions) as reader:
+        entries = read.iter_entries(reader, logger=logger)
     extracted_entries = [utils.flatten_dict(entry) for entry in entries]
     return pd.DataFrame(data=extracted_entries)
 
 
 def convert_mgf_file_to_parquet(filename: Optional[str],
                                 skip_existing: bool = Config.default_skip_existing,
+                                read_ions: bool = Config.default_read_ions,
                                 logger: log.Logger = log.DEFAULT_LOGGER) -> Optional[str]:
     if filename is None:
         return None
@@ -35,7 +41,7 @@ def convert_mgf_file_to_parquet(filename: Optional[str],
         return converted_filename
 
     try:
-        df = read_mgf(filename=filename, logger=logger)
+        df = read_mgf(filename=filename, logger=logger, read_ions=read_ions)
         df.to_parquet(path=converted_filename)
         logger.info("Converted file " + filename)
         return converted_filename
@@ -47,13 +53,16 @@ def convert_mgf_file_to_parquet(filename: Optional[str],
 class _Mgf2ParquetFileProcessor:
     def __init__(self,
                  skip_existing: bool = Config.default_skip_existing,
+                 read_ions: bool = Config.default_read_ions,
                  logger: log.Logger = log.DEFAULT_LOGGER):
         self.skip_existing = skip_existing
+        self.read_ions = read_ions
         self.logger = logger
 
     def __call__(self, filename: Optional[str]) -> Optional[str]:
         return convert_mgf_file_to_parquet(filename=filename,
                                            skip_existing=self.skip_existing,
+                                           read_ions=self.read_ions,
                                            logger=self.logger)
 
 
@@ -66,6 +75,7 @@ def convert_mgf_files_to_parquet(filenames: Sequence[Optional[str]],
                                  column_filter: Optional[AbstractFilterConditionNode] = None,
                                  keep_null_values: bool = Config.default_keep_null_values,
                                  pre_filter_files: bool = Config.default_pre_filter_files,
+                                 read_ions: bool = Config.default_read_ions,
                                  logger: log.Logger = log.DEFAULT_LOGGER) -> List[Optional[str]]:
     if pre_filter_files:
         filenames = filter_files_list(filenames=filenames,
@@ -77,7 +87,7 @@ def convert_mgf_files_to_parquet(filenames: Sequence[Optional[str]],
                                       sort=not keep_null_values,
                                       logger=logger)
 
-    file_processor = _Mgf2ParquetFileProcessor(skip_existing=skip_existing, logger=logger)
+    file_processor = _Mgf2ParquetFileProcessor(skip_existing=skip_existing, read_ions=read_ions, logger=logger)
 
     return list(ItemProcessor(items=filenames,
                               item_processor=file_processor,

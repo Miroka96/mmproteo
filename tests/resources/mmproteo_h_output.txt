@@ -3,8 +3,9 @@ usage: mmproteo [--count-failed-files] [--dummy-logger]
                 [--log-file FILE] [--log-to-stdout] [--max-num-files N]
                 [--no-count-skipped-files] [--no-fail-early]
                 [--no-skip-existing] [--pride-project PROJECT]
-                [--pride-version {1,2}] [--shown-columns COLUMNS]
-                [--storage-dir DIR] [--thermo-keep-running]
+                [--pride-version {1,2}] [--read-ions]
+                [--shown-columns COLUMNS] [--storage-dir DIR]
+                [--thermo-keep-running]
                 [--thermo-output-format {imzml,mgf,mzml,parquet}]
                 [--thread-count THREADS] [--verbose] [--version]
                 COMMAND [COMMAND ...]
@@ -96,8 +97,8 @@ optional arguments:
                         True)
   --no-fail-early       Do not fail commands already on failed assertions. The
                         code will run until a real exception is encountered or
-                        it even succeeds. (default: False)
-  --no-skip-existing    Do not skip existing files. (default: False)
+                        it even succeeds. (default: True)
+  --no-skip-existing    Do not skip existing files. (default: True)
   --pride-project PROJECT, -p PROJECT
                         the name of the PRIDE project, e.g. 'PXD010000' from '
                         https://www.ebi.ac.uk/pride/ws/archive/peptide/list/pr
@@ -114,6 +115,8 @@ optional arguments:
                         dropped after the first occurrence. An empty list
                         (default) uses all api versions in the following
                         order: ["2", "1"] (default: [])
+  --read-ions           Read ion names when parsing spectra. This only applies
+                        to MGF file parsing. (default: False)
   --shown-columns COLUMNS, -c COLUMNS
                         a list of comma-separated column names. Some commands
                         show their results as tables, so their output columns
