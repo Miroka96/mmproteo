@@ -372,7 +372,8 @@ class Config:
                             action="store_" + str(not self.read_ions).lower(),
                             dest="read_ions",
                             help=("R" if not self.read_ions else "Do not try to r") +
-                                 "ead ion names when parsing spectra. This only applies to MGF file parsing.")
+                                 "ead ion names when parsing spectra. This only applies to MGF file parsing, but might "
+                                 "resolve file parsing exceptions.")
 
         args = parser.parse_args()
 

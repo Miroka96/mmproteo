@@ -116,7 +116,8 @@ optional arguments:
                         (default) uses all api versions in the following
                         order: ["2", "1"] (default: [])
   --read-ions           Read ion names when parsing spectra. This only applies
-                        to MGF file parsing. (default: False)
+                        to MGF file parsing, but might resolve file parsing
+                        exceptions. (default: False)
   --shown-columns COLUMNS, -c COLUMNS
                         a list of comma-separated column names. Some commands
                         show their results as tables, so their output columns

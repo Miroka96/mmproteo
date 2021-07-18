@@ -57,8 +57,9 @@ usage: mmproteo [--count-failed-files] [--dummy-logger]
                 [--log-file FILE] [--log-to-stdout] [--max-num-files N]
                 [--no-count-skipped-files] [--no-fail-early]
                 [--no-skip-existing] [--pride-project PROJECT]
-                [--pride-version {1,2}] [--shown-columns COLUMNS]
-                [--storage-dir DIR] [--thermo-keep-running]
+                [--pride-version {1,2}] [--read-ions]
+                [--shown-columns COLUMNS] [--storage-dir DIR]
+                [--thermo-keep-running]
                 [--thermo-output-format {imzml,mgf,mzml,parquet}]
                 [--thread-count THREADS] [--verbose] [--version]
                 COMMAND [COMMAND ...]
@@ -150,8 +151,8 @@ optional arguments:
                         True)
   --no-fail-early       Do not fail commands already on failed assertions. The
                         code will run until a real exception is encountered or
-                        it even succeeds. (default: False)
-  --no-skip-existing    Do not skip existing files. (default: False)
+                        it even succeeds. (default: True)
+  --no-skip-existing    Do not skip existing files. (default: True)
   --pride-project PROJECT, -p PROJECT
                         the name of the PRIDE project, e.g. 'PXD010000' from '
                         https://www.ebi.ac.uk/pride/ws/archive/peptide/list/pr
@@ -168,6 +169,9 @@ optional arguments:
                         dropped after the first occurrence. An empty list
                         (default) uses all api versions in the following
                         order: ["2", "1"] (default: [])
+  --read-ions           Read ion names when parsing spectra. This only applies
+                        to MGF file parsing, but might resolve file parsing
+                        exceptions. (default: False)
   --shown-columns COLUMNS, -c COLUMNS
                         a list of comma-separated column names. Some commands
                         show their results as tables, so their output columns
@@ -240,10 +244,10 @@ You can check the syntax on the ['re' homepage](https://docs.python.org/3/librar
 Right now, there is only a limited number of tests. Most functionality is only tested using integration tests, because
 the methods became too quickly too many.
 Still, to run the tests you will need mmproteo installed, preferably as edible development installation 
-(`pip install -e mmproteo`). Furthermore, pytest is required. To directly install all packages required for development 
+(run `pip install -e .` in mmproteo base directory). Furthermore, pytest is required. To directly install all packages required for development 
 and extended usage of this project, run `pip install -r requirements.txt` in the root of this project.
 
-Finally, to run the tests `cd` into the test directory (`tests`) and run `pytest` there. Unfortunately, 
+Finally, to run the tests, `cd` into the test directory (`tests`) and run `pytest` there. Unfortunately, 
 depending on your Internet connection and CPU speed, some tests might take several minutes, because I don't know of a 
 really nice way of testing a downloader/converter without downloading/converting stuff. Furthermore, some tests 
 currently require `docker` being available and usable to run raw-file conversions.
