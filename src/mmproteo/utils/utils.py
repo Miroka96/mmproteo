@@ -38,6 +38,8 @@ def deduplicate_list(lst: List[T]) -> List[T]:
 
 
 def _denumpyfy(element: Any) -> Any:
+    if element is None:
+        return element
     if type(element) == np.int64:
         return int(element)
     if type(element) == np.float64:

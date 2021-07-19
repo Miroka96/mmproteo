@@ -54,6 +54,7 @@ class Parquet2DatasetFileProcessor:
         df = df.copy()
         for column, normalize_func in self.column_normalizations.items():
             df[column] = df[column].apply(normalize_func)
+        self.logger.debug("normalized df")
         return df
 
     def pad_array_columns(self, df: pd.DataFrame) -> pd.DataFrame:
@@ -71,6 +72,7 @@ class Parquet2DatasetFileProcessor:
                 value=self.padding_characters[column],
                 dtype=item_dtype
             ))
+        self.logger.debug("padded df")
         return df
 
     @staticmethod
@@ -90,6 +92,7 @@ class Parquet2DatasetFileProcessor:
             df[column] = df[column].apply(lambda seq: self._sequence_to_indices(seq,
                                                                                 mapping_function,
                                                                                 self.char_idx_dtype))
+        self.logger.debug("mapped sequences to indices")
         return df
 
     @staticmethod
@@ -106,6 +109,7 @@ class Parquet2DatasetFileProcessor:
         df = self.pad_array_columns(df)
         df = self.sequence_column_to_indices(df)
         df = self.stack_numpy_arrays_in_dataframe(df)
+        self.logger.debug("finished preprocessing df")
         return df
 
     def stacked_df_to_dataset(self, stacked_df: pd.DataFrame) -> tf.data.Dataset:
@@ -113,11 +117,13 @@ class Parquet2DatasetFileProcessor:
         training_data = tuple(stacked_df[self.training_data_columns].iloc[0])
         target_data = tuple(stacked_df[self.target_data_columns].iloc[0])
         tf_dataset = tf.data.Dataset.from_tensor_slices((training_data, target_data))
+        self.logger.debug("created TF dataset from stacked df")
         return tf_dataset
 
     def split_dataframe_by_column_values(self, df: pd.DataFrame, tf_dataset_output_file_path: str) \
             -> List[Tuple[str, pd.DataFrame]]:
-        if self.split_on_column_values_of is None:
+        if self.split_on_column_values_of is None or len(self.split_on_column_values_of) == 0:
+            self.logger.debug("skipped splitting df by column values")
             return [(tf_dataset_output_file_path, df)]
         if len(self.split_on_column_values_of) == 1:
             value_groups = [((values,), df_split) for values, df_split in df.groupby(self.split_on_column_values_of)]
@@ -130,16 +136,20 @@ class Parquet2DatasetFileProcessor:
             df_split.drop(columns=self.split_on_column_values_of)
         ) for values, df_split in value_groups]
 
+        self.logger.debug("finished splitting df by column values")
+
         return results
 
     def convert_df_file_to_dataset_file(self,
                                         df_input_file_path: str,
                                         tf_dataset_output_file_path: str) -> None:
         df = pd.read_parquet(df_input_file_path)
+        self.logger.debug(f"finished reading '{df_input_file_path}' file")
         df_splits = self.split_dataframe_by_column_values(df, tf_dataset_output_file_path)
         if len(df_splits) == 0:
             return
 
+        self.logger.debug(f"storing {len(df_splits)} df splits from '{df_input_file_path}'")
         tf_dataset = None
 
         for path, df_split in df_splits:
@@ -148,6 +158,7 @@ class Parquet2DatasetFileProcessor:
             tf.data.experimental.save(dataset=tf_dataset,
                                       path=path,
                                       compression='GZIP')
+            self.logger.debug(f"saved TF dataset to {path}")
         assert tf_dataset is not None
 
         self.logger.debug(tf_dataset.element_spec)
@@ -172,14 +183,14 @@ class Parquet2DatasetFileProcessor:
 
         return tf_dataset_path
 
-    def process(self, parquet_file_paths: Iterable[str], **kwargs: Dict[str, Any]) -> List[str]:
+    def process(self, parquet_file_paths: Iterable[str], **kwargs: Any) -> List[str]:
         item_processor = ItemProcessor(
             items=enumerate(parquet_file_paths),
             item_processor=self.__call__,
             action_name="parquet2tf_dataset-process",
             subject_name="mzmlid parquet file",
             logger=self.logger,
-            **kwargs  # type: ignore
+            **kwargs
         )
         results: List[str] = list(item_processor.process())  # type: ignore
         return results
