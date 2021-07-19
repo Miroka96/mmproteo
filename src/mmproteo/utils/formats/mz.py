@@ -260,7 +260,7 @@ class FilteringProcessor:
                  skip_existing: bool = True,
                  is_decoy_column_name: Optional[str] = default_is_decoy_column_name,
                  fdr_column_name: Optional[str] = default_fdr_column_name,
-                 output_columns: Optional[Container[str]] = get_default_output_columns(),
+                 output_columns: Optional[Container[str]] = None,
                  post_processor: Optional[Callable[[pd.DataFrame], pd.DataFrame]] = None,
                  logger: log.Logger = log.DEFAULT_LOGGER):
         self.is_decoy_column_name = is_decoy_column_name
@@ -350,7 +350,7 @@ def filter_files(input_file_paths: List[str],
                  skip_existing: bool = True,
                  is_decoy_column_name: Optional[str] = FilteringProcessor.default_is_decoy_column_name,
                  fdr_column_name: Optional[str] = FilteringProcessor.default_fdr_column_name,
-                 output_columns: Optional[List[str]] = None,
+                 output_columns: Optional[List[str]] = FilteringProcessor.get_default_output_columns(),
                  post_processor: Optional[Callable[[pd.DataFrame], pd.DataFrame]] = None,
                  thread_count: int = Config.default_thread_count,
                  logger: log.Logger = log.DEFAULT_LOGGER) -> List[Dict[str, Union[str, int, float]]]:
