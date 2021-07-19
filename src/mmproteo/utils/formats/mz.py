@@ -1,6 +1,6 @@
 import gc
 import os
-from typing import Container, Iterable, List, Optional, Tuple, Dict, Any, Union, Callable, Sequence
+from typing import Any, Callable, Dict, Iterable, List, Optional, Sequence, Tuple, Union
 
 import pandas as pd
 from mmproteo.utils import log, utils
@@ -247,12 +247,12 @@ class FilteringProcessor:
     default_intensity_array_column_name = 'intensity_array'
 
     @staticmethod
-    def get_default_output_columns() -> Container[str]:
-        return tuple((
+    def get_default_output_columns() -> List[str]:
+        return [
             FilteringProcessor.default_peptide_sequence_column_name,
             FilteringProcessor.default_mz_array_column_name,
             FilteringProcessor.default_intensity_array_column_name,
-        ))
+        ]
 
     def __init__(self,
                  dump_path: str,
@@ -260,7 +260,7 @@ class FilteringProcessor:
                  skip_existing: bool = True,
                  is_decoy_column_name: Optional[str] = default_is_decoy_column_name,
                  fdr_column_name: Optional[str] = default_fdr_column_name,
-                 output_columns: Optional[Container[str]] = None,
+                 output_columns: Optional[List[str]] = None,
                  post_processor: Optional[Callable[[pd.DataFrame], pd.DataFrame]] = None,
                  logger: log.Logger = log.DEFAULT_LOGGER):
         self.is_decoy_column_name = is_decoy_column_name
