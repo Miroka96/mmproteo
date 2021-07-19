@@ -1,6 +1,6 @@
 import gc
 import os
-from typing import Iterable, List, Optional, Tuple, Dict, Any, Union, Callable, Sequence
+from typing import Container, Iterable, List, Optional, Tuple, Dict, Any, Union, Callable, Sequence
 
 import pandas as pd
 from mmproteo.utils import log, utils
@@ -247,29 +247,26 @@ class FilteringProcessor:
     default_intensity_array_column_name = 'intensity_array'
 
     @staticmethod
-    def get_default_output_columns() -> List[str]:
-        return [
+    def get_default_output_columns() -> Container[str]:
+        return tuple((
             FilteringProcessor.default_peptide_sequence_column_name,
             FilteringProcessor.default_mz_array_column_name,
             FilteringProcessor.default_intensity_array_column_name,
-        ]
+        ))
 
     def __init__(self,
                  dump_path: str,
-                 fdr: float = 0.01,
+                 fdr: Optional[float] = 0.01,
                  skip_existing: bool = True,
-                 is_decoy_column_name: str = default_is_decoy_column_name,
-                 fdr_column_name: str = default_fdr_column_name,
-                 output_columns: Optional[List[str]] = None,
-                 post_processor: Callable[[pd.DataFrame], pd.DataFrame] = lambda x: x,
+                 is_decoy_column_name: Optional[str] = default_is_decoy_column_name,
+                 fdr_column_name: Optional[str] = default_fdr_column_name,
+                 output_columns: Optional[Container[str]] = get_default_output_columns(),
+                 post_processor: Optional[Callable[[pd.DataFrame], pd.DataFrame]] = None,
                  logger: log.Logger = log.DEFAULT_LOGGER):
         self.is_decoy_column_name = is_decoy_column_name
         self.fdr_column_name = fdr_column_name
         self.fdr = fdr
-        if output_columns is None:
-            self.output_columns = self.get_default_output_columns()
-        else:
-            self.output_columns = output_columns
+        self.output_columns = output_columns
         self.dump_path = dump_path.rstrip(os.path.sep)
         self.skip_existing = skip_existing
         self.post_processor = post_processor
@@ -290,38 +287,56 @@ class FilteringProcessor:
         length = len(df)
         res['original_sequence_count'] = length
 
-        df = df.dropna(subset=[self.is_decoy_column_name])
-        new_length = len(df)
-        res['NaN_decoy_count'] = length - new_length
-        length = new_length
+        if self.is_decoy_column_name is not None:
+            df = df.dropna(subset=[self.is_decoy_column_name])
+            new_length = len(df)
+            res['NaN_decoy_count'] = length - new_length
+            length = new_length
+        else:
+            self.logger.debug(f"Skipped dropping NaN decoy values for '{input_file_path}'")
 
-        df = df[df[self.fdr_column_name] <= self.fdr]
-        new_length = len(df)
-        res['above_fdr_count'] = length - new_length
-        length = new_length
+        if self.fdr is not None and self.fdr_column_name is not None:
+            df = df[df[self.fdr_column_name] <= self.fdr]
+            new_length = len(df)
+            res['above_fdr_count'] = length - new_length
+            length = new_length
+        else:
+            self.logger.debug(f"Skipped dropping rows with too high FDR values for '{input_file_path}'")
 
-        decoy_counts = df[self.is_decoy_column_name].value_counts()
-        left_decoys: int = decoy_counts.get(True, 0)
-        left_targets: int = decoy_counts.get(False, 0)
-        res['left_decoys'] = left_decoys
-        res['left_targets'] = left_targets
-        res['fdr'] = left_decoys / left_targets
+        if self.is_decoy_column_name is not None:
+            decoy_counts = df[self.is_decoy_column_name].value_counts()
+            left_decoys: int = decoy_counts.get(True, 0)
+            left_targets: int = decoy_counts.get(False, 0)
+            res['left_decoys'] = left_decoys
+            res['left_targets'] = left_targets
+            res['fdr'] = left_decoys / left_targets
+        else:
+            self.logger.debug(f"Skipped counting decoys for '{input_file_path}'")
 
         # filter out Decoys
+        if self.is_decoy_column_name is not None:
+            df = df[~df[self.is_decoy_column_name].astype(bool)]
+            new_length = len(df)
+            res['removed_decoys'] = length - new_length
+            length = new_length
+        else:
+            self.logger.debug(f"Skipped removing decoys for '{input_file_path}'")
 
-        df = df[~df[self.is_decoy_column_name].astype(bool)]
-        new_length = len(df)
-        res['removed_decoys'] = length - new_length
-        length = new_length
-
-        df = self.post_processor(df)
-        new_length = len(df)
-        res['removed_by_post_processor'] = length - new_length
-        length = new_length
+        if self.post_processor is not None:
+            df = self.post_processor(df)
+            new_length = len(df)
+            res['removed_by_post_processor'] = length - new_length
+            length = new_length
+        else:
+            self.logger.debug(f"Skipped running post processor for '{input_file_path}'")
 
         res['final_sequence_count'] = length
 
-        df = df[self.output_columns]
+        if self.output_columns is not None:
+            df = df[self.output_columns]
+        else:
+            self.logger.debug(f"Skipped limiting to output columns for '{input_file_path}'")
+
         df.to_parquet(output_file_path)
 
         self.logger.info(f"Finished filtering '{input_file_path}' -> '{output_file_path}'")
@@ -331,12 +346,12 @@ class FilteringProcessor:
 
 def filter_files(input_file_paths: List[str],
                  output_path: str,
-                 fdr: float = 0.01,
+                 fdr: Optional[float] = 0.01,
                  skip_existing: bool = True,
-                 is_decoy_column_name: str = FilteringProcessor.default_is_decoy_column_name,
-                 fdr_column_name: str = FilteringProcessor.default_fdr_column_name,
+                 is_decoy_column_name: Optional[str] = FilteringProcessor.default_is_decoy_column_name,
+                 fdr_column_name: Optional[str] = FilteringProcessor.default_fdr_column_name,
                  output_columns: Optional[List[str]] = None,
-                 post_processor: Callable[[pd.DataFrame], pd.DataFrame] = lambda x: x,
+                 post_processor: Optional[Callable[[pd.DataFrame], pd.DataFrame]] = None,
                  thread_count: int = Config.default_thread_count,
                  logger: log.Logger = log.DEFAULT_LOGGER) -> List[Dict[str, Union[str, int, float]]]:
     filter_processor = FilteringProcessor(dump_path=output_path,
