@@ -166,7 +166,7 @@ class ItemProcessor:
         self.logger.info(
             f"Encountered {len(exceptions)} exception{utils.get_plural_s(len(exceptions))} during processing")
         for exception in exceptions:
-            self.logger.debug(str(exception))
+            self.logger.debug(f"{type(exception)} - {exception}")
 
     def process(self) -> Iterable[Optional[Any]]:
         self.__drop_null_items()
