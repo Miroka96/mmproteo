@@ -164,7 +164,7 @@ class Parquet2DatasetFileProcessor:
             self.logger.debug(f"saved TF dataset to {path}")
         assert tf_dataset is not None
 
-        self.logger.debug(tf_dataset.element_spec)
+        self.logger.debug(f"TF dataset element spec: {tf_dataset.element_spec}")
 
     def __call__(self, item: Tuple[int, str]) -> Optional[str]:
         idx, path = item
