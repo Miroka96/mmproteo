@@ -48,16 +48,16 @@ class Parquet2DatasetFileProcessor:
         self.split_on_column_values_of = split_on_column_values_of
         self.logger = logger
 
-    def normalize_columns(self, df: pd.DataFrame) -> pd.DataFrame:
+    def normalize_columns(self, df: pd.DataFrame, df_name: str = "?") -> pd.DataFrame:
         if self.column_normalizations is None:
             return df
         df = df.copy()
         for column, normalize_func in self.column_normalizations.items():
             df[column] = df[column].apply(normalize_func)
-        self.logger.debug("normalized df")
+        self.logger.debug(f"normalized df '{df_name}'")
         return df
 
-    def pad_array_columns(self, df: pd.DataFrame) -> pd.DataFrame:
+    def pad_array_columns(self, df: pd.DataFrame, df_name: str = "?") -> pd.DataFrame:
         if len(df) == 0:
             return df
 
@@ -72,7 +72,7 @@ class Parquet2DatasetFileProcessor:
                 value=self.padding_characters[column],
                 dtype=item_dtype
             ))
-        self.logger.debug("padded df")
+        self.logger.debug(f"padded df '{df_name}'")
         return df
 
     @staticmethod
@@ -82,7 +82,7 @@ class Parquet2DatasetFileProcessor:
         return np.array([char_to_idx_mapping_func(char) for char in sequence],
                         dtype=dtype)
 
-    def sequence_column_to_indices(self, df: pd.DataFrame) -> pd.DataFrame:
+    def sequence_column_to_indices(self, df: pd.DataFrame, df_name: str = "?") -> pd.DataFrame:
         assert self.char_to_idx_mapping_functions is not None, \
             "the char_to_idx mapping functions should have been initialized"
         if len(self.char_to_idx_mapping_functions) == 0:
@@ -92,38 +92,40 @@ class Parquet2DatasetFileProcessor:
             df[column] = df[column].apply(lambda seq: self._sequence_to_indices(seq,
                                                                                 mapping_function,
                                                                                 self.char_idx_dtype))
-        self.logger.debug("mapped sequences to indices")
+        self.logger.debug(f"mapped sequences to indices for '{df_name}'")
         return df
 
     @staticmethod
     def stack_numpy_arrays_in_dataframe(df: pd.DataFrame) -> pd.DataFrame:
         return df.apply(lambda item: [np.stack(item)])
 
-    def preprocess_dataframe(self, df: pd.DataFrame) -> pd.DataFrame:
+    def preprocess_dataframe(self, df: pd.DataFrame, df_name: str = "?") -> pd.DataFrame:
         """
 
+        :param df_name:
         :param df:
         :return: a stacked dataframe (with one single row)
         """
-        df = self.normalize_columns(df)
-        df = self.pad_array_columns(df)
-        df = self.sequence_column_to_indices(df)
+        df = self.normalize_columns(df, df_name=df_name)
+        df = self.pad_array_columns(df, df_name=df_name)
+        df = self.sequence_column_to_indices(df, df_name=df_name)
         df = self.stack_numpy_arrays_in_dataframe(df)
-        self.logger.debug("finished preprocessing df")
+        self.logger.debug(f"finished preprocessing df '{df_name}'")
         return df
 
-    def stacked_df_to_dataset(self, stacked_df: pd.DataFrame) -> tf.data.Dataset:
+    def stacked_df_to_dataset(self, stacked_df: pd.DataFrame, df_name: str = "?") -> tf.data.Dataset:
         assert len(stacked_df) == 1, "all column values should be stacked at this point"
         training_data = tuple(stacked_df[self.training_data_columns].iloc[0])
         target_data = tuple(stacked_df[self.target_data_columns].iloc[0])
         tf_dataset = tf.data.Dataset.from_tensor_slices((training_data, target_data))
-        self.logger.debug("created TF dataset from stacked df")
+        self.logger.debug(f"created TF dataset from stacked df '{df_name}'")
         return tf_dataset
 
-    def split_dataframe_by_column_values(self, df: pd.DataFrame, tf_dataset_output_file_path: str) \
-            -> List[Tuple[str, pd.DataFrame]]:
+    def split_dataframe_by_column_values(self,
+                                         df: pd.DataFrame,
+                                         tf_dataset_output_file_path: str) -> List[Tuple[str, pd.DataFrame]]:
         if self.split_on_column_values_of is None or len(self.split_on_column_values_of) == 0:
-            self.logger.debug("skipped splitting df by column values")
+            self.logger.debug(f"skipped splitting df for '{tf_dataset_output_file_path}' by column values")
             return [(tf_dataset_output_file_path, df)]
         if len(self.split_on_column_values_of) == 1:
             value_groups = [((values,), df_split) for values, df_split in df.groupby(self.split_on_column_values_of)]
@@ -136,7 +138,7 @@ class Parquet2DatasetFileProcessor:
             df_split.drop(columns=self.split_on_column_values_of)
         ) for values, df_split in value_groups]
 
-        self.logger.debug("finished splitting df by column values")
+        self.logger.debug(f"finished splitting df for '{tf_dataset_output_file_path}' by column values")
 
         return results
 
@@ -154,8 +156,8 @@ class Parquet2DatasetFileProcessor:
         tf_dataset = None
 
         for path, df_split in df_splits:
-            preprocessed_df = self.preprocess_dataframe(df_split)
-            tf_dataset = self.stacked_df_to_dataset(preprocessed_df)
+            preprocessed_df = self.preprocess_dataframe(df_split, df_name=path)
+            tf_dataset = self.stacked_df_to_dataset(preprocessed_df, df_name=path)
             tf.data.experimental.save(dataset=tf_dataset,
                                       path=path,
                                       compression='GZIP')
@@ -168,11 +170,13 @@ class Parquet2DatasetFileProcessor:
         idx, path = item
         tf_dataset_path = os.path.join(self.dataset_dump_path_prefix, path.split(os.path.sep)[-1])
 
-        info_text = f"Processing item {idx + 1}/{self.item_count}: '{path}'"
+        info_text = f"item {idx + 1}/{self.item_count}: '{path}'"
+        start_info_text = "Preprocessing " + info_text
+        stop_info_text = "Finished preprocessing " + info_text
         if idx % 10 == 0:
-            self.logger.info(info_text)
+            self.logger.info(start_info_text)
         else:
-            self.logger.debug(info_text)
+            self.logger.debug(start_info_text)
 
         if self.skip_existing and os.path.exists(tf_dataset_path):
             self.logger.debug(f"Skipped '{path}' because '{tf_dataset_path}' already exists")
@@ -181,6 +185,10 @@ class Parquet2DatasetFileProcessor:
         self.convert_df_file_to_dataset_file(df_input_file_path=path,
                                              tf_dataset_output_file_path=tf_dataset_path)
         gc.collect()
+        if idx % 10 == 0:
+            self.logger.info(stop_info_text)
+        else:
+            self.logger.debug(stop_info_text)
 
         return tf_dataset_path
 
