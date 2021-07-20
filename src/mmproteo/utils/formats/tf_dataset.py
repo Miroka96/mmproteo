@@ -149,7 +149,8 @@ class Parquet2DatasetFileProcessor:
         if len(df_splits) == 0:
             return
 
-        self.logger.debug(f"storing {len(df_splits)} df splits from '{df_input_file_path}'")
+        self.logger.debug(f"storing {len(df_splits)} df split{utils.get_plural_s(len(df_splits))} "
+                          f"from '{df_input_file_path}'")
         tf_dataset = None
 
         for path, df_split in df_splits:
