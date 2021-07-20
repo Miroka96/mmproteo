@@ -35,10 +35,28 @@ class ItemProcessor:
                  subject_name: str = "file",
                  max_num_items: Optional[int] = None,
                  keep_null_values: bool = Config.default_keep_null_values,
+                 keep_exceptions_as: Optional[bool] = Config.default_keep_null_values,
                  count_null_results: bool = Config.default_count_null_results,
                  count_failed_items: bool = Config.default_count_failed_files,
                  thread_count: int = Config.default_thread_count,
                  logger: log.Logger = log.DEFAULT_LOGGER):
+        """
+
+        :param items:
+        :param item_processor:
+        :param action_name:
+        :param action_name_past_form:
+        :param subject_name:
+        :param max_num_items:
+        :param keep_null_values:
+        :param keep_exceptions_as:      None = replace exceptions with None;
+                                        True = return exceptions as part of results;
+                                        False = drop exceptions
+        :param count_null_results:
+        :param count_failed_items:
+        :param thread_count:
+        :param logger:
+        """
 
         if max_num_items == 0:
             max_num_items = None
@@ -49,6 +67,7 @@ class ItemProcessor:
         self.action_name = action_name
         self.subject_name = subject_name
         self.keep_null_values = keep_null_values
+        self.keep_exceptions_as = keep_exceptions_as
         self.count_null_results = count_null_results
         self.count_failed_items = count_failed_items
         self.max_num_items = max_num_items
@@ -119,13 +138,13 @@ class ItemProcessor:
 
     def __get_processing_results(self,
                                  keep_null_items: bool = False,
-                                 keep_exceptions_as_nulls: bool = False) -> List[Any]:
+                                 keep_exceptions_as: Optional[bool] = False) -> List[Any]:
         items = self.processing_results
         if not keep_null_items:
             items = [item for item in items if item is not None]
-        if keep_exceptions_as_nulls:
+        if keep_exceptions_as is None:
             items = [None if isinstance(item, Exception) else item for item in items]
-        else:
+        elif keep_exceptions_as is False:
             items = [item for item in items if not isinstance(item, Exception)]
         return items
 
@@ -135,7 +154,7 @@ class ItemProcessor:
 
     def count_successfully_processed_items(self) -> int:
         return len(self.__get_processing_results(keep_null_items=self.count_null_results,
-                                                 keep_exceptions_as_nulls=self.count_failed_items))
+                                                 keep_exceptions_as=self.count_failed_items))
 
     def __process_items(self) -> None:
         indexed_items = list(enumerate(self.items))
@@ -182,4 +201,4 @@ class ItemProcessor:
         self.__evaluate_results_textually()
 
         return self.__get_processing_results(keep_null_items=self.keep_null_values,
-                                             keep_exceptions_as_nulls=self.keep_null_values)
+                                             keep_exceptions_as=self.keep_exceptions_as)
