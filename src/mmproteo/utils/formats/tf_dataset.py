@@ -193,6 +193,10 @@ class Parquet2DatasetFileProcessor:
         return tf_dataset_path
 
     def process(self, parquet_file_paths: Iterable[str], **kwargs: Any) -> List[str]:
+        if len(tf.config.list_physical_devices(device_type="GPU")) > 0:
+            self.logger.info("Tensorflow dataset creation performance can be increased by limiting TF to CPUs only. "
+                             'Set the following environment variables: "CUDA_DEVICE_ORDER"="PCI_BUS_ID" and '
+                             '"CUDA_VISIBLE_DEVICES"="-1"')
         item_processor = ItemProcessor(
             items=enumerate(parquet_file_paths),
             item_processor=self.__call__,
