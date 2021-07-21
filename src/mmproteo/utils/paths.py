@@ -18,7 +18,7 @@ def _create_placeholder_path(wildcard_path: str, path_position: int, placeholder
 
 def _assign_values_randomly_to_splits(values: Iterable[str], splits: Dict[str, float]) -> Dict[str, List[str]]:
     prefixed_splits: Dict[Optional[str], float] = splits  # type: ignore
-    prefixed_splits[None] = 0
+    prefixed_splits[None] = 0.0
 
     sorted_splits: List[Tuple[Optional[str], float]] = sorted(prefixed_splits.items(), key=lambda tupl: tupl[1])
     assert sorted_splits[0][0] is None, "the added zero should also be the zeroth element"
@@ -79,7 +79,7 @@ def assign_wildcard_paths_to_splits_grouped_by_path_position_value(
                             The float values should be accumulative.
     :param paths_dump_file: a file path to use for storing/loading the (random) path assignment (optional)
     :param skip_existing:   whether to try loading path assignments from
-                        :paramref:`split_collected_paths_by_path_position_value.paths_dump_file`
+                            :paramref:`split_collected_paths_by_path_position_value.paths_dump_file`
     :param logger:          the logger instance to use
     :return: a dictionary with the category values of the splits as keys and lists of assigned file paths as values
     """
@@ -90,6 +90,7 @@ def assign_wildcard_paths_to_splits_grouped_by_path_position_value(
 
     categorical_values = _get_values_at_wildcard_path_position(wildcard_path, path_position)
     assigned_values = _assign_values_randomly_to_splits(categorical_values, splits=splits)
+
     logger.debug("assigned values:")
     visualization.print_list_length_in_dict(assigned_values, print_func=logger.debug)
 
@@ -102,6 +103,10 @@ def assign_wildcard_paths_to_splits_grouped_by_path_position_value(
         ),
         placeholder_name='value',
     )
+
+    logger.debug("assigned paths:")
+    visualization.print_list_length_in_dict(file_paths, print_func=logger.debug)
+
     if paths_dump_file is not None:
         _store_assigned_file_paths_as_json(file_paths, paths_dump_file)
         logger.info(f"dumped file paths into '{paths_dump_file}'")
