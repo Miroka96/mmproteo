@@ -144,12 +144,12 @@ class Parquet2DatasetFileProcessor:
 
     def convert_df_file_to_dataset_file(self,
                                         df_input_file_path: str,
-                                        tf_dataset_output_file_path: str) -> None:
+                                        tf_dataset_output_file_path: str) -> Optional[Tuple[tf.TensorSpec]]:
         df = pd.read_parquet(df_input_file_path)
         self.logger.debug(f"finished reading '{df_input_file_path}' file")
         df_splits = self.split_dataframe_by_column_values(df, tf_dataset_output_file_path)
         if len(df_splits) == 0:
-            return
+            return None
 
         self.logger.debug(f"storing {len(df_splits)} df split{utils.get_plural_s(len(df_splits))} "
                           f"from '{df_input_file_path}'")
@@ -162,11 +162,12 @@ class Parquet2DatasetFileProcessor:
                                       path=path,
                                       compression='GZIP')
             self.logger.debug(f"saved TF dataset to {path}")
-        assert tf_dataset is not None
+        assert tf_dataset is not None, "at least one df_split should have created a dataset"
 
         self.logger.debug(f"TF dataset element spec: {tf_dataset.element_spec}")
+        return tf_dataset.element_spec
 
-    def __call__(self, item: Tuple[int, str]) -> Optional[str]:
+    def __call__(self, item: Tuple[int, str]) -> Optional[Dict[str, Optional[Any]]]:
         idx, path = item
         tf_dataset_path = os.path.join(self.dataset_dump_path_prefix, path.split(os.path.sep)[-1])
 
@@ -182,17 +183,21 @@ class Parquet2DatasetFileProcessor:
             self.logger.debug(f"Skipped '{path}' because '{tf_dataset_path}' already exists")
             return None
 
-        self.convert_df_file_to_dataset_file(df_input_file_path=path,
-                                             tf_dataset_output_file_path=tf_dataset_path)
+        element_spec = self.convert_df_file_to_dataset_file(df_input_file_path=path,
+                                                            tf_dataset_output_file_path=tf_dataset_path)
         gc.collect()
         if idx % 10 == 0:
             self.logger.info(stop_info_text)
         else:
             self.logger.debug(stop_info_text)
 
-        return tf_dataset_path
+        res = {
+            'dataset_path': tf_dataset_path,
+            'element_spec': element_spec,
+        }
+        return res
 
-    def process(self, parquet_file_paths: Iterable[str], **kwargs: Any) -> List[str]:
+    def process(self, parquet_file_paths: Iterable[str], **kwargs: Any) -> List[Optional[Dict[str, Optional[Any]]]]:
         if len(tf.config.list_physical_devices(device_type="GPU")) > 0:
             self.logger.info("Tensorflow dataset creation performance can be increased by limiting TF to CPUs only. "
                              'Set the following environment variables: "CUDA_DEVICE_ORDER"="PCI_BUS_ID" and '
@@ -205,7 +210,7 @@ class Parquet2DatasetFileProcessor:
             logger=self.logger,
             **kwargs
         )
-        results: List[str] = list(item_processor.process())  # type: ignore
+        results: List[Optional[Dict[str, Optional[Any]]]] = list(item_processor.process())  # type: ignore
         return results
 
 
