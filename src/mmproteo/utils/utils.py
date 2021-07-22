@@ -52,6 +52,8 @@ def _denumpyfy(element: Any) -> Any:
         return [_denumpyfy(v) for v in element]
     if type(element) == set:
         return {_denumpyfy(v) for v in element}
+    if type(element) == tuple:
+        return tuple(_denumpyfy(v) for v in element)
     if callable(element):
         return str(element)
     raise NotImplementedError(type(element))
