@@ -1,18 +1,41 @@
+import gzip
 import os
-from typing import Dict, Set, Optional, List, Sequence
+import shutil
+from typing import Callable, Dict, List, NoReturn, Optional, Sequence, Set, Union
+from zipfile import ZipFile
 
-from mmproteo.utils import utils, log
+from mmproteo.utils import log, utils
 from mmproteo.utils.config import Config
 from mmproteo.utils.filters import AbstractFilterConditionNode, filter_files_list
 from mmproteo.utils.formats import read
 from mmproteo.utils.processing import ItemProcessor
 
-_FILE_EXTRACTION_CONFIG: Dict[str, Dict[str, str]] = {
+
+def extract_gz_file(filename: str, output_filename: Optional[str] = None, delete_source: bool = True) -> Optional[NoReturn]:
+    if output_filename is None:
+        assert filename.endswith(".gz"), \
+            "Cannot determine the target filename for a gz file that doesn't end with '.gz'"
+        output_filename = filename[:-3]
+    with gzip.open(filename, 'rb') as input_file:
+        with open(output_filename, 'wb') as output_file:
+            shutil.copyfileobj(input_file, output_file)
+    if delete_source:
+        os.remove(filename)
+
+
+def extract_zip_file(filename: str, delete_source: bool = True) -> Optional[NoReturn]:
+    with ZipFile(filename, 'r') as input_file:
+        input_file.extractall()
+    if delete_source:
+        os.remove(filename)
+
+
+_FILE_EXTRACTION_CONFIG: Dict[str, Dict[str, Union[str, Callable[[str], Optional[NoReturn]]]]] = {
     "gz": {
-        "command": 'gunzip "%s"'
+        'extract_function': extract_gz_file
     },
     "zip": {
-        "command": 'unzip "%s"'
+        "extract_function": extract_zip_file,
     },
 }
 
@@ -39,18 +62,18 @@ def extract_file_if_possible(filename: Optional[str],
         logger.debug(f"Cannot extract file '{extracted_filename}', unknown extension")
         return None
 
-    extraction_command = _FILE_EXTRACTION_CONFIG[file_ext]["command"] % filename
-
     if skip_existing and os.path.isfile(extracted_filename):
         logger.info(f'Skipping extraction, because "{extracted_filename}" already exists')
         return extracted_filename
 
-    logger.info("Extracting file using '%s'" % extraction_command)
-    return_code = os.system(extraction_command)
-    if return_code == 0:
+    extract_function = _FILE_EXTRACTION_CONFIG[file_ext]["extract_function"]
+
+    logger.info(f"Extracting file '{filename}'")
+    try:
+        extract_function(filename)
         logger.info(f"Extracted file '{extracted_filename}'")
-    else:
-        logger.warning(f'Failed extracting file "{filename}" (return code = {return_code})')
+    except Exception as e:
+        logger.warning(f"Failed extracting file '{filename}': {type(e)} - {e}")
 
     return extracted_filename
 
