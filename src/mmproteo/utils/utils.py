@@ -8,7 +8,7 @@ try:
     from subprocess import DEVNULL  # Python 3.
 except ImportError:
     DEVNULL = open(os.devnull, 'wb')  # type: ignore
-from typing import Any, Hashable, Iterable, List, Optional, Union, Dict, \
+from typing import Any, Hashable, Iterable, List, NoReturn, Optional, Union, Dict, \
     Callable, TypeVar, Tuple, Collection
 
 import numpy as np
@@ -37,32 +37,38 @@ def deduplicate_list(lst: List[T]) -> List[T]:
     return deduplicated_list
 
 
-def _denumpyfy(element: Any) -> Any:
+def _denumpyfy(element: Any, raise_exception: bool = True) -> Union[Any, NoReturn]:
     if element is None:
         return element
-    if type(element) == np.int64:
+    if type(element) in [np.int8, np.int16, np.int32, np.int64]:
         return int(element)
-    if type(element) == np.float64:
+    if type(element) in [np.float16, np.float32, np.float64, np.float128]:
         return float(element)
-    if type(element) in [int, str, float]:
+    if type(element) == np.ndarray:
+        return [_denumpyfy(elem, raise_exception=raise_exception) for elem in list(element)]
+    if type(element) in [int, str, float, bool]:
         return element
     if type(element) == dict:
-        return {k: _denumpyfy(v) for k, v in element.items()}
+        return {k: _denumpyfy(v, raise_exception=raise_exception) for k, v in element.items()}
     if type(element) == list:
-        return [_denumpyfy(v) for v in element]
+        return [_denumpyfy(v, raise_exception=raise_exception) for v in element]
     if type(element) == set:
-        return {_denumpyfy(v) for v in element}
+        return {_denumpyfy(v, raise_exception=raise_exception) for v in element}
     if type(element) == tuple:
-        return tuple(_denumpyfy(v) for v in element)
+        return tuple(_denumpyfy(v, raise_exception=raise_exception) for v in element)
     if callable(element):
         return str(element)
-    raise NotImplementedError(type(element))
+    if raise_exception:
+        raise NotImplementedError(type(element))
+    else:
+        return element
 
 
 def denumpyfy(
-        element: Union[np.int64, np.float64, int, str, float, dict, list, set]) \
-        -> Union[int, str, float, dict, list, set]:
-    return _denumpyfy(element)
+        element: Union[np.int64, np.float64, int, str, float, dict, list, set, bool],
+        raise_exception: bool = True,
+) -> Union[int, str, float, dict, list, set, bool, NoReturn]:
+    return _denumpyfy(element, raise_exception=raise_exception)
 
 
 def ensure_dir_exists(directory: str, logger: log.Logger = log.DEFAULT_LOGGER) \
