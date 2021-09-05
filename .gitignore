@@ -147,6 +147,7 @@ pride/
 *.mzid
 *.parquet
 *.gz
+*.tmp
 datasets/*
 dumps/
 .ipynb_checkpoints/

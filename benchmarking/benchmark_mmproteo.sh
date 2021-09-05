@@ -22,5 +22,4 @@ for i in $(echo -e "1\n2\n4\n8"); do
 	time $BASE_CMD mgf2parquet
 	echoerr
 	cd ..
-	sleep 3600
 done
