@@ -162,7 +162,12 @@ class AbstractDownloader:
                             logger: log.Logger = log.DEFAULT_LOGGER) \
             -> Union[Dict[str, Any], List[Any], NoReturn, None]:
         logger.info(f"Requesting {subject_name} from {url}")
-        response = requests.get(url)
+        try:
+            response = requests.get(url)
+        except Exception as e:
+            logger.warning(f"Failed to request URL '{url}': {e}")
+            return None
+
         logger.debug(f"Received response from {url} with length of "
                      f"{len(response.text)} bytes and "
                      f"status code {response.status_code}")
@@ -171,5 +176,4 @@ class AbstractDownloader:
             response_object: Union[Dict[str, Any], List[Any]] = json.loads(response.text)
             return response_object
         else:
-            self._handle_non_200_response_codes(response, logger)
-            return None
+            return self._handle_non_200_response_codes(response, logger)

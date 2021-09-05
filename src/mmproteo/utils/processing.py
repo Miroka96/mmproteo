@@ -123,8 +123,6 @@ class ItemProcessor:
             self.process_pool.join()
             raise
         else:
-            self.process_pool.close()
-            self.process_pool.join()
             return indexed_results
 
     def __process_indexed_item_batch(self, indexed_item_batch: Iterable[Tuple[int, Optional[Any]]]) -> None:
@@ -144,7 +142,7 @@ class ItemProcessor:
             items = [item for item in items if item is not None]
         if keep_exceptions_as is None:
             items = [None if isinstance(item, Exception) else item for item in items]
-        elif keep_exceptions_as is False:
+        elif not keep_exceptions_as:
             items = [item for item in items if not isinstance(item, Exception)]
         return items
 
@@ -187,7 +185,11 @@ class ItemProcessor:
         for exception in exceptions:
             self.logger.debug(f"{type(exception)} - {exception}")
 
-    def process(self) -> Iterable[Optional[Any]]:
+    def __close(self):
+        self.process_pool.close()
+        self.process_pool.join()
+
+    def process(self, close: bool = True) -> Iterable[Optional[Any]]:
         self.__drop_null_items()
         if self.items_to_process_count == 0:
             self.logger.warning(f"No {self.subject_name}s available to {self.action_name}")
@@ -198,6 +200,8 @@ class ItemProcessor:
                           f"{utils.get_plural_s(self.items_to_process_count)}")
 
         self.__process_items()
+        if close:
+            self.__close()
         self.__evaluate_results_textually()
 
         return self.__get_processing_results(keep_null_items=self.keep_null_values,
