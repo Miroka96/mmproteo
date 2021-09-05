@@ -9,7 +9,7 @@ for i in $(echo -e "1\n2\n4\n8"); do
 	BASE_CMD="mmproteo -p PXD010000 --thread-count $i --log-to-stdout"
 	echoerr download:
 	for e in $(echo -e "raw\nmzid\nmzml"); do
-		echo extension=$e
+		echoerr extension=$e
 		time $BASE_CMD -n 8 -e $e download
 	done
 	echoerr convertraw:
