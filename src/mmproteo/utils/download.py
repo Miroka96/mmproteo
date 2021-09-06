@@ -13,7 +13,7 @@ from requests import Response
 
 
 def download_file(download_url: str, skip_existing: bool = Config.default_skip_existing) \
-        -> Tuple[Optional[str], Optional[str]]:
+        -> Union[Tuple[Optional[str], Optional[str]], NoReturn]:
     filename = download_url.split("/")[-1]
     downloaded_file_name: Optional[str] = None
 
@@ -38,7 +38,7 @@ def download_file(download_url: str, skip_existing: bool = Config.default_skip_e
                 skip_reason = 'extracted file "%s" already exists' % extracted_file_name
 
     if not (skip_existing and (found_downloaded_file or found_extracted_file)):
-        downloaded_file_name = wget.download(download_url)  # might raise an EXCEPTION
+        downloaded_file_name = wget.download(download_url)  # might raise an exception
 
     return downloaded_file_name, skip_reason
 
