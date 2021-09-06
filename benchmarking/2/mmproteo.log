@@ -1,137 +1,195 @@
-2021-09-05 16:27:33,104 - MMProteo: Logging to file './mmproteo.log' and to <stdout>
-2021-09-05 16:27:33,105 - MMProteo: Requesting list of project files using API version 2 from https://www.ebi.ac.uk/pride/ws/archive/v2/files/byProject?accession=PXD010000
-2021-09-05 16:27:33,894 - MMProteo: Received project file list using API version 2 with 1175 files for project "PXD010000"
-2021-09-05 16:27:33,894 - MMProteo: Filtering files based on the following required file extensions ["raw"] and the following optional file extensions ["gz", "zip"]
-2021-09-05 16:27:33,897 - MMProteo: Downloading 235 files
-2021-09-05 16:27:33,908 - MMProteo: Downloading file 2/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39.raw
-2021-09-05 16:27:33,908 - MMProteo: Downloading file 1/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39.raw
-2021-09-05 16:28:25,447 - MMProteo: Downloaded file 2/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39.raw"
-2021-09-05 16:28:25,479 - MMProteo: Downloading file 3/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39.raw
-2021-09-05 16:28:51,047 - MMProteo: Downloaded file 1/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39.raw"
-2021-09-05 16:28:51,090 - MMProteo: Downloading file 4/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.raw
-2021-09-05 16:29:33,327 - MMProteo: Downloaded file 3/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39.raw"
-2021-09-05 16:29:33,350 - MMProteo: Downloading file 5/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01.raw
-2021-09-05 16:29:33,512 - MMProteo: Failed to download file 5/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01.raw") because of "<urlopen error ftp error: error_perm('550 Failed to change directory.')>"
-2021-09-05 16:29:33,538 - MMProteo: Downloading file 6/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.raw
-2021-09-05 16:30:09,641 - MMProteo: Downloaded file 4/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.raw"
-2021-09-05 16:30:09,663 - MMProteo: Downloading file 7/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.raw
-2021-09-05 16:31:03,243 - MMProteo: Downloaded file 6/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.raw"
-2021-09-05 16:31:03,272 - MMProteo: Downloading file 8/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.raw
-2021-09-05 16:32:03,838 - MMProteo: Downloaded file 7/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.raw"
-2021-09-05 16:32:48,747 - MMProteo: Downloaded file 8/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.raw"
-2021-09-05 16:32:49,270 - MMProteo: Logging to file './mmproteo.log' and to <stdout>
-2021-09-05 16:32:49,270 - MMProteo: Requesting list of project files using API version 2 from https://www.ebi.ac.uk/pride/ws/archive/v2/files/byProject?accession=PXD010000
-2021-09-05 16:32:49,926 - MMProteo: Received project file list using API version 2 with 1175 files for project "PXD010000"
-2021-09-05 16:32:49,927 - MMProteo: Filtering files based on the following required file extensions ["mzid"] and the following optional file extensions ["gz", "zip"]
-2021-09-05 16:32:49,930 - MMProteo: Downloading 235 files
-2021-09-05 16:32:49,937 - MMProteo: Downloading file 2/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39_msgfplus.mzid.gz
-2021-09-05 16:32:49,937 - MMProteo: Downloading file 1/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39_msgfplus.mzid.gz
-2021-09-05 16:32:50,076 - MMProteo: Failed to download file 2/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39_msgfplus.mzid.gz") because of "<urlopen error ftp error: error_perm('550 Failed to change directory.')>"
-2021-09-05 16:32:50,076 - MMProteo: Failed to download file 1/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39_msgfplus.mzid.gz") because of "<urlopen error ftp error: error_perm('550 Failed to change directory.')>"
-2021-09-05 16:32:50,132 - MMProteo: Downloading file 3/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39_msgfplus.mzid.gz
-2021-09-05 16:32:50,132 - MMProteo: Downloading file 4/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz
-2021-09-05 16:32:50,266 - MMProteo: Failed to download file 3/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39_msgfplus.mzid.gz") because of "<urlopen error ftp error: error_perm('550 Failed to change directory.')>"
-2021-09-05 16:32:50,301 - MMProteo: Downloading file 5/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz
-2021-09-05 16:32:51,378 - MMProteo: Downloaded file 4/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz"
-2021-09-05 16:32:51,403 - MMProteo: Downloading file 6/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz
-2021-09-05 16:32:52,710 - MMProteo: Downloaded file 6/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz"
-2021-09-05 16:32:52,739 - MMProteo: Downloading file 7/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11_msgfplus.mzid.gz
-2021-09-05 16:32:53,009 - MMProteo: Downloaded file 5/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz"
-2021-09-05 16:32:53,037 - MMProteo: Downloading file 8/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11_msgfplus.mzid.gz
-2021-09-05 16:32:54,588 - MMProteo: Downloaded file 7/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11_msgfplus.mzid.gz"
-2021-09-05 16:32:55,338 - MMProteo: Downloaded file 8/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11_msgfplus.mzid.gz"
-2021-09-05 16:32:55,754 - MMProteo: Logging to file './mmproteo.log' and to <stdout>
-2021-09-05 16:32:55,755 - MMProteo: Requesting list of project files using API version 2 from https://www.ebi.ac.uk/pride/ws/archive/v2/files/byProject?accession=PXD010000
-2021-09-05 16:32:56,498 - MMProteo: Received project file list using API version 2 with 1175 files for project "PXD010000"
-2021-09-05 16:32:56,498 - MMProteo: Filtering files based on the following required file extensions ["mzml"] and the following optional file extensions ["gz", "zip"]
-2021-09-05 16:32:56,503 - MMProteo: Downloading 235 files
-2021-09-05 16:32:56,510 - MMProteo: Downloading file 1/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39.mzML.gz
-2021-09-05 16:32:56,510 - MMProteo: Downloading file 2/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39.mzML.gz
-2021-09-05 16:32:56,638 - MMProteo: Failed to download file 1/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39.mzML.gz") because of "<urlopen error ftp error: error_perm('550 Failed to change directory.')>"
-2021-09-05 16:32:56,691 - MMProteo: Downloading file 3/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39.mzML.gz
-2021-09-05 16:32:56,827 - MMProteo: Failed to download file 3/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39.mzML.gz") because of "<urlopen error ftp error: error_perm('550 Failed to change directory.')>"
-2021-09-05 16:32:56,864 - MMProteo: Downloading file 4/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.mzML.gz
-2021-09-05 16:33:12,308 - MMProteo: Downloaded file 2/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39.mzML.gz"
-2021-09-05 16:33:12,350 - MMProteo: Downloading file 5/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01.mzML.gz
-2021-09-05 16:33:17,813 - MMProteo: Downloaded file 4/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.mzML.gz"
-2021-09-05 16:33:17,835 - MMProteo: Downloading file 6/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.mzML.gz
-2021-09-05 16:33:33,141 - MMProteo: Downloaded file 6/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.mzML.gz"
-2021-09-05 16:33:33,170 - MMProteo: Downloading file 7/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.mzML.gz
-2021-09-05 16:33:39,616 - MMProteo: Downloaded file 5/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01.mzML.gz"
-2021-09-05 16:33:39,640 - MMProteo: Downloading file 8/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.mzML.gz
-2021-09-05 16:34:01,736 - MMProteo: Downloaded file 7/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.mzML.gz"
-2021-09-05 16:34:01,855 - MMProteo: Downloaded file 8/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.mzML.gz"
-2021-09-05 16:34:02,262 - MMProteo: Logging to file './mmproteo.log' and to <stdout>
-2021-09-05 16:34:05,782 - MMProteo: Started ThermoRawFileParser Docker container
-2021-09-05 16:34:05,786 - MMProteo: Filtering files based on the following required file extensions ["raw"] and the following optional file extensions ["gz", "zip"]
-2021-09-05 16:34:33,063 - MMProteo: Converted file ./Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39.raw
-2021-09-05 16:34:37,730 - MMProteo: Converted file ./Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39.raw
-2021-09-05 16:34:59,230 - MMProteo: Converted file ./Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39.raw
-2021-09-05 16:35:27,994 - MMProteo: Converted file ./Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.raw
-2021-09-05 16:35:42,718 - MMProteo: Converted file ./Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.raw
-2021-09-05 16:36:22,832 - MMProteo: Converted file ./Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.raw
-2021-09-05 16:36:35,422 - MMProteo: Converted file ./Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.raw
-2021-09-05 16:36:35,439 - MMProteo: Successfully raw2mgf-converted 7 raw files
-2021-09-05 16:36:35,439 - MMProteo: Encountered 0 exceptions during processing
-2021-09-05 16:36:47,150 - MMProteo: Stopped ThermoRawFileParser Docker container using docker stop thermorawfileparser
-2021-09-05 16:36:47,574 - MMProteo: Logging to file './mmproteo.log' and to <stdout>
-2021-09-05 16:36:47,577 - MMProteo: Filtering files based on the following required file extensions ["gz", "zip"]
-2021-09-05 16:36:47,585 - MMProteo: Extracting file './Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.mzML.gz'
-2021-09-05 16:36:47,585 - MMProteo: Extracting file './Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39.mzML.gz'
-2021-09-05 16:36:48,480 - MMProteo: Extracted file './Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39.mzML'
-2021-09-05 16:36:48,500 - MMProteo: Extracting file './Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz'
-2021-09-05 16:36:48,785 - MMProteo: Extracted file './Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01_msgfplus.mzid'
-2021-09-05 16:36:48,798 - MMProteo: Extracting file './Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01.mzML.gz'
-2021-09-05 16:36:48,983 - MMProteo: Extracted file './Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.mzML'
-2021-09-05 16:36:49,004 - MMProteo: Extracting file './Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz'
-2021-09-05 16:36:49,217 - MMProteo: Extracted file './Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01_msgfplus.mzid'
-2021-09-05 16:36:49,231 - MMProteo: Extracting file './Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.mzML.gz'
-2021-09-05 16:36:50,031 - MMProteo: Extracted file './Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01.mzML'
-2021-09-05 16:36:50,043 - MMProteo: Extracting file './Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz'
-2021-09-05 16:36:50,246 - MMProteo: Extracted file './Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01_msgfplus.mzid'
-2021-09-05 16:36:50,259 - MMProteo: Extracting file './Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.mzML.gz'
-2021-09-05 16:36:50,418 - MMProteo: Extracted file './Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.mzML'
-2021-09-05 16:36:50,430 - MMProteo: Extracting file './Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11_msgfplus.mzid.gz'
-2021-09-05 16:36:50,718 - MMProteo: Extracted file './Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11_msgfplus.mzid'
-2021-09-05 16:36:50,732 - MMProteo: Extracting file './Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.mzML.gz'
-2021-09-05 16:36:52,692 - MMProteo: Extracted file './Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.mzML'
-2021-09-05 16:36:52,705 - MMProteo: Extracting file './Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11_msgfplus.mzid.gz'
-2021-09-05 16:36:53,228 - MMProteo: Extracted file './Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.mzML'
-2021-09-05 16:36:53,388 - MMProteo: Extracted file './Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11_msgfplus.mzid'
-2021-09-05 16:36:53,403 - MMProteo: Successfully extracted 11 archive files
-2021-09-05 16:36:53,403 - MMProteo: Encountered 0 exceptions during processing
-2021-09-05 16:36:53,834 - MMProteo: Logging to file './mmproteo.log' and to <stdout>
-2021-09-05 16:36:53,844 - MMProteo: Started Merge 1/5: './Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.mzML' + './Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01_msgfplus.mzid' -> './Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01_mzmlid.parquet'
-2021-09-05 16:36:53,844 - MMProteo: Started Merge 2/5: './Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01.mzML' + './Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01_msgfplus.mzid' -> './Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01_mzmlid.parquet'
-2021-09-05 16:37:22,252 - MMProteo: Finished reading mzml file './Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01.mzML'
-2021-09-05 16:37:23,625 - MMProteo: Finished reading mzml file './Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.mzML'
-2021-09-05 16:38:53,424 - MMProteo: Finished reading mzid file './Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01_msgfplus.mzid'
-2021-09-05 16:39:07,652 - MMProteo: Finished reading mzid file './Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01_msgfplus.mzid'
-2021-09-05 16:56:41,413 - MMProteo: Finished Merge 2/5: './Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01.mzML' + './Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01_msgfplus.mzid' -> './Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01_mzmlid.parquet'
-2021-09-05 16:56:46,223 - MMProteo: Started Merge 3/5: './Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.mzML' + './Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01_msgfplus.mzid' -> './Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01_mzmlid.parquet'
-2021-09-05 16:57:16,830 - MMProteo: Finished reading mzml file './Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.mzML'
-2021-09-05 16:58:37,819 - MMProteo: Finished reading mzid file './Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01_msgfplus.mzid'
-2021-09-05 16:59:34,487 - MMProteo: Finished Merge 1/5: './Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.mzML' + './Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01_msgfplus.mzid' -> './Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01_mzmlid.parquet'
-2021-09-05 16:59:39,264 - MMProteo: Started Merge 4/5: './Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.mzML' + './Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11_msgfplus.mzid' -> './Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11_mzmlid.parquet'
-2021-09-05 17:00:14,547 - MMProteo: Finished reading mzml file './Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.mzML'
-2021-09-05 17:01:44,688 - MMProteo: Finished reading mzid file './Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11_msgfplus.mzid'
-2021-09-05 17:04:20,065 - MMProteo: Finished Merge 4/5: './Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.mzML' + './Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11_msgfplus.mzid' -> './Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11_mzmlid.parquet'
-2021-09-05 17:04:21,104 - MMProteo: Started Merge 5/5: './Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.mzML' + './Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11_msgfplus.mzid' -> './Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11_mzmlid.parquet'
-2021-09-05 17:04:55,914 - MMProteo: Finished reading mzml file './Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.mzML'
-2021-09-05 17:06:19,710 - MMProteo: Finished Merge 3/5: './Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.mzML' + './Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01_msgfplus.mzid' -> './Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01_mzmlid.parquet'
-2021-09-05 17:06:20,354 - MMProteo: Finished reading mzid file './Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11_msgfplus.mzid'
-2021-09-05 17:08:13,941 - MMProteo: Finished Merge 5/5: './Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.mzML' + './Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11_msgfplus.mzid' -> './Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11_mzmlid.parquet'
-2021-09-05 17:08:14,993 - MMProteo: Successfully mzmlid-merged 5 file pairs
-2021-09-05 17:08:14,998 - MMProteo: Encountered 0 exceptions during processing
-2021-09-05 17:08:15,808 - MMProteo: Logging to file './mmproteo.log' and to <stdout>
-2021-09-05 17:08:15,811 - MMProteo: Filtering files based on the following required file extensions ["mgf"] and the following optional file extensions ["gz", "zip"]
-2021-09-05 17:08:24,716 - MMProteo: Converted file ./Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39.mgf
-2021-09-05 17:08:25,978 - MMProteo: Converted file ./Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39.mgf
-2021-09-05 17:08:32,557 - MMProteo: Converted file ./Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39.mgf
-2021-09-05 17:08:40,411 - MMProteo: Converted file ./Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.mgf
-2021-09-05 17:08:45,081 - MMProteo: Converted file ./Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.mgf
-2021-09-05 17:08:55,487 - MMProteo: Converted file ./Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.mgf
-2021-09-05 17:09:00,013 - MMProteo: Converted file ./Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.mgf
-2021-09-05 17:09:00,141 - MMProteo: Successfully mgf2parquet-converted 7 MGF files
-2021-09-05 17:09:00,142 - MMProteo: Encountered 0 exceptions during processing
-2021-09-05 20:50:35,310 - MMProteo: Logging to file './mmproteo.log' and to <stderr>
+2021-09-06 17:00:25,583 - MMProteo: Logging to file './mmproteo.log' and to <stdout>
+2021-09-06 17:00:25,584 - MMProteo: Requesting list of project files using API version 2 from https://www.ebi.ac.uk/pride/ws/archive/v2/files/byProject?accession=PXD010000
+2021-09-06 17:00:27,184 - MMProteo: Received project file list using API version 2 with 1175 files for project "PXD010000"
+2021-09-06 17:00:27,184 - MMProteo: Filtering files based on the following required file extensions ["raw"] and the following optional file extensions ["gz", "zip"]
+2021-09-06 17:00:27,188 - MMProteo: Downloading 235 files
+2021-09-06 17:00:27,194 - MMProteo: Downloading file 2/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39.raw
+2021-09-06 17:00:27,194 - MMProteo: Downloading file 1/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39.raw
+2021-09-06 17:01:19,795 - MMProteo: Downloaded file 1/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39.raw"
+2021-09-06 17:01:19,830 - MMProteo: Downloading file 3/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39.raw
+2021-09-06 17:01:19,967 - MMProteo: Failed to download file 3/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39.raw") because of "<urlopen error ftp error: error_perm('550 Failed to change directory.')>"
+2021-09-06 17:01:20,005 - MMProteo: Downloading file 4/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.raw
+2021-09-06 17:01:20,150 - MMProteo: Failed to download file 4/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.raw") because of "<urlopen error ftp error: error_perm('550 Failed to change directory.')>"
+2021-09-06 17:01:20,190 - MMProteo: Downloading file 5/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01.raw
+2021-09-06 17:01:20,329 - MMProteo: Failed to download file 5/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01.raw") because of "<urlopen error ftp error: error_perm('550 Failed to change directory.')>"
+2021-09-06 17:01:20,347 - MMProteo: Downloading file 6/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.raw
+2021-09-06 17:01:20,487 - MMProteo: Failed to download file 6/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.raw") because of "<urlopen error ftp error: error_perm('550 Failed to change directory.')>"
+2021-09-06 17:01:20,515 - MMProteo: Downloading file 7/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.raw
+2021-09-06 17:02:16,047 - MMProteo: Downloaded file 2/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39.raw"
+2021-09-06 17:02:16,089 - MMProteo: Downloading file 8/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.raw
+2021-09-06 17:02:43,348 - MMProteo: Downloaded file 7/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.raw"
+2021-09-06 17:03:34,981 - MMProteo: Downloaded file 8/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.raw"
+2021-09-06 17:03:35,005 - MMProteo: Downloading file 9/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_3_23Nov16_Pippin_16-09-11.raw
+2021-09-06 17:03:35,005 - MMProteo: Downloading file 10/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_bifidum_CMcarb_anaerobic_01_26Feb16_Arwen_16-01-01.raw
+2021-09-06 17:05:16,935 - MMProteo: Downloaded file 9/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_3_23Nov16_Pippin_16-09-11.raw"
+2021-09-06 17:05:16,958 - MMProteo: Downloading file 11/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_bifidum_CMcarb_anaerobic_02_26Feb16_Arwen_16-01-01.raw
+2021-09-06 17:05:36,828 - MMProteo: Downloaded file 10/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_bifidum_CMcarb_anaerobic_01_26Feb16_Arwen_16-01-01.raw"
+2021-09-06 17:05:36,853 - MMProteo: Downloading file 12/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_bifidum_CMcarb_anaerobic_03_26Feb16_Arwen_16-01-01.raw
+2021-09-06 17:06:48,767 - MMProteo: Downloaded file 11/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_bifidum_CMcarb_anaerobic_02_26Feb16_Arwen_16-01-01.raw"
+2021-09-06 17:07:03,674 - MMProteo: Downloaded file 12/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_bifidum_CMcarb_anaerobic_03_26Feb16_Arwen_16-01-01.raw"
+2021-09-06 17:07:03,693 - MMProteo: Successfully downloaded 8 URLs
+2021-09-06 17:07:03,693 - MMProteo: Encountered 4 exceptions during processing
+2021-09-06 17:07:03,699 - MMProteo: Limiting the shown columns according to the shown_columns parameter
+2021-09-06 17:07:04,067 - MMProteo: Logging to file './mmproteo.log' and to <stdout>
+2021-09-06 17:07:04,068 - MMProteo: Requesting list of project files using API version 2 from https://www.ebi.ac.uk/pride/ws/archive/v2/files/byProject?accession=PXD010000
+2021-09-06 17:07:04,983 - MMProteo: Received project file list using API version 2 with 1175 files for project "PXD010000"
+2021-09-06 17:07:04,983 - MMProteo: Filtering files based on the following required file extensions ["mzid"] and the following optional file extensions ["gz", "zip"]
+2021-09-06 17:07:04,987 - MMProteo: Downloading 235 files
+2021-09-06 17:07:04,993 - MMProteo: Downloading file 1/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39_msgfplus.mzid.gz
+2021-09-06 17:07:04,993 - MMProteo: Downloading file 2/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39_msgfplus.mzid.gz
+2021-09-06 17:07:05,087 - MMProteo: Failed to download file 2/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39_msgfplus.mzid.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-06 17:07:05,111 - MMProteo: Downloading file 3/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39_msgfplus.mzid.gz
+2021-09-06 17:07:05,175 - MMProteo: Failed to download file 3/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39_msgfplus.mzid.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-06 17:07:05,193 - MMProteo: Downloading file 4/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz
+2021-09-06 17:07:06,116 - MMProteo: Downloaded file 1/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39_msgfplus.mzid.gz"
+2021-09-06 17:07:06,138 - MMProteo: Downloading file 5/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz
+2021-09-06 17:07:06,208 - MMProteo: Failed to download file 5/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-06 17:07:06,244 - MMProteo: Downloading file 6/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz
+2021-09-06 17:07:07,814 - MMProteo: Downloaded file 6/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz"
+2021-09-06 17:07:07,835 - MMProteo: Downloading file 7/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11_msgfplus.mzid.gz
+2021-09-06 17:07:09,663 - MMProteo: Downloaded file 7/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11_msgfplus.mzid.gz"
+2021-09-06 17:07:09,665 - MMProteo: Downloaded file 4/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz"
+2021-09-06 17:07:09,689 - MMProteo: Downloading file 8/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11_msgfplus.mzid.gz
+2021-09-06 17:07:11,209 - MMProteo: Downloaded file 8/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11_msgfplus.mzid.gz"
+2021-09-06 17:07:11,230 - MMProteo: Downloading file 9/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_3_23Nov16_Pippin_16-09-11_msgfplus.mzid.gz
+2021-09-06 17:07:11,230 - MMProteo: Downloading file 10/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_bifidum_CMcarb_anaerobic_01_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz
+2021-09-06 17:07:11,298 - MMProteo: Failed to download file 10/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_bifidum_CMcarb_anaerobic_01_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-06 17:07:11,334 - MMProteo: Downloading file 11/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_bifidum_CMcarb_anaerobic_02_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz
+2021-09-06 17:07:11,404 - MMProteo: Failed to download file 11/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_bifidum_CMcarb_anaerobic_02_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-06 17:07:12,654 - MMProteo: Downloaded file 9/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_3_23Nov16_Pippin_16-09-11_msgfplus.mzid.gz"
+2021-09-06 17:07:12,668 - MMProteo: Downloading file 13/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_ATCC14579_LB_aerobic_1_17July16_Samwise_16-04-10_msgfplus.mzid.gz
+2021-09-06 17:07:12,668 - MMProteo: Downloading file 12/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_bifidum_CMcarb_anaerobic_03_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz
+2021-09-06 17:07:12,738 - MMProteo: Failed to download file 12/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_bifidum_CMcarb_anaerobic_03_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-06 17:07:13,983 - MMProteo: Downloaded file 13/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_ATCC14579_LB_aerobic_1_17July16_Samwise_16-04-10_msgfplus.mzid.gz"
+2021-09-06 17:07:14,003 - MMProteo: Downloading file 14/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_ATCC14579_LB_aerobic_2_17July16_Samwise_16-04-10_msgfplus.mzid.gz
+2021-09-06 17:07:15,285 - MMProteo: Downloaded file 14/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_ATCC14579_LB_aerobic_2_17July16_Samwise_16-04-10_msgfplus.mzid.gz"
+2021-09-06 17:07:15,309 - MMProteo: Successfully downloaded 8 URLs
+2021-09-06 17:07:15,309 - MMProteo: Encountered 6 exceptions during processing
+2021-09-06 17:07:15,316 - MMProteo: Limiting the shown columns according to the shown_columns parameter
+2021-09-06 17:07:15,695 - MMProteo: Logging to file './mmproteo.log' and to <stdout>
+2021-09-06 17:07:15,696 - MMProteo: Requesting list of project files using API version 2 from https://www.ebi.ac.uk/pride/ws/archive/v2/files/byProject?accession=PXD010000
+2021-09-06 17:07:18,017 - MMProteo: Received project file list using API version 2 with 1175 files for project "PXD010000"
+2021-09-06 17:07:18,017 - MMProteo: Filtering files based on the following required file extensions ["mzml"] and the following optional file extensions ["gz", "zip"]
+2021-09-06 17:07:18,021 - MMProteo: Downloading 235 files
+2021-09-06 17:07:18,028 - MMProteo: Downloading file 1/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39.mzML.gz
+2021-09-06 17:07:18,028 - MMProteo: Downloading file 2/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39.mzML.gz
+2021-09-06 17:07:18,102 - MMProteo: Failed to download file 2/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39.mzML.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-06 17:07:18,126 - MMProteo: Downloading file 3/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39.mzML.gz
+2021-09-06 17:07:18,195 - MMProteo: Failed to download file 3/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39.mzML.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-06 17:07:18,229 - MMProteo: Downloading file 4/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.mzML.gz
+2021-09-06 17:07:27,340 - MMProteo: Downloaded file 1/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39.mzML.gz"
+2021-09-06 17:07:27,374 - MMProteo: Downloading file 5/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01.mzML.gz
+2021-09-06 17:07:44,145 - MMProteo: Downloaded file 4/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.mzML.gz"
+2021-09-06 17:07:44,168 - MMProteo: Downloading file 6/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.mzML.gz
+2021-09-06 17:07:56,091 - MMProteo: Downloaded file 6/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.mzML.gz"
+2021-09-06 17:07:56,104 - MMProteo: Downloading file 7/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.mzML.gz
+2021-09-06 17:08:06,352 - MMProteo: Downloaded file 5/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01.mzML.gz"
+2021-09-06 17:08:06,374 - MMProteo: Downloading file 8/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.mzML.gz
+2021-09-06 17:08:14,532 - MMProteo: Downloaded file 7/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.mzML.gz"
+2021-09-06 17:08:24,722 - MMProteo: Downloaded file 8/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.mzML.gz"
+2021-09-06 17:08:24,751 - MMProteo: Downloading file 9/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_3_23Nov16_Pippin_16-09-11.mzML.gz
+2021-09-06 17:08:24,751 - MMProteo: Downloading file 10/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_bifidum_CMcarb_anaerobic_01_26Feb16_Arwen_16-01-01.mzML.gz
+2021-09-06 17:08:24,819 - MMProteo: Failed to download file 10/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_bifidum_CMcarb_anaerobic_01_26Feb16_Arwen_16-01-01.mzML.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-06 17:08:38,765 - MMProteo: Downloaded file 9/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_3_23Nov16_Pippin_16-09-11.mzML.gz"
+2021-09-06 17:08:38,787 - MMProteo: Downloading file 11/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_bifidum_CMcarb_anaerobic_02_26Feb16_Arwen_16-01-01.mzML.gz
+2021-09-06 17:08:49,825 - MMProteo: Downloaded file 11/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_bifidum_CMcarb_anaerobic_02_26Feb16_Arwen_16-01-01.mzML.gz"
+2021-09-06 17:08:49,851 - MMProteo: Successfully downloaded 8 URLs
+2021-09-06 17:08:49,852 - MMProteo: Encountered 3 exceptions during processing
+2021-09-06 17:08:49,859 - MMProteo: Limiting the shown columns according to the shown_columns parameter
+2021-09-06 17:09:31,028 - MMProteo: Logging to file './mmproteo.log' and to <stdout>
+2021-09-06 17:09:38,129 - MMProteo: Started ThermoRawFileParser Docker container
+2021-09-06 17:09:38,132 - MMProteo: Filtering files based on the following required file extensions ["raw"] and the following optional file extensions ["gz", "zip"]
+2021-09-06 17:10:05,645 - MMProteo: Converted file './Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39.raw'
+2021-09-06 17:10:09,782 - MMProteo: Converted file './Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39.raw'
+2021-09-06 17:10:31,819 - MMProteo: Converted file './Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39.raw'
+2021-09-06 17:11:00,073 - MMProteo: Converted file './Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.raw'
+2021-09-06 17:11:17,811 - MMProteo: Converted file './Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01.raw'
+2021-09-06 17:11:42,701 - MMProteo: Converted file './Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.raw'
+2021-09-06 17:12:11,981 - MMProteo: Converted file './Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.raw'
+2021-09-06 17:12:35,298 - MMProteo: Converted file './Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.raw'
+2021-09-06 17:12:35,316 - MMProteo: Successfully raw2mgf-converted 8 raw files
+2021-09-06 17:12:35,316 - MMProteo: Encountered 0 exceptions during processing
+2021-09-06 17:12:46,972 - MMProteo: Stopped ThermoRawFileParser Docker container using 'docker stop thermorawfileparser'
+2021-09-06 17:12:47,342 - MMProteo: Logging to file './mmproteo.log' and to <stdout>
+2021-09-06 17:12:47,345 - MMProteo: Filtering files based on the following required file extensions ["gz", "zip"]
+2021-09-06 17:12:47,353 - MMProteo: Extracting file './Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39.mzML.gz'
+2021-09-06 17:12:47,353 - MMProteo: Extracting file './Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39_msgfplus.mzid.gz'
+2021-09-06 17:12:47,612 - MMProteo: Extracted file './Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39_msgfplus.mzid'
+2021-09-06 17:12:47,632 - MMProteo: Extracting file './Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39.mzML.gz'
+2021-09-06 17:12:48,236 - MMProteo: Extracted file './Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39.mzML'
+2021-09-06 17:12:48,257 - MMProteo: Extracting file './Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39_msgfplus.mzid.gz'
+2021-09-06 17:12:48,473 - MMProteo: Extracted file './Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39_msgfplus.mzid'
+2021-09-06 17:12:48,486 - MMProteo: Extracting file './Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39.mzML.gz'
+2021-09-06 17:12:48,567 - MMProteo: Extracted file './Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39.mzML'
+2021-09-06 17:12:48,592 - MMProteo: Extracting file './Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39_msgfplus.mzid.gz'
+2021-09-06 17:12:48,932 - MMProteo: Extracted file './Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39_msgfplus.mzid'
+2021-09-06 17:12:48,946 - MMProteo: Extracting file './Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.mzML.gz'
+2021-09-06 17:12:49,956 - MMProteo: Extracted file './Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39.mzML'
+2021-09-06 17:12:49,984 - MMProteo: Extracting file './Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz'
+2021-09-06 17:12:50,408 - MMProteo: Extracted file './Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01_msgfplus.mzid'
+2021-09-06 17:12:50,421 - MMProteo: Extracting file './Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01.mzML.gz'
+2021-09-06 17:12:52,093 - MMProteo: Extracted file './Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.mzML'
+2021-09-06 17:12:52,106 - MMProteo: Extracting file './Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz'
+2021-09-06 17:12:52,384 - MMProteo: Extracted file './Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01_msgfplus.mzid'
+2021-09-06 17:12:52,395 - MMProteo: Extracting file './Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.mzML.gz'
+2021-09-06 17:12:53,782 - MMProteo: Extracted file './Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01.mzML'
+2021-09-06 17:12:53,795 - MMProteo: Extracting file './Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz'
+2021-09-06 17:12:54,913 - MMProteo: Extracted file './Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01_msgfplus.mzid'
+2021-09-06 17:12:54,930 - MMProteo: Extracting file './Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.mzML.gz'
+2021-09-06 17:12:55,618 - MMProteo: Extracted file './Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.mzML'
+2021-09-06 17:12:55,633 - MMProteo: Extracting file './Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11_msgfplus.mzid.gz'
+2021-09-06 17:12:56,184 - MMProteo: Extracted file './Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11_msgfplus.mzid'
+2021-09-06 17:12:56,197 - MMProteo: Extracting file './Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.mzML.gz'
+2021-09-06 17:12:58,226 - MMProteo: Extracted file './Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.mzML'
+2021-09-06 17:12:58,241 - MMProteo: Extracting file './Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11_msgfplus.mzid.gz'
+2021-09-06 17:12:58,731 - MMProteo: Extracted file './Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11_msgfplus.mzid'
+2021-09-06 17:12:59,417 - MMProteo: Extracted file './Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.mzML'
+2021-09-06 17:12:59,433 - MMProteo: Successfully extracted 16 archive files
+2021-09-06 17:12:59,433 - MMProteo: Encountered 0 exceptions during processing
+2021-09-06 17:12:59,817 - MMProteo: Logging to file './mmproteo.log' and to <stdout>
+2021-09-06 17:12:59,828 - MMProteo: Started Merge 1/8: './Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39.mzML' + './Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39_msgfplus.mzid' -> './Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39_mzmlid.parquet'
+2021-09-06 17:12:59,828 - MMProteo: Started Merge 2/8: './Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39.mzML' + './Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39_msgfplus.mzid' -> './Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39_mzmlid.parquet'
+2021-09-06 17:13:21,619 - MMProteo: Finished reading mzml file './Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39.mzML'
+2021-09-06 17:13:22,250 - MMProteo: Finished reading mzml file './Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39.mzML'
+2021-09-06 17:14:05,736 - MMProteo: Finished reading mzid file './Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39_msgfplus.mzid'
+2021-09-06 17:14:08,350 - MMProteo: Finished reading mzid file './Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39_msgfplus.mzid'
+2021-09-06 17:14:43,748 - MMProteo: Finished Merge 2/8: './Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39.mzML' + './Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39_msgfplus.mzid' -> './Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39_mzmlid.parquet'
+2021-09-06 17:14:44,431 - MMProteo: Started Merge 3/8: './Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39.mzML' + './Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39_msgfplus.mzid' -> './Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39_mzmlid.parquet'
+2021-09-06 17:14:52,447 - MMProteo: Finished Merge 1/8: './Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39.mzML' + './Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39_msgfplus.mzid' -> './Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39_mzmlid.parquet'
+2021-09-06 17:14:53,085 - MMProteo: Started Merge 4/8: './Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.mzML' + './Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01_msgfplus.mzid' -> './Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01_mzmlid.parquet'
+2021-09-06 17:15:06,849 - MMProteo: Finished reading mzml file './Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39.mzML'
+2021-09-06 17:15:22,626 - MMProteo: Finished reading mzml file './Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.mzML'
+2021-09-06 17:15:52,760 - MMProteo: Finished reading mzid file './Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39_msgfplus.mzid'
+2021-09-06 17:17:01,322 - MMProteo: Finished Merge 3/8: './Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39.mzML' + './Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39_msgfplus.mzid' -> './Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39_mzmlid.parquet'
+2021-09-06 17:17:01,951 - MMProteo: Started Merge 5/8: './Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01.mzML' + './Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01_msgfplus.mzid' -> './Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01_mzmlid.parquet'
+2021-09-06 17:17:13,719 - MMProteo: Finished reading mzid file './Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01_msgfplus.mzid'
+2021-09-06 17:17:31,413 - MMProteo: Finished reading mzml file './Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01.mzML'
+2021-09-06 17:19:21,800 - MMProteo: Finished reading mzid file './Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01_msgfplus.mzid'
+2021-09-06 17:39:50,293 - MMProteo: Finished Merge 5/8: './Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01.mzML' + './Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01_msgfplus.mzid' -> './Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01_mzmlid.parquet'
+2021-09-06 17:41:16,667 - MMProteo: Finished Merge 4/8: './Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.mzML' + './Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01_msgfplus.mzid' -> './Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01_mzmlid.parquet'
+2021-09-06 17:41:40,911 - MMProteo: Started Merge 6/8: './Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.mzML' + './Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01_msgfplus.mzid' -> './Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01_mzmlid.parquet'
+2021-09-06 17:42:13,682 - MMProteo: Finished reading mzml file './Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.mzML'
+2021-09-06 17:42:36,745 - MMProteo: Started Merge 7/8: './Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.mzML' + './Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11_msgfplus.mzid' -> './Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11_mzmlid.parquet'
+2021-09-06 17:43:14,126 - MMProteo: Finished reading mzml file './Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.mzML'
+2021-09-06 17:43:23,720 - MMProteo: Finished reading mzid file './Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01_msgfplus.mzid'
+2021-09-06 17:44:44,702 - MMProteo: Finished reading mzid file './Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11_msgfplus.mzid'
+2021-09-06 17:47:33,360 - MMProteo: Finished Merge 7/8: './Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.mzML' + './Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11_msgfplus.mzid' -> './Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11_mzmlid.parquet'
+2021-09-06 17:47:34,488 - MMProteo: Started Merge 8/8: './Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.mzML' + './Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11_msgfplus.mzid' -> './Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11_mzmlid.parquet'
+2021-09-06 17:48:09,510 - MMProteo: Finished reading mzml file './Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.mzML'
+2021-09-06 17:49:35,736 - MMProteo: Finished reading mzid file './Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11_msgfplus.mzid'
+2021-09-06 17:51:43,049 - MMProteo: Finished Merge 8/8: './Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.mzML' + './Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11_msgfplus.mzid' -> './Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11_mzmlid.parquet'
+2021-09-06 17:51:45,131 - MMProteo: Finished Merge 6/8: './Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.mzML' + './Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01_msgfplus.mzid' -> './Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01_mzmlid.parquet'
+2021-09-06 17:51:54,499 - MMProteo: Successfully mzmlid-merged 8 file pairs
+2021-09-06 17:51:54,506 - MMProteo: Encountered 0 exceptions during processing
+2021-09-06 17:51:55,854 - MMProteo: Logging to file './mmproteo.log' and to <stdout>
+2021-09-06 17:51:55,857 - MMProteo: Filtering files based on the following required file extensions ["mgf"] and the following optional file extensions ["gz", "zip"]
+2021-09-06 17:52:04,489 - MMProteo: Converted file ./Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39.mgf
+2021-09-06 17:52:05,569 - MMProteo: Converted file ./Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39.mgf
+2021-09-06 17:52:12,253 - MMProteo: Converted file ./Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39.mgf
+2021-09-06 17:52:19,788 - MMProteo: Converted file ./Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.mgf
+2021-09-06 17:52:25,623 - MMProteo: Converted file ./Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01.mgf
+2021-09-06 17:52:32,228 - MMProteo: Converted file ./Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.mgf
+2021-09-06 17:52:40,541 - MMProteo: Converted file ./Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.mgf
+2021-09-06 17:52:46,812 - MMProteo: Converted file ./Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.mgf
+2021-09-06 17:52:46,938 - MMProteo: Successfully mgf2parquet-converted 8 MGF files
+2021-09-06 17:52:46,939 - MMProteo: Encountered 0 exceptions during processing
