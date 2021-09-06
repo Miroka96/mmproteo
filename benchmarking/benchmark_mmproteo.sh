@@ -1,9 +1,9 @@
 #!/bin/bash
 
 echoerr() { echo -ne "$@" 1>&2; }
-TIME_CMD="/usr/bin/time --format=%K,%e"
+TIME_CMD="/usr/bin/time --format=%e"
 
-echoerr "cores,operation,part,averageTotalMemoryInKB,elapsedRealTime\n"
+echoerr "cores,operation,part,elapsedRealTime\n"
 for i in $(echo -e "1\n2\n4\n8" | shuf); do
 	mkdir "$i"
 	cd "$i" || (echoerr "could not change into $(pwd)/$i"; exit 1)
