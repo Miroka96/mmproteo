@@ -186,6 +186,8 @@ class ItemProcessor:
             self.logger.debug(f"{type(exception)} - {exception}")
 
     def __close(self):
+        if self.process_pool is None:
+            return
         self.process_pool.close()
         self.process_pool.join()
 
