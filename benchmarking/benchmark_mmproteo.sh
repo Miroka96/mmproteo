@@ -4,7 +4,7 @@ echoerr() { echo -ne "$@" 1>&2; }
 TIME_CMD="/usr/bin/time --format=%K,%e"
 
 echoerr "cores,operation,part,averageTotalMemoryInKB,elapsedRealTime\n"
-for i in $(echo -e "1\n2\n4\n8"); do
+for i in $(echo -e "1\n2\n4\n8" | shuf); do
 	mkdir "$i"
 	cd "$i" || (echoerr "could not change into $(pwd)/$i"; exit 1)
 	pwd
