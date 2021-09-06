@@ -366,3 +366,6 @@ real	0m21,413s
 user	1m14,465s
 sys	0m4,911s
 
+cores,operation,part,averageTotalMemoryInKB,elapsedRealTimemkdir: cannot create directory ‘1’: File exists
+cores,operation,part,averageTotalMemoryInKB,elapsedRealTimemkdir: cannot create directory ‘1’: File exists
+1,download,raw,

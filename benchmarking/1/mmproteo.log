@@ -203,3 +203,17 @@
 2021-09-05 15:33:40,493 - MMProteo: Converted file ./Biodiversity_B_cereus_ATCC14579_LB_aerobic_1_17July16_Samwise_16-04-10.mgf
 2021-09-05 15:33:40,587 - MMProteo: Successfully mgf2parquet-converted 8 MGF files
 2021-09-05 15:33:40,587 - MMProteo: Encountered 0 exceptions during processing
+2021-09-06 15:07:41,567 - MMProteo: Logging to file './mmproteo.log' and to <stdout>
+2021-09-06 15:07:41,567 - MMProteo: Requesting list of project files using API version 2 from https://www.ebi.ac.uk/pride/ws/archive/v2/files/byProject?accession=PXD010000
+2021-09-06 15:07:42,536 - MMProteo: Received project file list using API version 2 with 1175 files for project "PXD010000"
+2021-09-06 15:07:42,537 - MMProteo: Filtering files based on the following required file extensions ["raw"] and the following optional file extensions ["gz", "zip"]
+2021-09-06 15:07:42,545 - MMProteo: Downloading 235 files
+2021-09-06 15:07:42,546 - MMProteo: Downloading file 1/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39.raw
+2021-09-06 15:07:54,636 - MMProteo: Received KeyboardInterrupt - Shutting down
+2021-09-06 15:09:03,059 - MMProteo: Logging to file './mmproteo.log' and to <stdout>
+2021-09-06 15:09:03,060 - MMProteo: Requesting list of project files using API version 2 from https://www.ebi.ac.uk/pride/ws/archive/v2/files/byProject?accession=PXD010000
+2021-09-06 15:09:03,954 - MMProteo: Received project file list using API version 2 with 1175 files for project "PXD010000"
+2021-09-06 15:09:03,954 - MMProteo: Filtering files based on the following required file extensions ["raw"] and the following optional file extensions ["gz", "zip"]
+2021-09-06 15:09:03,961 - MMProteo: Downloading 235 files
+2021-09-06 15:09:03,962 - MMProteo: Downloading file 1/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39.raw
+2021-09-06 15:10:03,941 - MMProteo: Received KeyboardInterrupt - Shutting down
