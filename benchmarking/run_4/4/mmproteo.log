@@ -1,0 +1,289 @@
+2021-09-08 00:03:27,081 - MMProteo: Logging to file './mmproteo.log' and to <stdout>
+2021-09-08 00:03:27,081 - MMProteo: Requesting list of project files using API version 2 from https://www.ebi.ac.uk/pride/ws/archive/v2/files/byProject?accession=PXD010000
+2021-09-08 00:03:28,111 - MMProteo: Received project file list using API version 2 with 1175 files for project "PXD010000"
+2021-09-08 00:03:28,112 - MMProteo: Filtering files based on the following required file extensions ["raw"] and the following optional file extensions ["gz", "zip"]
+2021-09-08 00:03:28,115 - MMProteo: Downloading 235 files
+2021-09-08 00:03:28,127 - MMProteo: Downloading file 1/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39.raw
+2021-09-08 00:03:28,127 - MMProteo: Downloading file 2/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39.raw
+2021-09-08 00:03:28,127 - MMProteo: Downloading file 3/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39.raw
+2021-09-08 00:03:28,127 - MMProteo: Downloading file 4/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.raw
+2021-09-08 00:03:28,235 - MMProteo: Failed to download file 3/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39.raw") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:03:28,236 - MMProteo: Failed to download file 2/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39.raw") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:03:28,237 - MMProteo: Failed to download file 1/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39.raw") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:03:28,289 - MMProteo: Downloading file 6/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.raw
+2021-09-08 00:03:28,289 - MMProteo: Downloading file 5/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01.raw
+2021-09-08 00:03:28,289 - MMProteo: Downloading file 7/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.raw
+2021-09-08 00:03:28,358 - MMProteo: Failed to download file 5/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01.raw") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:03:28,360 - MMProteo: Failed to download file 7/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.raw") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:03:28,361 - MMProteo: Failed to download file 6/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.raw") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:03:28,385 - MMProteo: Downloading file 8/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.raw
+2021-09-08 00:05:07,914 - MMProteo: Downloaded file 4/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.raw"
+2021-09-08 00:05:27,235 - MMProteo: Downloaded file 8/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.raw"
+2021-09-08 00:05:27,267 - MMProteo: Downloading file 9/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_3_23Nov16_Pippin_16-09-11.raw
+2021-09-08 00:05:27,267 - MMProteo: Downloading file 10/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_bifidum_CMcarb_anaerobic_01_26Feb16_Arwen_16-01-01.raw
+2021-09-08 00:05:27,267 - MMProteo: Downloading file 11/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_bifidum_CMcarb_anaerobic_02_26Feb16_Arwen_16-01-01.raw
+2021-09-08 00:05:27,267 - MMProteo: Downloading file 12/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_bifidum_CMcarb_anaerobic_03_26Feb16_Arwen_16-01-01.raw
+2021-09-08 00:05:27,340 - MMProteo: Failed to download file 11/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_bifidum_CMcarb_anaerobic_02_26Feb16_Arwen_16-01-01.raw") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:05:27,342 - MMProteo: Failed to download file 12/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_bifidum_CMcarb_anaerobic_03_26Feb16_Arwen_16-01-01.raw") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:05:27,342 - MMProteo: Failed to download file 10/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_bifidum_CMcarb_anaerobic_01_26Feb16_Arwen_16-01-01.raw") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:05:27,380 - MMProteo: Downloading file 13/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_ATCC14579_LB_aerobic_1_17July16_Samwise_16-04-10.raw
+2021-09-08 00:05:27,382 - MMProteo: Downloading file 14/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_ATCC14579_LB_aerobic_2_17July16_Samwise_16-04-10.raw
+2021-09-08 00:05:27,451 - MMProteo: Failed to download file 13/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_ATCC14579_LB_aerobic_1_17July16_Samwise_16-04-10.raw") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:08:10,333 - MMProteo: Downloaded file 9/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_3_23Nov16_Pippin_16-09-11.raw"
+2021-09-08 00:08:41,033 - MMProteo: Downloaded file 14/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_ATCC14579_LB_aerobic_2_17July16_Samwise_16-04-10.raw"
+2021-09-08 00:08:41,052 - MMProteo: Downloading file 15/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_ATCC14579_LB_aerobic_3_17July16_Samwise_16-04-10.raw
+2021-09-08 00:08:41,052 - MMProteo: Downloading file 16/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_PN_L_CL_1_09Oct16_Pippin_16-05-06.raw
+2021-09-08 00:08:41,052 - MMProteo: Downloading file 18/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_PN_L_CL_3_09Oct16_Pippin_16-05-06.raw
+2021-09-08 00:08:41,052 - MMProteo: Downloading file 17/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_PN_L_CL_2_09Oct16_Pippin_16-05-06.raw
+2021-09-08 00:08:41,188 - MMProteo: Failed to download file 18/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_PN_L_CL_3_09Oct16_Pippin_16-05-06.raw") because of "<urlopen error ftp error: error_perm('550 Failed to change directory.')>"
+2021-09-08 00:08:41,188 - MMProteo: Failed to download file 15/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_ATCC14579_LB_aerobic_3_17July16_Samwise_16-04-10.raw") because of "<urlopen error ftp error: error_perm('550 Failed to change directory.')>"
+2021-09-08 00:08:41,190 - MMProteo: Failed to download file 16/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_PN_L_CL_1_09Oct16_Pippin_16-05-06.raw") because of "<urlopen error ftp error: error_perm('550 Failed to change directory.')>"
+2021-09-08 00:08:41,192 - MMProteo: Failed to download file 17/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_PN_L_CL_2_09Oct16_Pippin_16-05-06.raw") because of "<urlopen error ftp error: error_perm('550 Failed to change directory.')>"
+2021-09-08 00:08:41,237 - MMProteo: Downloading file 19/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_01_28Jul15_Arwen_14-12-03.raw
+2021-09-08 00:08:41,238 - MMProteo: Downloading file 20/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_CMcarb_anaerobic_01_01Feb16_Arwen_15-07-13.raw
+2021-09-08 00:08:41,238 - MMProteo: Downloading file 22/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_CMcarb_anaerobic_03_01Feb16_Arwen_15-07-13.raw
+2021-09-08 00:08:41,238 - MMProteo: Downloading file 21/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_CMcarb_anaerobic_02_01Feb16_Arwen_15-07-13.raw
+2021-09-08 00:11:46,365 - MMProteo: Downloaded file 21/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_CMcarb_anaerobic_02_01Feb16_Arwen_15-07-13.raw"
+2021-09-08 00:13:17,072 - MMProteo: Downloaded file 20/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_CMcarb_anaerobic_01_01Feb16_Arwen_15-07-13.raw"
+2021-09-08 00:13:22,854 - MMProteo: Downloaded file 22/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_CMcarb_anaerobic_03_01Feb16_Arwen_15-07-13.raw"
+2021-09-08 00:14:40,222 - MMProteo: Downloaded file 19/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_01_28Jul15_Arwen_14-12-03.raw"
+2021-09-08 00:14:40,253 - MMProteo: Successfully downloaded 8 URLs
+2021-09-08 00:14:40,253 - MMProteo: Encountered 14 exceptions during processing
+2021-09-08 00:14:40,262 - MMProteo: Limiting the shown columns according to the shown_columns parameter
+2021-09-08 00:14:40,643 - MMProteo: Logging to file './mmproteo.log' and to <stdout>
+2021-09-08 00:14:40,644 - MMProteo: Requesting list of project files using API version 2 from https://www.ebi.ac.uk/pride/ws/archive/v2/files/byProject?accession=PXD010000
+2021-09-08 00:14:41,407 - MMProteo: Received project file list using API version 2 with 1175 files for project "PXD010000"
+2021-09-08 00:14:41,408 - MMProteo: Filtering files based on the following required file extensions ["mzid"] and the following optional file extensions ["gz", "zip"]
+2021-09-08 00:14:41,411 - MMProteo: Downloading 235 files
+2021-09-08 00:14:41,420 - MMProteo: Downloading file 1/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39_msgfplus.mzid.gz
+2021-09-08 00:14:41,420 - MMProteo: Downloading file 2/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39_msgfplus.mzid.gz
+2021-09-08 00:14:41,420 - MMProteo: Downloading file 4/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz
+2021-09-08 00:14:41,420 - MMProteo: Downloading file 3/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39_msgfplus.mzid.gz
+2021-09-08 00:14:41,495 - MMProteo: Failed to download file 4/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:14:41,495 - MMProteo: Failed to download file 1/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39_msgfplus.mzid.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:14:41,500 - MMProteo: Failed to download file 3/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39_msgfplus.mzid.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:14:41,531 - MMProteo: Downloading file 5/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz
+2021-09-08 00:14:41,531 - MMProteo: Downloading file 6/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz
+2021-09-08 00:14:41,536 - MMProteo: Downloading file 7/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11_msgfplus.mzid.gz
+2021-09-08 00:14:41,598 - MMProteo: Failed to download file 6/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:14:41,604 - MMProteo: Failed to download file 5/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:14:41,605 - MMProteo: Failed to download file 7/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11_msgfplus.mzid.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:14:41,638 - MMProteo: Downloading file 8/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11_msgfplus.mzid.gz
+2021-09-08 00:14:41,710 - MMProteo: Failed to download file 8/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11_msgfplus.mzid.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:14:42,495 - MMProteo: Downloaded file 2/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39_msgfplus.mzid.gz"
+2021-09-08 00:14:42,516 - MMProteo: Downloading file 9/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_3_23Nov16_Pippin_16-09-11_msgfplus.mzid.gz
+2021-09-08 00:14:42,516 - MMProteo: Downloading file 10/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_bifidum_CMcarb_anaerobic_01_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz
+2021-09-08 00:14:42,516 - MMProteo: Downloading file 11/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_bifidum_CMcarb_anaerobic_02_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz
+2021-09-08 00:14:42,516 - MMProteo: Downloading file 12/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_bifidum_CMcarb_anaerobic_03_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz
+2021-09-08 00:14:42,582 - MMProteo: Failed to download file 10/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_bifidum_CMcarb_anaerobic_01_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:14:42,584 - MMProteo: Failed to download file 11/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_bifidum_CMcarb_anaerobic_02_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:14:42,587 - MMProteo: Failed to download file 12/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_bifidum_CMcarb_anaerobic_03_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:14:42,623 - MMProteo: Downloading file 13/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_ATCC14579_LB_aerobic_1_17July16_Samwise_16-04-10_msgfplus.mzid.gz
+2021-09-08 00:14:42,623 - MMProteo: Downloading file 14/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_ATCC14579_LB_aerobic_2_17July16_Samwise_16-04-10_msgfplus.mzid.gz
+2021-09-08 00:14:42,625 - MMProteo: Downloading file 15/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_ATCC14579_LB_aerobic_3_17July16_Samwise_16-04-10_msgfplus.mzid.gz
+2021-09-08 00:14:42,689 - MMProteo: Failed to download file 14/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_ATCC14579_LB_aerobic_2_17July16_Samwise_16-04-10_msgfplus.mzid.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:14:42,691 - MMProteo: Failed to download file 13/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_ATCC14579_LB_aerobic_1_17July16_Samwise_16-04-10_msgfplus.mzid.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:14:42,693 - MMProteo: Failed to download file 15/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_ATCC14579_LB_aerobic_3_17July16_Samwise_16-04-10_msgfplus.mzid.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:14:43,942 - MMProteo: Downloaded file 9/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_3_23Nov16_Pippin_16-09-11_msgfplus.mzid.gz"
+2021-09-08 00:14:43,960 - MMProteo: Downloading file 16/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_PN_L_CL_1_09Oct16_Pippin_16-05-06_msgfplus.mzid.gz
+2021-09-08 00:14:43,960 - MMProteo: Downloading file 17/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_PN_L_CL_2_09Oct16_Pippin_16-05-06_msgfplus.mzid.gz
+2021-09-08 00:14:43,960 - MMProteo: Downloading file 18/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_PN_L_CL_3_09Oct16_Pippin_16-05-06_msgfplus.mzid.gz
+2021-09-08 00:14:43,960 - MMProteo: Downloading file 19/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_01_28Jul15_Arwen_14-12-03_msgfplus.mzid.gz
+2021-09-08 00:14:44,025 - MMProteo: Failed to download file 19/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_01_28Jul15_Arwen_14-12-03_msgfplus.mzid.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:14:44,028 - MMProteo: Failed to download file 18/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_PN_L_CL_3_09Oct16_Pippin_16-05-06_msgfplus.mzid.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:14:44,029 - MMProteo: Failed to download file 16/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_PN_L_CL_1_09Oct16_Pippin_16-05-06_msgfplus.mzid.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:14:44,066 - MMProteo: Downloading file 20/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_CMcarb_anaerobic_01_01Feb16_Arwen_15-07-13_msgfplus.mzid.gz
+2021-09-08 00:14:44,070 - MMProteo: Downloading file 21/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_CMcarb_anaerobic_02_01Feb16_Arwen_15-07-13_msgfplus.mzid.gz
+2021-09-08 00:14:44,136 - MMProteo: Failed to download file 20/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_CMcarb_anaerobic_01_01Feb16_Arwen_15-07-13_msgfplus.mzid.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:14:44,142 - MMProteo: Failed to download file 21/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_CMcarb_anaerobic_02_01Feb16_Arwen_15-07-13_msgfplus.mzid.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:14:45,214 - MMProteo: Downloaded file 17/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_PN_L_CL_2_09Oct16_Pippin_16-05-06_msgfplus.mzid.gz"
+2021-09-08 00:14:45,231 - MMProteo: Downloading file 22/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_CMcarb_anaerobic_03_01Feb16_Arwen_15-07-13_msgfplus.mzid.gz
+2021-09-08 00:14:45,232 - MMProteo: Downloading file 23/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_CMgluc_anaerobic_01_01Feb16_Arwen_15-07-13_msgfplus.mzid.gz
+2021-09-08 00:14:45,232 - MMProteo: Downloading file 24/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_CMgluc_anaerobic_02_01Feb16_Arwen_15-07-13_msgfplus.mzid.gz
+2021-09-08 00:14:45,232 - MMProteo: Downloading file 25/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_CMgluc_anaerobic_03_01Feb16_Arwen_15-07-13_msgfplus.mzid.gz
+2021-09-08 00:14:45,302 - MMProteo: Failed to download file 25/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_CMgluc_anaerobic_03_01Feb16_Arwen_15-07-13_msgfplus.mzid.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:14:45,302 - MMProteo: Failed to download file 24/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_CMgluc_anaerobic_02_01Feb16_Arwen_15-07-13_msgfplus.mzid.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:14:45,303 - MMProteo: Failed to download file 22/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_CMcarb_anaerobic_03_01Feb16_Arwen_15-07-13_msgfplus.mzid.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:14:45,341 - MMProteo: Downloading file 26/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_Carb_01_28Oct15_Arwen_15-07-13_msgfplus.mzid.gz
+2021-09-08 00:14:47,084 - MMProteo: Downloaded file 23/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_CMgluc_anaerobic_01_01Feb16_Arwen_15-07-13_msgfplus.mzid.gz"
+2021-09-08 00:14:47,468 - MMProteo: Downloaded file 26/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_Carb_01_28Oct15_Arwen_15-07-13_msgfplus.mzid.gz"
+2021-09-08 00:14:47,491 - MMProteo: Downloading file 27/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_LB_anaerobic_01_01Feb16_Arwen_15-07-13_msgfplus.mzid.gz
+2021-09-08 00:14:47,491 - MMProteo: Downloading file 28/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_LB_anaerobic_02_01Feb16_Arwen_15-07-13_msgfplus.mzid.gz
+2021-09-08 00:14:47,491 - MMProteo: Downloading file 29/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_LB_anaerobic_03_01Feb16_Arwen_15-07-13_msgfplus.mzid.gz
+2021-09-08 00:14:47,559 - MMProteo: Failed to download file 27/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_LB_anaerobic_01_01Feb16_Arwen_15-07-13_msgfplus.mzid.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:14:47,562 - MMProteo: Failed to download file 28/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_LB_anaerobic_02_01Feb16_Arwen_15-07-13_msgfplus.mzid.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:14:49,409 - MMProteo: Downloaded file 29/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_LB_anaerobic_03_01Feb16_Arwen_15-07-13_msgfplus.mzid.gz"
+2021-09-08 00:14:49,433 - MMProteo: Downloading file 30/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_LIB_aerobic_01_01Feb16_Arwen_15-07-13_msgfplus.mzid.gz
+2021-09-08 00:14:49,433 - MMProteo: Downloading file 31/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_LIB_aerobic_02_01Feb16_Arwen_15-07-13_msgfplus.mzid.gz
+2021-09-08 00:14:49,502 - MMProteo: Failed to download file 31/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_LIB_aerobic_02_01Feb16_Arwen_15-07-13_msgfplus.mzid.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:14:51,290 - MMProteo: Downloaded file 30/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_LIB_aerobic_01_01Feb16_Arwen_15-07-13_msgfplus.mzid.gz"
+2021-09-08 00:14:51,324 - MMProteo: Downloading file 32/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_LIB_aerobic_03_01Feb16_Arwen_15-07-13_msgfplus.mzid.gz
+2021-09-08 00:14:53,280 - MMProteo: Downloaded file 32/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_LIB_aerobic_03_01Feb16_Arwen_15-07-13_msgfplus.mzid.gz"
+2021-09-08 00:14:53,313 - MMProteo: Successfully downloaded 8 URLs
+2021-09-08 00:14:53,314 - MMProteo: Encountered 24 exceptions during processing
+2021-09-08 00:14:53,320 - MMProteo: Limiting the shown columns according to the shown_columns parameter
+2021-09-08 00:14:53,678 - MMProteo: Logging to file './mmproteo.log' and to <stdout>
+2021-09-08 00:14:53,679 - MMProteo: Requesting list of project files using API version 2 from https://www.ebi.ac.uk/pride/ws/archive/v2/files/byProject?accession=PXD010000
+2021-09-08 00:14:54,316 - MMProteo: Received project file list using API version 2 with 1175 files for project "PXD010000"
+2021-09-08 00:14:54,317 - MMProteo: Filtering files based on the following required file extensions ["mzml"] and the following optional file extensions ["gz", "zip"]
+2021-09-08 00:14:54,320 - MMProteo: Downloading 235 files
+2021-09-08 00:14:54,329 - MMProteo: Downloading file 1/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39.mzML.gz
+2021-09-08 00:14:54,330 - MMProteo: Downloading file 2/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39.mzML.gz
+2021-09-08 00:14:54,330 - MMProteo: Downloading file 4/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.mzML.gz
+2021-09-08 00:14:54,330 - MMProteo: Downloading file 3/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39.mzML.gz
+2021-09-08 00:14:54,399 - MMProteo: Failed to download file 2/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39.mzML.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:14:54,400 - MMProteo: Failed to download file 1/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39.mzML.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:14:54,400 - MMProteo: Failed to download file 3/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39.mzML.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:14:54,453 - MMProteo: Downloading file 5/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01.mzML.gz
+2021-09-08 00:14:54,453 - MMProteo: Downloading file 6/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.mzML.gz
+2021-09-08 00:14:54,455 - MMProteo: Downloading file 7/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.mzML.gz
+2021-09-08 00:14:54,517 - MMProteo: Failed to download file 5/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01.mzML.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:14:54,522 - MMProteo: Failed to download file 6/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.mzML.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:14:54,524 - MMProteo: Failed to download file 7/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.mzML.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:14:54,536 - MMProteo: Downloading file 8/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.mzML.gz
+2021-09-08 00:14:54,603 - MMProteo: Failed to download file 8/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.mzML.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:15:08,400 - MMProteo: Downloaded file 4/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.mzML.gz"
+2021-09-08 00:15:08,439 - MMProteo: Downloading file 9/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_3_23Nov16_Pippin_16-09-11.mzML.gz
+2021-09-08 00:15:08,439 - MMProteo: Downloading file 10/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_bifidum_CMcarb_anaerobic_01_26Feb16_Arwen_16-01-01.mzML.gz
+2021-09-08 00:15:08,439 - MMProteo: Downloading file 11/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_bifidum_CMcarb_anaerobic_02_26Feb16_Arwen_16-01-01.mzML.gz
+2021-09-08 00:15:08,439 - MMProteo: Downloading file 12/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_bifidum_CMcarb_anaerobic_03_26Feb16_Arwen_16-01-01.mzML.gz
+2021-09-08 00:15:08,507 - MMProteo: Failed to download file 11/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_bifidum_CMcarb_anaerobic_02_26Feb16_Arwen_16-01-01.mzML.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:15:08,509 - MMProteo: Failed to download file 9/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_3_23Nov16_Pippin_16-09-11.mzML.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:15:08,510 - MMProteo: Failed to download file 12/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_bifidum_CMcarb_anaerobic_03_26Feb16_Arwen_16-01-01.mzML.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:15:08,547 - MMProteo: Downloading file 13/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_ATCC14579_LB_aerobic_1_17July16_Samwise_16-04-10.mzML.gz
+2021-09-08 00:15:08,548 - MMProteo: Downloading file 14/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_ATCC14579_LB_aerobic_2_17July16_Samwise_16-04-10.mzML.gz
+2021-09-08 00:15:08,548 - MMProteo: Downloading file 15/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_ATCC14579_LB_aerobic_3_17July16_Samwise_16-04-10.mzML.gz
+2021-09-08 00:15:08,611 - MMProteo: Failed to download file 13/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_ATCC14579_LB_aerobic_1_17July16_Samwise_16-04-10.mzML.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:15:08,614 - MMProteo: Failed to download file 14/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_ATCC14579_LB_aerobic_2_17July16_Samwise_16-04-10.mzML.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:15:08,616 - MMProteo: Failed to download file 15/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_ATCC14579_LB_aerobic_3_17July16_Samwise_16-04-10.mzML.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:15:20,024 - MMProteo: Downloaded file 10/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_bifidum_CMcarb_anaerobic_01_26Feb16_Arwen_16-01-01.mzML.gz"
+2021-09-08 00:15:20,046 - MMProteo: Downloading file 16/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_PN_L_CL_1_09Oct16_Pippin_16-05-06.mzML.gz
+2021-09-08 00:15:20,046 - MMProteo: Downloading file 17/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_PN_L_CL_2_09Oct16_Pippin_16-05-06.mzML.gz
+2021-09-08 00:15:20,046 - MMProteo: Downloading file 19/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_01_28Jul15_Arwen_14-12-03.mzML.gz
+2021-09-08 00:15:20,046 - MMProteo: Downloading file 18/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_PN_L_CL_3_09Oct16_Pippin_16-05-06.mzML.gz
+2021-09-08 00:15:20,113 - MMProteo: Failed to download file 17/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_PN_L_CL_2_09Oct16_Pippin_16-05-06.mzML.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:15:20,113 - MMProteo: Failed to download file 19/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_01_28Jul15_Arwen_14-12-03.mzML.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:15:20,114 - MMProteo: Failed to download file 18/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_PN_L_CL_3_09Oct16_Pippin_16-05-06.mzML.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:15:20,152 - MMProteo: Downloading file 20/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_CMcarb_anaerobic_01_01Feb16_Arwen_15-07-13.mzML.gz
+2021-09-08 00:15:20,152 - MMProteo: Downloading file 21/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_CMcarb_anaerobic_02_01Feb16_Arwen_15-07-13.mzML.gz
+2021-09-08 00:15:20,217 - MMProteo: Failed to download file 20/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_CMcarb_anaerobic_01_01Feb16_Arwen_15-07-13.mzML.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:15:20,224 - MMProteo: Failed to download file 21/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_CMcarb_anaerobic_02_01Feb16_Arwen_15-07-13.mzML.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:15:29,496 - MMProteo: Downloaded file 16/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_cereus_PN_L_CL_1_09Oct16_Pippin_16-05-06.mzML.gz"
+2021-09-08 00:15:29,522 - MMProteo: Downloading file 22/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_CMcarb_anaerobic_03_01Feb16_Arwen_15-07-13.mzML.gz
+2021-09-08 00:15:29,523 - MMProteo: Downloading file 23/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_CMgluc_anaerobic_01_01Feb16_Arwen_15-07-13.mzML.gz
+2021-09-08 00:15:29,523 - MMProteo: Downloading file 24/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_CMgluc_anaerobic_02_01Feb16_Arwen_15-07-13.mzML.gz
+2021-09-08 00:15:29,523 - MMProteo: Downloading file 25/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_CMgluc_anaerobic_03_01Feb16_Arwen_15-07-13.mzML.gz
+2021-09-08 00:15:29,589 - MMProteo: Failed to download file 23/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_CMgluc_anaerobic_01_01Feb16_Arwen_15-07-13.mzML.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:15:29,594 - MMProteo: Failed to download file 22/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_CMcarb_anaerobic_03_01Feb16_Arwen_15-07-13.mzML.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:15:29,595 - MMProteo: Failed to download file 24/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_CMgluc_anaerobic_02_01Feb16_Arwen_15-07-13.mzML.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:15:29,634 - MMProteo: Downloading file 26/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_Carb_01_28Oct15_Arwen_15-07-13.mzML.gz
+2021-09-08 00:15:29,703 - MMProteo: Failed to download file 26/235 ("ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_Carb_01_28Oct15_Arwen_15-07-13.mzML.gz") because of "<urlopen error ftp error: ConnectionResetError(104, 'Connection reset by peer')>"
+2021-09-08 00:15:45,983 - MMProteo: Downloaded file 25/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_CMgluc_anaerobic_03_01Feb16_Arwen_15-07-13.mzML.gz"
+2021-09-08 00:15:46,010 - MMProteo: Downloading file 27/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_LB_anaerobic_01_01Feb16_Arwen_15-07-13.mzML.gz
+2021-09-08 00:15:46,010 - MMProteo: Downloading file 28/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_LB_anaerobic_02_01Feb16_Arwen_15-07-13.mzML.gz
+2021-09-08 00:15:46,010 - MMProteo: Downloading file 30/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_LIB_aerobic_01_01Feb16_Arwen_15-07-13.mzML.gz
+2021-09-08 00:15:46,010 - MMProteo: Downloading file 29/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_LB_anaerobic_03_01Feb16_Arwen_15-07-13.mzML.gz
+2021-09-08 00:16:26,786 - MMProteo: Downloaded file 30/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_LIB_aerobic_01_01Feb16_Arwen_15-07-13.mzML.gz"
+2021-09-08 00:16:43,414 - MMProteo: Downloaded file 29/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_LB_anaerobic_03_01Feb16_Arwen_15-07-13.mzML.gz"
+2021-09-08 00:16:49,630 - MMProteo: Downloaded file 28/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_LB_anaerobic_02_01Feb16_Arwen_15-07-13.mzML.gz"
+2021-09-08 00:16:51,411 - MMProteo: Downloaded file 27/235: "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_B_fragilis_LB_anaerobic_01_01Feb16_Arwen_15-07-13.mzML.gz"
+2021-09-08 00:16:51,440 - MMProteo: Successfully downloaded 8 URLs
+2021-09-08 00:16:51,440 - MMProteo: Encountered 22 exceptions during processing
+2021-09-08 00:16:51,446 - MMProteo: Limiting the shown columns according to the shown_columns parameter
+2021-09-08 00:17:15,417 - MMProteo: Logging to file './mmproteo.log' and to <stdout>
+2021-09-08 00:17:30,839 - MMProteo: Started ThermoRawFileParser Docker container
+2021-09-08 00:17:30,842 - MMProteo: Filtering files based on the following required file extensions ["raw"] and the following optional file extensions ["gz", "zip"]
+2021-09-08 00:18:02,274 - MMProteo: Converted file './Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39.raw'
+2021-09-08 00:18:03,763 - MMProteo: Converted file './Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39.raw'
+2021-09-08 00:18:10,280 - MMProteo: Converted file './Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39.raw'
+2021-09-08 00:18:33,260 - MMProteo: Converted file './Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.raw'
+2021-09-08 00:18:56,502 - MMProteo: Converted file './Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.raw'
+2021-09-08 00:18:58,429 - MMProteo: Converted file './Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01.raw'
+2021-09-08 00:19:13,803 - MMProteo: Converted file './Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.raw'
+2021-09-08 00:19:29,579 - MMProteo: Converted file './Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.raw'
+2021-09-08 00:19:29,597 - MMProteo: Successfully raw2mgf-converted 8 raw files
+2021-09-08 00:19:29,597 - MMProteo: Encountered 0 exceptions during processing
+2021-09-08 00:19:41,251 - MMProteo: Stopped ThermoRawFileParser Docker container using 'docker stop thermorawfileparser'
+2021-09-08 00:19:41,613 - MMProteo: Logging to file './mmproteo.log' and to <stdout>
+2021-09-08 00:19:41,616 - MMProteo: Filtering files based on the following required file extensions ["gz", "zip"]
+2021-09-08 00:19:41,626 - MMProteo: Extracting file './Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39.mzML.gz'
+2021-09-08 00:19:41,626 - MMProteo: Extracting file './Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39_msgfplus.mzid.gz'
+2021-09-08 00:19:41,626 - MMProteo: Extracting file './Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39.mzML.gz'
+2021-09-08 00:19:41,626 - MMProteo: Extracting file './Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39_msgfplus.mzid.gz'
+2021-09-08 00:19:41,924 - MMProteo: Extracted file './Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39_msgfplus.mzid'
+2021-09-08 00:19:41,947 - MMProteo: Extracting file './Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39.mzML.gz'
+2021-09-08 00:19:42,063 - MMProteo: Extracted file './Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39_msgfplus.mzid'
+2021-09-08 00:19:42,086 - MMProteo: Extracting file './Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39_msgfplus.mzid.gz'
+2021-09-08 00:19:42,441 - MMProteo: Extracted file './Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39_msgfplus.mzid'
+2021-09-08 00:19:42,456 - MMProteo: Extracting file './Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.mzML.gz'
+2021-09-08 00:19:42,681 - MMProteo: Extracted file './Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39.mzML'
+2021-09-08 00:19:42,703 - MMProteo: Extracting file './Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz'
+2021-09-08 00:19:42,900 - MMProteo: Extracted file './Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39.mzML'
+2021-09-08 00:19:42,925 - MMProteo: Extracting file './Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01.mzML.gz'
+2021-09-08 00:19:43,153 - MMProteo: Extracted file './Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01_msgfplus.mzid'
+2021-09-08 00:19:43,166 - MMProteo: Extracting file './Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz'
+2021-09-08 00:19:43,786 - MMProteo: Extracted file './Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01_msgfplus.mzid'
+2021-09-08 00:19:43,800 - MMProteo: Extracting file './Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.mzML.gz'
+2021-09-08 00:19:43,921 - MMProteo: Extracted file './Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39.mzML'
+2021-09-08 00:19:43,953 - MMProteo: Extracting file './Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz'
+2021-09-08 00:19:44,437 - MMProteo: Extracted file './Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01_msgfplus.mzid'
+2021-09-08 00:19:44,451 - MMProteo: Extracting file './Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.mzML.gz'
+2021-09-08 00:19:46,549 - MMProteo: Extracted file './Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.mzML'
+2021-09-08 00:19:46,565 - MMProteo: Extracting file './Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11_msgfplus.mzid.gz'
+2021-09-08 00:19:48,037 - MMProteo: Extracted file './Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11_msgfplus.mzid'
+2021-09-08 00:19:48,052 - MMProteo: Extracting file './Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.mzML.gz'
+2021-09-08 00:19:48,693 - MMProteo: Extracted file './Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01.mzML'
+2021-09-08 00:19:48,708 - MMProteo: Extracting file './Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11_msgfplus.mzid.gz'
+2021-09-08 00:19:48,771 - MMProteo: Extracted file './Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.mzML'
+2021-09-08 00:19:49,323 - MMProteo: Extracted file './Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.mzML'
+2021-09-08 00:19:49,356 - MMProteo: Extracted file './Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11_msgfplus.mzid'
+2021-09-08 00:19:51,535 - MMProteo: Extracted file './Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.mzML'
+2021-09-08 00:19:51,550 - MMProteo: Successfully extracted 16 archive files
+2021-09-08 00:19:51,551 - MMProteo: Encountered 0 exceptions during processing
+2021-09-08 00:19:51,932 - MMProteo: Logging to file './mmproteo.log' and to <stdout>
+2021-09-08 00:19:51,945 - MMProteo: Started Merge 1/8: './Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39.mzML' + './Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39_msgfplus.mzid' -> './Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39_mzmlid.parquet'
+2021-09-08 00:19:51,945 - MMProteo: Started Merge 3/8: './Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39.mzML' + './Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39_msgfplus.mzid' -> './Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39_mzmlid.parquet'
+2021-09-08 00:19:51,945 - MMProteo: Started Merge 2/8: './Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39.mzML' + './Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39_msgfplus.mzid' -> './Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39_mzmlid.parquet'
+2021-09-08 00:19:51,945 - MMProteo: Started Merge 4/8: './Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.mzML' + './Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01_msgfplus.mzid' -> './Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01_mzmlid.parquet'
+2021-09-08 00:20:16,092 - MMProteo: Finished reading mzml file './Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39.mzML'
+2021-09-08 00:20:16,496 - MMProteo: Finished reading mzml file './Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39.mzML'
+2021-09-08 00:20:16,655 - MMProteo: Finished reading mzml file './Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39.mzML'
+2021-09-08 00:20:24,050 - MMProteo: Finished reading mzml file './Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.mzML'
+2021-09-08 00:21:07,979 - MMProteo: Finished reading mzid file './Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39_msgfplus.mzid'
+2021-09-08 00:21:09,018 - MMProteo: Finished reading mzid file './Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39_msgfplus.mzid'
+2021-09-08 00:21:10,221 - MMProteo: Finished reading mzid file './Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39_msgfplus.mzid'
+2021-09-08 00:22:00,738 - MMProteo: Finished Merge 2/8: './Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39.mzML' + './Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39_msgfplus.mzid' -> './Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39_mzmlid.parquet'
+2021-09-08 00:22:01,709 - MMProteo: Started Merge 5/8: './Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01.mzML' + './Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01_msgfplus.mzid' -> './Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01_mzmlid.parquet'
+2021-09-08 00:22:15,520 - MMProteo: Finished Merge 1/8: './Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39.mzML' + './Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39_msgfplus.mzid' -> './Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39_mzmlid.parquet'
+2021-09-08 00:22:17,420 - MMProteo: Started Merge 6/8: './Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.mzML' + './Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01_msgfplus.mzid' -> './Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01_mzmlid.parquet'
+2021-09-08 00:22:36,065 - MMProteo: Finished reading mzml file './Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01.mzML'
+2021-09-08 00:22:36,630 - MMProteo: Finished reading mzid file './Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01_msgfplus.mzid'
+2021-09-08 00:22:41,753 - MMProteo: Finished Merge 3/8: './Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39.mzML' + './Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39_msgfplus.mzid' -> './Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39_mzmlid.parquet'
+2021-09-08 00:22:43,824 - MMProteo: Started Merge 7/8: './Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.mzML' + './Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11_msgfplus.mzid' -> './Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11_mzmlid.parquet'
+2021-09-08 00:22:51,502 - MMProteo: Finished reading mzml file './Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.mzML'
+2021-09-08 00:23:23,699 - MMProteo: Finished reading mzml file './Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.mzML'
+2021-09-08 00:24:24,564 - MMProteo: Finished reading mzid file './Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01_msgfplus.mzid'
+2021-09-08 00:24:36,965 - MMProteo: Finished reading mzid file './Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01_msgfplus.mzid'
+2021-09-08 00:25:03,074 - MMProteo: Finished reading mzid file './Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11_msgfplus.mzid'
+2021-09-08 00:30:34,305 - MMProteo: Finished Merge 7/8: './Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.mzML' + './Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11_msgfplus.mzid' -> './Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11_mzmlid.parquet'
+2021-09-08 00:30:45,589 - MMProteo: Started Merge 8/8: './Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.mzML' + './Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11_msgfplus.mzid' -> './Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11_mzmlid.parquet'
+2021-09-08 00:31:30,197 - MMProteo: Finished reading mzml file './Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.mzML'
+2021-09-08 00:33:17,745 - MMProteo: Finished reading mzid file './Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11_msgfplus.mzid'
+2021-09-08 00:37:35,112 - MMProteo: Finished Merge 8/8: './Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.mzML' + './Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11_msgfplus.mzid' -> './Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11_mzmlid.parquet'
+2021-09-08 00:38:29,951 - MMProteo: Finished Merge 6/8: './Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.mzML' + './Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01_msgfplus.mzid' -> './Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01_mzmlid.parquet'
+2021-09-08 00:49:13,134 - MMProteo: Finished Merge 5/8: './Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01.mzML' + './Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01_msgfplus.mzid' -> './Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01_mzmlid.parquet'
+2021-09-08 00:51:39,528 - MMProteo: Finished Merge 4/8: './Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.mzML' + './Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01_msgfplus.mzid' -> './Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01_mzmlid.parquet'
+2021-09-08 00:52:01,007 - MMProteo: Successfully mzmlid-merged 8 file pairs
+2021-09-08 00:52:01,013 - MMProteo: Encountered 0 exceptions during processing
+2021-09-08 00:52:02,108 - MMProteo: Logging to file './mmproteo.log' and to <stdout>
+2021-09-08 00:52:02,111 - MMProteo: Filtering files based on the following required file extensions ["mgf"] and the following optional file extensions ["gz", "zip"]
+2021-09-08 00:52:11,681 - MMProteo: Converted file ./Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39.mgf
+2021-09-08 00:52:12,224 - MMProteo: Converted file ./Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39.mgf
+2021-09-08 00:52:13,470 - MMProteo: Converted file ./Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39.mgf
+2021-09-08 00:52:19,329 - MMProteo: Converted file ./Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.mgf
+2021-09-08 00:52:27,273 - MMProteo: Converted file ./Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01.mgf
+2021-09-08 00:52:27,606 - MMProteo: Converted file ./Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.mgf
+2021-09-08 00:52:30,172 - MMProteo: Converted file ./Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.mgf
+2021-09-08 00:52:34,516 - MMProteo: Converted file ./Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.mgf
+2021-09-08 00:52:34,652 - MMProteo: Successfully mgf2parquet-converted 8 MGF files
+2021-09-08 00:52:34,653 - MMProteo: Encountered 0 exceptions during processing

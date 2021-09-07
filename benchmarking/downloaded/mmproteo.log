@@ -67,3 +67,141 @@
 2021-09-06 15:42:58,640 - MMProteo: Skipped download, because file "Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.raw" already exists
 2021-09-06 15:42:58,651 - MMProteo: Successfully downloaded 8 URLs
 2021-09-06 15:42:58,651 - MMProteo: Encountered 0 exceptions during processing
+2021-09-07 10:19:40,420 - MMProteo: Logging to file './mmproteo.log' and to <stderr>
+2021-09-07 10:19:40,421 - MMProteo: Requesting list of project files using API version 2 from https://www.ebi.ac.uk/pride/ws/archive/v2/files/byProject?accession=PXD010000
+2021-09-07 10:19:41,149 - MMProteo: Received project file list using API version 2 with 1175 files for project "PXD010000"
+2021-09-07 10:19:41,149 - MMProteo: Filtering files based on the following required file extensions ["mzml"] and the following optional file extensions ["gz", "zip"]
+2021-09-07 10:19:41,154 - MMProteo: Downloading 235 files
+2021-09-07 10:19:41,154 - MMProteo: Downloading file 1/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39.mzML.gz
+2021-09-07 10:19:41,154 - MMProteo: Skipped download, because file "Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39.mzML.gz" already exists
+2021-09-07 10:19:41,168 - MMProteo: Downloading file 2/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39.mzML.gz
+2021-09-07 10:19:41,168 - MMProteo: Skipped download, because file "Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39.mzML.gz" already exists
+2021-09-07 10:19:41,179 - MMProteo: Downloading file 3/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39.mzML.gz
+2021-09-07 10:19:41,179 - MMProteo: Skipped download, because file "Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39.mzML.gz" already exists
+2021-09-07 10:19:41,190 - MMProteo: Downloading file 4/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.mzML.gz
+2021-09-07 10:19:41,190 - MMProteo: Skipped download, because file "Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.mzML.gz" already exists
+2021-09-07 10:19:41,201 - MMProteo: Downloading file 5/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01.mzML.gz
+2021-09-07 10:19:41,201 - MMProteo: Skipped download, because file "Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01.mzML.gz" already exists
+2021-09-07 10:19:41,212 - MMProteo: Downloading file 6/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.mzML.gz
+2021-09-07 10:19:41,212 - MMProteo: Skipped download, because file "Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.mzML.gz" already exists
+2021-09-07 10:19:41,223 - MMProteo: Downloading file 7/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.mzML.gz
+2021-09-07 10:19:41,223 - MMProteo: Skipped download, because file "Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.mzML.gz" already exists
+2021-09-07 10:19:41,233 - MMProteo: Downloading file 8/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.mzML.gz
+2021-09-07 10:19:41,234 - MMProteo: Skipped download, because file "Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.mzML.gz" already exists
+2021-09-07 10:19:41,244 - MMProteo: Successfully downloaded 8 URLs
+2021-09-07 10:19:41,244 - MMProteo: Encountered 0 exceptions during processing
+2021-09-07 10:19:41,602 - MMProteo: Logging to file './mmproteo.log' and to <stderr>
+2021-09-07 10:19:41,602 - MMProteo: Requesting list of project files using API version 2 from https://www.ebi.ac.uk/pride/ws/archive/v2/files/byProject?accession=PXD010000
+2021-09-07 10:19:42,292 - MMProteo: Received project file list using API version 2 with 1175 files for project "PXD010000"
+2021-09-07 10:19:42,292 - MMProteo: Filtering files based on the following required file extensions ["mzid"] and the following optional file extensions ["gz", "zip"]
+2021-09-07 10:19:42,296 - MMProteo: Downloading 235 files
+2021-09-07 10:19:42,296 - MMProteo: Downloading file 1/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39_msgfplus.mzid.gz
+2021-09-07 10:19:42,296 - MMProteo: Skipped download, because file "Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39_msgfplus.mzid.gz" already exists
+2021-09-07 10:19:42,309 - MMProteo: Downloading file 2/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39_msgfplus.mzid.gz
+2021-09-07 10:19:42,309 - MMProteo: Skipped download, because file "Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39_msgfplus.mzid.gz" already exists
+2021-09-07 10:19:42,321 - MMProteo: Downloading file 3/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39_msgfplus.mzid.gz
+2021-09-07 10:19:42,321 - MMProteo: Skipped download, because file "Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39_msgfplus.mzid.gz" already exists
+2021-09-07 10:19:42,332 - MMProteo: Downloading file 4/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz
+2021-09-07 10:19:42,332 - MMProteo: Skipped download, because file "Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz" already exists
+2021-09-07 10:19:42,343 - MMProteo: Downloading file 5/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz
+2021-09-07 10:19:42,343 - MMProteo: Skipped download, because file "Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz" already exists
+2021-09-07 10:19:42,354 - MMProteo: Downloading file 6/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz
+2021-09-07 10:19:42,355 - MMProteo: Skipped download, because file "Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz" already exists
+2021-09-07 10:19:42,365 - MMProteo: Downloading file 7/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11_msgfplus.mzid.gz
+2021-09-07 10:19:42,366 - MMProteo: Skipped download, because file "Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11_msgfplus.mzid.gz" already exists
+2021-09-07 10:19:42,376 - MMProteo: Downloading file 8/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11_msgfplus.mzid.gz
+2021-09-07 10:19:42,377 - MMProteo: Skipped download, because file "Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11_msgfplus.mzid.gz" already exists
+2021-09-07 10:19:42,387 - MMProteo: Successfully downloaded 8 URLs
+2021-09-07 10:19:42,388 - MMProteo: Encountered 0 exceptions during processing
+2021-09-07 10:19:42,745 - MMProteo: Logging to file './mmproteo.log' and to <stderr>
+2021-09-07 10:19:42,746 - MMProteo: Requesting list of project files using API version 2 from https://www.ebi.ac.uk/pride/ws/archive/v2/files/byProject?accession=PXD010000
+2021-09-07 10:19:43,477 - MMProteo: Received project file list using API version 2 with 1175 files for project "PXD010000"
+2021-09-07 10:19:43,477 - MMProteo: Filtering files based on the following required file extensions ["raw"] and the following optional file extensions ["gz", "zip"]
+2021-09-07 10:19:43,481 - MMProteo: Downloading 235 files
+2021-09-07 10:19:43,481 - MMProteo: Downloading file 1/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39.raw
+2021-09-07 10:19:43,481 - MMProteo: Skipped download, because file "Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39.raw" already exists
+2021-09-07 10:19:43,495 - MMProteo: Downloading file 2/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39.raw
+2021-09-07 10:19:43,495 - MMProteo: Skipped download, because file "Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39.raw" already exists
+2021-09-07 10:19:43,506 - MMProteo: Downloading file 3/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39.raw
+2021-09-07 10:19:43,506 - MMProteo: Skipped download, because file "Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39.raw" already exists
+2021-09-07 10:19:43,517 - MMProteo: Downloading file 4/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.raw
+2021-09-07 10:19:43,517 - MMProteo: Skipped download, because file "Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.raw" already exists
+2021-09-07 10:19:43,528 - MMProteo: Downloading file 5/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01.raw
+2021-09-07 10:19:43,528 - MMProteo: Skipped download, because file "Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01.raw" already exists
+2021-09-07 10:19:43,539 - MMProteo: Downloading file 6/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.raw
+2021-09-07 10:19:43,539 - MMProteo: Skipped download, because file "Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.raw" already exists
+2021-09-07 10:19:43,550 - MMProteo: Downloading file 7/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.raw
+2021-09-07 10:19:43,550 - MMProteo: Skipped download, because file "Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.raw" already exists
+2021-09-07 10:19:43,561 - MMProteo: Downloading file 8/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.raw
+2021-09-07 10:19:43,562 - MMProteo: Skipped download, because file "Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.raw" already exists
+2021-09-07 10:19:43,573 - MMProteo: Successfully downloaded 8 URLs
+2021-09-07 10:19:43,573 - MMProteo: Encountered 0 exceptions during processing
+2021-09-07 10:20:00,847 - MMProteo: Logging to file './mmproteo.log' and to <stderr>
+2021-09-07 10:20:00,848 - MMProteo: Requesting list of project files using API version 2 from https://www.ebi.ac.uk/pride/ws/archive/v2/files/byProject?accession=PXD010000
+2021-09-07 10:20:01,520 - MMProteo: Received project file list using API version 2 with 1175 files for project "PXD010000"
+2021-09-07 10:20:01,520 - MMProteo: Filtering files based on the following required file extensions ["mzml"] and the following optional file extensions ["gz", "zip"]
+2021-09-07 10:20:01,523 - MMProteo: Downloading 235 files
+2021-09-07 10:20:01,524 - MMProteo: Downloading file 1/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39.mzML.gz
+2021-09-07 10:20:01,524 - MMProteo: Skipped download, because file "Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39.mzML.gz" already exists
+2021-09-07 10:20:01,537 - MMProteo: Downloading file 2/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39.mzML.gz
+2021-09-07 10:20:01,537 - MMProteo: Skipped download, because file "Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39.mzML.gz" already exists
+2021-09-07 10:20:01,548 - MMProteo: Downloading file 3/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39.mzML.gz
+2021-09-07 10:20:01,548 - MMProteo: Skipped download, because file "Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39.mzML.gz" already exists
+2021-09-07 10:20:01,559 - MMProteo: Downloading file 4/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.mzML.gz
+2021-09-07 10:20:01,559 - MMProteo: Skipped download, because file "Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.mzML.gz" already exists
+2021-09-07 10:20:01,570 - MMProteo: Downloading file 5/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01.mzML.gz
+2021-09-07 10:20:01,570 - MMProteo: Skipped download, because file "Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01.mzML.gz" already exists
+2021-09-07 10:20:01,581 - MMProteo: Downloading file 6/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.mzML.gz
+2021-09-07 10:20:01,581 - MMProteo: Skipped download, because file "Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.mzML.gz" already exists
+2021-09-07 10:20:01,592 - MMProteo: Downloading file 7/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.mzML.gz
+2021-09-07 10:20:01,592 - MMProteo: Skipped download, because file "Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.mzML.gz" already exists
+2021-09-07 10:20:01,603 - MMProteo: Downloading file 8/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.mzML.gz
+2021-09-07 10:20:01,603 - MMProteo: Skipped download, because file "Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.mzML.gz" already exists
+2021-09-07 10:20:01,613 - MMProteo: Successfully downloaded 8 URLs
+2021-09-07 10:20:01,614 - MMProteo: Encountered 0 exceptions during processing
+2021-09-07 10:20:01,979 - MMProteo: Logging to file './mmproteo.log' and to <stderr>
+2021-09-07 10:20:01,980 - MMProteo: Requesting list of project files using API version 2 from https://www.ebi.ac.uk/pride/ws/archive/v2/files/byProject?accession=PXD010000
+2021-09-07 10:20:02,608 - MMProteo: Received project file list using API version 2 with 1175 files for project "PXD010000"
+2021-09-07 10:20:02,608 - MMProteo: Filtering files based on the following required file extensions ["mzid"] and the following optional file extensions ["gz", "zip"]
+2021-09-07 10:20:02,612 - MMProteo: Downloading 235 files
+2021-09-07 10:20:02,612 - MMProteo: Downloading file 1/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39_msgfplus.mzid.gz
+2021-09-07 10:20:02,612 - MMProteo: Skipped download, because file "Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39_msgfplus.mzid.gz" already exists
+2021-09-07 10:20:02,625 - MMProteo: Downloading file 2/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39_msgfplus.mzid.gz
+2021-09-07 10:20:02,625 - MMProteo: Skipped download, because file "Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39_msgfplus.mzid.gz" already exists
+2021-09-07 10:20:02,636 - MMProteo: Downloading file 3/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39_msgfplus.mzid.gz
+2021-09-07 10:20:02,636 - MMProteo: Skipped download, because file "Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39_msgfplus.mzid.gz" already exists
+2021-09-07 10:20:02,647 - MMProteo: Downloading file 4/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz
+2021-09-07 10:20:02,647 - MMProteo: Skipped download, because file "Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz" already exists
+2021-09-07 10:20:02,658 - MMProteo: Downloading file 5/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz
+2021-09-07 10:20:02,658 - MMProteo: Skipped download, because file "Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz" already exists
+2021-09-07 10:20:02,669 - MMProteo: Downloading file 6/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz
+2021-09-07 10:20:02,669 - MMProteo: Skipped download, because file "Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01_msgfplus.mzid.gz" already exists
+2021-09-07 10:20:02,680 - MMProteo: Downloading file 7/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11_msgfplus.mzid.gz
+2021-09-07 10:20:02,680 - MMProteo: Skipped download, because file "Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11_msgfplus.mzid.gz" already exists
+2021-09-07 10:20:02,692 - MMProteo: Downloading file 8/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11_msgfplus.mzid.gz
+2021-09-07 10:20:02,692 - MMProteo: Skipped download, because file "Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11_msgfplus.mzid.gz" already exists
+2021-09-07 10:20:02,703 - MMProteo: Successfully downloaded 8 URLs
+2021-09-07 10:20:02,703 - MMProteo: Encountered 0 exceptions during processing
+2021-09-07 10:20:03,056 - MMProteo: Logging to file './mmproteo.log' and to <stderr>
+2021-09-07 10:20:03,057 - MMProteo: Requesting list of project files using API version 2 from https://www.ebi.ac.uk/pride/ws/archive/v2/files/byProject?accession=PXD010000
+2021-09-07 10:20:03,686 - MMProteo: Received project file list using API version 2 with 1175 files for project "PXD010000"
+2021-09-07 10:20:03,686 - MMProteo: Filtering files based on the following required file extensions ["raw"] and the following optional file extensions ["gz", "zip"]
+2021-09-07 10:20:03,689 - MMProteo: Downloading 235 files
+2021-09-07 10:20:03,689 - MMProteo: Downloading file 1/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39.raw
+2021-09-07 10:20:03,690 - MMProteo: Skipped download, because file "Biodiversity_A_cryptum_FeTSB_anaerobic_1_01Jun16_Pippin_16-03-39.raw" already exists
+2021-09-07 10:20:03,703 - MMProteo: Downloading file 2/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39.raw
+2021-09-07 10:20:03,703 - MMProteo: Skipped download, because file "Biodiversity_A_cryptum_FeTSB_anaerobic_2_01Jun16_Pippin_16-03-39.raw" already exists
+2021-09-07 10:20:03,714 - MMProteo: Downloading file 3/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39.raw
+2021-09-07 10:20:03,714 - MMProteo: Skipped download, because file "Biodiversity_A_cryptum_FeTSB_anaerobic_3_01Jun16_Pippin_16-03-39.raw" already exists
+2021-09-07 10:20:03,725 - MMProteo: Downloading file 4/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.raw
+2021-09-07 10:20:03,726 - MMProteo: Skipped download, because file "Biodiversity_A_faecalis_LB_aerobic_01_26Feb16_Arwen_16-01-01.raw" already exists
+2021-09-07 10:20:03,736 - MMProteo: Downloading file 5/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01.raw
+2021-09-07 10:20:03,737 - MMProteo: Skipped download, because file "Biodiversity_A_faecalis_LB_aerobic_02_26Feb16_Arwen_16-01-01.raw" already exists
+2021-09-07 10:20:03,748 - MMProteo: Downloading file 6/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.raw
+2021-09-07 10:20:03,748 - MMProteo: Skipped download, because file "Biodiversity_A_faecalis_LB_aerobic_03_26Feb16_Arwen_16-01-01.raw" already exists
+2021-09-07 10:20:03,759 - MMProteo: Downloading file 7/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.raw
+2021-09-07 10:20:03,759 - MMProteo: Skipped download, because file "Biodiversity_A_tumefaciens_R2A_aerobic_1_23Nov16_Pippin_16-09-11.raw" already exists
+2021-09-07 10:20:03,770 - MMProteo: Downloading file 8/235: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/06/PXD010000/Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.raw
+2021-09-07 10:20:03,770 - MMProteo: Skipped download, because file "Biodiversity_A_tumefaciens_R2A_aerobic_2_23Nov16_Pippin_16-09-11.raw" already exists
+2021-09-07 10:20:03,781 - MMProteo: Successfully downloaded 8 URLs
+2021-09-07 10:20:03,781 - MMProteo: Encountered 0 exceptions during processing

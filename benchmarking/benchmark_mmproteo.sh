@@ -17,7 +17,7 @@ for i in $(echo -e "1\n2\n4\n8" | shuf); do
 		$TIME_CMD $BASE_CMD -n 8 -e "$e" download
 	done
 	rm ./*.{gz,raw}
-	cp ../downloaded/*.{gz,raw} .
+	cp ../../downloaded/*.{gz,raw} .
 	echo convertraw:
 	echoerr "$i,convertraw,,"
 	$TIME_CMD $BASE_CMD --thermo-output-format mgf convertraw
