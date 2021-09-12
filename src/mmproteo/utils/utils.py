@@ -4,6 +4,8 @@ import os
 import subprocess
 import time
 
+from numpy.ma.core import MaskedArray
+
 try:
     from subprocess import DEVNULL  # Python 3.
 except ImportError:
@@ -58,6 +60,9 @@ def _denumpyfy(element: Any, raise_exception: bool = True) -> Union[Any, NoRetur
         return tuple(_denumpyfy(v, raise_exception=raise_exception) for v in element)
     if callable(element):
         return str(element)
+    if type(element) == MaskedArray:
+        return {'data': _denumpyfy(element.data, raise_exception=raise_exception),
+                'mask': _denumpyfy(element.mask, raise_exception=raise_exception)}
     if raise_exception:
         raise NotImplementedError(type(element))
     else:
