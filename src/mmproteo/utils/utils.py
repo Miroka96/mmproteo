@@ -46,6 +46,8 @@ def _denumpyfy(element: Any, raise_exception: bool = True) -> Union[Any, NoRetur
         return int(element)
     if type(element) in [np.float16, np.float32, np.float64, np.float128]:
         return float(element)
+    if type(element) == np.bool_:
+        return bool(element)
     if type(element) == np.ndarray:
         return [_denumpyfy(elem, raise_exception=raise_exception) for elem in list(element)]
     if type(element) in [int, str, float, bool]:
