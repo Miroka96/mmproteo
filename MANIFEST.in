@@ -1,2 +1,4 @@
 include versioneer.py
 include src/mmproteo/_version.py
+prune benchmarking
+prune .vscode
