@@ -24,7 +24,6 @@ release: clean                        ## build and release mmproteo
 	python3 -m twine upload dist/*
 
 docs:                                 ## build the docs
-	cd docs && sphinx-apidoc -f --separate -o src/ ../src/
 	make -C docs html
 
 clean:                                ## clean up
