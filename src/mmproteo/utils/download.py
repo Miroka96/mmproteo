@@ -69,7 +69,8 @@ def handle_file_download(download_url: str,
     logger.info(f"Downloading file {current_download_index + 1}/{download_count}: {download_url}")
 
     try:
-        downloaded_file_name, skip_reason = download_file(download_url, skip_existing)
+        download_result = download_file(download_url, skip_existing)
+        downloaded_file_name, skip_reason = download_result  # type: ignore
     except Exception as e:
         logger.info(f'Failed to download file {current_download_index + 1}/{download_count} ("{download_url}") '
                     f'because of "{e}"')

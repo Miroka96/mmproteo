@@ -1,7 +1,7 @@
 import gzip
 import os
 import shutil
-from typing import Callable, Dict, List, NoReturn, Optional, Sequence, Set, Union
+from typing import Callable, Dict, List, NoReturn, Optional, Sequence, Set
 from zipfile import ZipFile
 
 from mmproteo.utils import log, utils
@@ -11,7 +11,8 @@ from mmproteo.utils.formats import read
 from mmproteo.utils.processing import ItemProcessor
 
 
-def extract_gz_file(filename: str, output_filename: Optional[str] = None, delete_source: bool = True) -> Optional[NoReturn]:
+def extract_gz_file(filename: str, output_filename: Optional[str] = None, delete_source: bool = True) \
+        -> Optional[NoReturn]:
     if output_filename is None:
         assert filename.endswith(".gz"), \
             "Cannot determine the target filename for a gz file that doesn't end with '.gz'"
@@ -21,6 +22,7 @@ def extract_gz_file(filename: str, output_filename: Optional[str] = None, delete
             shutil.copyfileobj(input_file, output_file)
     if delete_source:
         os.remove(filename)
+    return None
 
 
 def extract_zip_file(filename: str, delete_source: bool = True) -> Optional[NoReturn]:
@@ -28,9 +30,10 @@ def extract_zip_file(filename: str, delete_source: bool = True) -> Optional[NoRe
         input_file.extractall()
     if delete_source:
         os.remove(filename)
+    return None
 
 
-_FILE_EXTRACTION_CONFIG: Dict[str, Dict[str, Union[str, Callable[[str], Optional[NoReturn]]]]] = {
+_FILE_EXTRACTION_CONFIG: Dict[str, Dict[str, Callable[[str], Optional[NoReturn]]]] = {  # type: ignore
     "gz": {
         'extract_function': extract_gz_file
     },

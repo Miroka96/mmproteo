@@ -185,7 +185,7 @@ class ItemProcessor:
         for exception in exceptions:
             self.logger.debug(f"{type(exception)} - {exception}")
 
-    def __close(self):
+    def __close(self) -> None:
         if self.process_pool is None:
             return
         self.process_pool.close()
