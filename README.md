@@ -7,7 +7,7 @@
 
 ### Requirements
 
-* Python 3.8 (other versions haven't been tested yet)
+* Python 3.7 or Python 3.8 (other versions haven't been tested yet)
 * preferably Linux (other OSes haven't been tested yet)
 
 If you want, set up a virtual environment to encapsulate this software and its dependencies:
