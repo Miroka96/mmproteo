@@ -341,9 +341,9 @@ class DatasetLoader:
         else:
             path_list = paths
         dataset = self._load_dataset_interleaved(paths=path_list, name=name)
+        dataset = self._cache_dataset(dataset, name=name)
         dataset = self._shuffle_dataset(dataset, name=name)
         dataset = self._batch_dataset(dataset, name=name)
-        dataset = self._cache_dataset(dataset, name=name)
         dataset = self._prefetch_dataset(dataset, name=name)
         self._run_benchmark(dataset, name=name)
         self.logger.info(f"prepared dataset '{name}'")
