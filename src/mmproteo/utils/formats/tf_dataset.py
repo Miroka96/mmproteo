@@ -327,7 +327,10 @@ class DatasetLoader:
     def _run_benchmark(self, dataset: tf.data.Dataset, name: str = 'unknown') -> None:
         if self.run_benchmarks:
             self.logger.info(f"running benchmark for '{name}' dataset")
-            tfds.benchmark(dataset)
+            batch_size = self.batch_size
+            if batch_size is None:
+                batch_size = 1
+            tfds.benchmark(dataset, batch_size=batch_size)
             gc.collect()
             self.logger.info(f"ran benchmark for '{name}' dataset - waiting 5 seconds")
             time.sleep(5)
