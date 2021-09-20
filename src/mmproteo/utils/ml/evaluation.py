@@ -83,6 +83,7 @@ class SequenceEvaluator:
             sample_size: int = 20,
             keep_separator: bool = True,
             split_by_separator: bool = True,
+            shorten_sequences: bool = False,
     ) -> Tuple[pd.DataFrame, Tuple[Iterable, Iterable, Any]]:
         eval_ds = self.dataset.unbatch().batch(1).take(sample_size)
         x_eval: Tuple[np.ndarray]
@@ -106,21 +107,23 @@ class SequenceEvaluator:
             columns=[self.prediction_col_name, self.true_value_col_name]
         )
 
-        eval_df[self.prediction_col_name] = \
-            self._shorten_sequences_to_lengths_of_other_sequences_with_separator(
-                sequences=eval_df[self.prediction_col_name],
-                other_sequences=eval_df[self.true_value_col_name],
-                length_offset=1,
-                split_by_separator=split_by_separator,
-            )
+        if shorten_sequences:
+            eval_df[self.prediction_col_name] = \
+                self._shorten_sequences_to_lengths_of_other_sequences_with_separator(
+                    sequences=eval_df[self.prediction_col_name],
+                    other_sequences=eval_df[self.true_value_col_name],
+                    length_offset=1,
+                    split_by_separator=split_by_separator,
+                )
 
         if not keep_separator:
             eval_df = eval_df.applymap(lambda s: s.replace(self.separator, ""))
 
-        eval_df[self.true_value_col_name] = eval_df[self.true_value_col_name]\
-            .str.rstrip(
-                self.padding_character + self.separator
-            )
+        if shorten_sequences:
+            eval_df[self.true_value_col_name] = eval_df[self.true_value_col_name]\
+                .str.rstrip(
+                    self.padding_character + self.separator
+                )
 
         return eval_df, (x_eval, y_eval, y_pred)
 
