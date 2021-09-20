@@ -11,7 +11,7 @@ class InputLayerConfiguration:
 
     def get_shape_tuple(self) -> Tuple[Any]:
         if not isinstance(self.shape, tuple):
-            return self.shape,
+            return self.shape,  # a tuple
         return self.shape
 
 

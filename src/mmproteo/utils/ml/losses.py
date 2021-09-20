@@ -10,7 +10,9 @@ class MaskedLoss(K.losses.LossFunctionWrapper):
             loss_function: Callable[[tf.Variable, tf.Variable], tf.Variable],
             masking_value: Union[str, int, float],
             name: str = 'masked_loss',
-            reduction: str = tf.keras.losses.Reduction.NONE):
+            reduction: str = tf.keras.losses.Reduction.NONE,
+            include_next_n_padding_characters: int = 1,
+    ):
         def _masked_loss(
                 y_true: tf.Variable,
                 y_pred: tf.Variable,
@@ -33,9 +35,9 @@ class MaskedLoss(K.losses.LossFunctionWrapper):
             lengths = tf.math.reduce_sum(length_mask, axis=-1,
                                          name="masked_loss__sum_to_get_lengths")
 
-            # to also include the first padding character
+            # to also include the first n padding character
             lengths = tf.math.add(
-                lengths, 1,
+                lengths, include_next_n_padding_characters,
                 name="masked_loss__sum_to_include_first_padding"
             )
 
