@@ -83,6 +83,7 @@ def create_log_csv_callback(
 ) -> tf.keras.callbacks.CSVLogger:
     return tf.keras.callbacks.CSVLogger(
         filename=filename,
+        append=True,
     )
 
 
